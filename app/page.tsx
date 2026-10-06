@@ -1,4 +1,5 @@
 import { SiteFooter } from "@/components/layout/site-footer";
+import { FaqsSection } from "@/components/home/faqs/faqs-section";
 import { FeesSection } from "@/components/home/fees/fees-section";
 import { FacultySection } from "@/components/home/faculty/faculty-section";
 import { LearningSection } from "@/components/home/learning/learning-section";
@@ -17,6 +18,7 @@ export default function HomePage() {
       <FacultySection />
       <PartnersSection />
       <FeesSection />
+      <FaqsSection />
       <SiteFooter />
     </>
   );

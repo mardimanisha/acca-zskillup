@@ -23,22 +23,23 @@ export function FeesSection() {
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          id="fees-heading"
-          variant="line-right"
-          align="left"
-          eyebrow={eyebrow}
-          titleStart={`${heading.line1} ${heading.line2Navy}`}
-          titleBreakAfter={heading.line1}
-          titleHighlight={heading.line2Teal}
-          highlightSwoosh
-          subtext={subtext}
-          subtextClassName="xl:max-w-3xl"
-          className="mb-10"
-        />
+        {/* Desktop: the includes panel sits in the right column beside the header and cards */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-10">
+          <SectionHeader
+            id="fees-heading"
+            variant="line-right"
+            align="left"
+            eyebrow={eyebrow}
+            titleStart={`${heading.line1} ${heading.line2Navy}`}
+            titleBreakAfter={heading.line1}
+            titleHighlight={heading.line2Teal}
+            highlightSwoosh
+            subtext={subtext}
+            subtextClassName="xl:max-w-3xl"
+            className="mb-4 lg:col-span-8 lg:mb-0"
+          />
 
-        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
-          <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:col-span-8">
+          <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:col-span-8 lg:self-end">
             {programs.map((program) => (
               <li key={program.title}>
                 <FeeCard
@@ -55,7 +56,7 @@ export function FeesSection() {
             ))}
           </ul>
 
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:self-end">
             <FeesIncludes
               title={includes.title}
               intro={includes.intro}

@@ -39,7 +39,7 @@ export function HeroVideoCard({
 
   return (
     <Dialog>
-      <div className="relative aspect-[46/17] w-full max-w-[460px] short:max-w-[400px] tight:max-w-[340px] overflow-hidden rounded-2xl border-4 border-white bg-slate-200 shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)]">
+      <div className="relative aspect-[2/1] w-full max-w-[460px] short:max-w-[400px] tight:max-w-[340px] overflow-hidden rounded-2xl border-4 border-white bg-slate-200 shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)]">
         <Image
           src={thumbnailSrc}
           alt={thumbnailAlt}

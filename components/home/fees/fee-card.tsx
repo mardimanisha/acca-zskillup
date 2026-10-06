@@ -30,21 +30,21 @@ export function FeeCard({
   href,
 }: FeeCardProps) {
   return (
-    <Card className="h-full gap-0 rounded-2xl border-[#E6F0EE] bg-white p-6 shadow-[0_10px_40px_-18px_rgba(11,26,61,0.18)]">
+    <Card className="h-full gap-0 rounded-2xl border-[#E6F0EE] bg-white p-5 shadow-[0_10px_40px_-18px_rgba(11,26,61,0.18)]">
       <span
         aria-hidden="true"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E3F4F1]"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E3F4F1]"
       >
-        <Icon className="h-7 w-7 text-brand-teal" />
+        <Icon className="h-6 w-6 text-brand-teal" />
       </span>
 
-      <h3 className={cn(typography.cardTitle, "mt-5")}>{title}</h3>
+      <h3 className={cn(typography.cardTitle, "mt-4")}>{title}</h3>
       <p className={cn(typography.body, "mt-2")}>{description}</p>
 
-      <Separator className="my-5 bg-[#E6F0EE]" />
+      <Separator className="my-4 bg-[#E6F0EE]" />
 
       <p className={typography.fieldLabel}>{feeLabel}</p>
-      <div className="mt-2 flex min-h-[48px] items-center gap-3">
+      <div className="mt-2 flex min-h-[44px] items-center gap-3">
         {fee === null ? (
           <span className="rounded-lg bg-[#E3F4F1] px-4 py-2 text-sm font-semibold text-brand-teal">
             {feeStatus}
@@ -54,7 +54,7 @@ export function FeeCard({
         )}
       </div>
 
-      <div className="mt-auto pt-6">
+      <div className="mt-auto pt-5">
         <Button asChild variant="brandRect">
           <Link href={href}>
             {ctaLabel}

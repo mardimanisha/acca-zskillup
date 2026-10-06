@@ -17,4 +17,6 @@ export const typography = {
   meta: "text-sm font-medium text-brand-body",
   priceText: "text-3xl xl:text-4xl font-extrabold text-brand-navy",
   fieldLabel: "text-sm font-semibold text-brand-navy",
+  faqNumber: "text-xs font-bold text-brand-teal tabular-nums",
+  faqQuestion: "text-base font-semibold text-brand-navy",
 } as const;

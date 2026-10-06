@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@config "../tailwind.config.ts";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Desktop viewports shorter than ~1060px (incl. 1080p screens once browser UI is
+   subtracted). Registered before short/tight so those still take precedence. */
+@custom-variant compact {
+  @media (min-width: 80rem) and (max-height: 1059px) {
+    @slot;
+  }
+}
+
+/* Desktop viewports with limited height (e.g. laptops at 125% scaling) */
+@custom-variant short {
+  @media (min-width: 80rem) and (max-height: 820px) {
+    @slot;
+  }
+}
+
+/* Very short desktop viewports (e.g. 1366x768 laptops) */
+@custom-variant tight {
+  @media (min-width: 80rem) and (max-height: 700px) {
+    @slot;
+  }
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: #0b1a3d;
+  --card: #ffffff;
+  --card-foreground: #0b1a3d;
+  --popover: #ffffff;
+  --popover-foreground: #0b1a3d;
+  --primary: #0e7c70;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0b1a3d;
+  --muted: #f1f5f9;
+  --muted-foreground: #4b5563;
+  --accent: #e7f4f2;
+  --accent-foreground: #0b5f57;
+  --destructive: #dc2626;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0e7c70;
+}
+
+@theme inline {
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+}

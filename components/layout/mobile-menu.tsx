@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, Menu, MessageCircle } from "lucide-react";
@@ -41,9 +42,13 @@ export function MobileMenu() {
       <SheetContent side="right" className="w-full max-w-sm gap-0 p-0">
         <SheetTitle className="sr-only">{a11y.menuTitle}</SheetTitle>
         <div className="flex h-[76px] items-center border-b border-slate-200 px-6">
-          <span className="text-[26px] font-extrabold tracking-tight text-brand-tealDark">
-            {siteContent.logo.wordmark}
-          </span>
+          <Image
+            src={siteContent.logo.src}
+            alt={siteContent.name}
+            width={800}
+            height={270}
+            className="h-8 w-auto"
+          />
         </div>
 
         <nav aria-label={a11y.mainNav} className="flex-1 overflow-y-auto px-3 py-4">

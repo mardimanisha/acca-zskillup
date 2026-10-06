@@ -24,6 +24,21 @@ const config: Config = {
           purple: { icon: "#8B5CF6", tint: "#EFEAFD", badge: "#A855F7" },
           orange: { icon: "#F28C28", tint: "#FDEEE0", badge: "#F59E0B" },
         },
+        // Program-page palette (sampled from the hero design image).
+        zs: {
+          navy: "#09174D",
+          green: "#03714C",
+          greenHover: "#025E3F",
+          greenDark: "#014331",
+          mint: "#E7F5EF",
+          mintSoft: "#F4FAF6",
+          body: "#5B6475",
+          line: "#E3EAE5",
+          peach: "#FEEEE0",
+          orange: "#F47A2C",
+          pillText: "#3F6B5C",
+          cardText: "#3E3E5B",
+        },
         panel: {
           from: "#F3FBF9",
           to: "#EEF8F5",

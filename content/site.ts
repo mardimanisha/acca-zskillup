@@ -11,6 +11,7 @@ export const siteContent = {
   name: "ZSkillup",
   logo: {
     wordmark: "ZSkillup",
+    src: "/images/brand/zskillup-logo-black.png",
     href: "/",
   },
   nav: [

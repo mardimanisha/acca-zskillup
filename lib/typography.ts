@@ -15,4 +15,6 @@ export const typography = {
   facultyName: "text-xl font-extrabold text-brand-navy",
   body: "text-base text-brand-body",
   meta: "text-sm font-medium text-brand-body",
+  priceText: "text-3xl xl:text-4xl font-extrabold text-brand-navy",
+  fieldLabel: "text-sm font-semibold text-brand-navy",
 } as const;

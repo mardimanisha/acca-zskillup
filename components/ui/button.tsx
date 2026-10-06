@@ -22,6 +22,8 @@ const buttonVariants = cva(
           "h-12 rounded-full border-[1.5px] border-brand-teal bg-white px-6 text-[15px] font-semibold text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark focus-visible:ring-offset-2",
         brandOutlineRect:
           "h-12 w-full rounded-xl border-[1.5px] border-brand-teal bg-white px-6 text-[15px] font-bold text-brand-teal hover:bg-accent-teal-tint focus-visible:ring-offset-2",
+        brandRect:
+          "h-12 w-full rounded-xl bg-gradient-to-r from-brand-tealLight to-brand-tealDark px-6 text-[15px] font-bold text-white hover:brightness-90 focus-visible:ring-offset-2",
         white:
           "h-12 rounded-full bg-white px-6 text-[15px] font-bold text-brand-teal hover:bg-accent-teal-tint focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-teal",
       },
@@ -33,7 +35,7 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: ["brand", "brandOutline", "brandOutlineRect", "white"], size: "default", className: "h-12 px-6 py-0" },
+      { variant: ["brand", "brandOutline", "brandOutlineRect", "brandRect", "white"], size: "default", className: "h-12 px-6 py-0" },
     ],
     defaultVariants: {
       variant: "default",

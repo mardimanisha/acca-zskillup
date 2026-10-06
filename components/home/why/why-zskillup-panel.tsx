@@ -37,27 +37,28 @@ export function WhyZSkillupPanel() {
       </div>
 
       <div className="relative z-10">
-        {/* Short desktop screens: intro paragraph sits beside the heading to save height */}
-        <div className="short:grid short:grid-cols-[auto_minmax(0,1fr)] short:items-center short:gap-x-6 short:pr-20">
-          <div>
-            <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy md:text-4xl compact:text-3xl short:text-[1.75rem]">
-              {heading.navy}{" "}
-              <span className="text-brand-teal">{heading.teal}</span>
-            </h3>
-            <p className="mt-2 text-lg font-medium text-brand-body xl:mt-1 xl:text-xl compact:mt-1 compact:text-lg short:text-base">
-              {subheading}
-            </p>
-          </div>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:max-w-3xl xl:text-base compact:mt-1.5 compact:text-sm short:mt-0 short:leading-snug">
+        <div className="mx-auto max-w-3xl text-center">
+          <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy md:text-4xl compact:text-3xl short:text-[1.75rem]">
+            {heading.navy}{" "}
+            <span className="text-brand-teal">{heading.teal}</span>
+          </h3>
+          <p className="mt-2 text-lg font-medium text-brand-body xl:mt-1 xl:text-xl compact:mt-1 compact:text-lg short:text-base">
+            {subheading}
+          </p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm short:leading-snug">
             {paragraph}
           </p>
         </div>
 
-        <ul className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-6 xl:mt-3 xl:gap-3 compact:mt-3 compact:gap-3">
+        {/* Mobile: 1 per row · tablet: 3 + 2 · desktop: all five in one row */}
+        <ul className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-6 lg:max-w-none lg:grid-cols-5 xl:mt-5 compact:mt-4 compact:gap-3">
           {cards.map((card, index) => (
             <li
               key={card.number}
-              className={cn("md:col-span-2", index === 3 && "md:col-start-2")}
+              className={cn(
+                "md:col-span-2 lg:col-span-1",
+                index === 3 && "md:col-start-2 lg:col-start-auto",
+              )}
             >
               <WhyZSkillupCard
                 icon={icons[card.icon]}

@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { currentEducationOptions, programInterestOptions } from "@/content/home-hero";
-import { enquiryFormContent as copy } from "@/content/program-bba-acca";
+import { enquiryFormContent as copy } from "@/content/program-shared";
 import { heroFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
 import { cn } from "@/lib/utils";
 

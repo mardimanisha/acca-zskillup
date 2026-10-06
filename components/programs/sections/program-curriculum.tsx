@@ -4,11 +4,11 @@ import { Fragment, useRef, useState, type KeyboardEvent } from "react";
 import { ArrowRight, FileText, GraduationCap, type LucideIcon } from "lucide-react";
 
 import { Eyebrow, SectionTitle, container } from "@/components/programs/program-ui";
-import { bbaCurriculum } from "@/content/program-bba-acca";
+import type { CurriculumContent, CurriculumSubject } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
 // Values sampled from the "Detailed Learning Structure" design image.
-type Subject = { name: string; code?: string };
+type Subject = CurriculumSubject;
 
 function SubjectColumn({
   icon: Icon,
@@ -53,8 +53,8 @@ function SubjectColumn({
   );
 }
 
-export function BbaCurriculum() {
-  const { eyebrow, title, body, columns, outcomesLabel, a11y, semesters } = bbaCurriculum;
+export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
+  const { eyebrow, title, body, columns, outcomesLabel, a11y, semesters } = content;
   const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -70,13 +70,13 @@ export function BbaCurriculum() {
   const sem = semesters[active];
 
   return (
-    <section aria-labelledby="bba-curriculum-title" className="bg-[#FBFDFD]">
+    <section aria-labelledby="program-curriculum-title" className="bg-[#FBFDFD]">
       <div className={cn(container, "py-16 lg:py-20")}>
         <Eyebrow>{eyebrow}</Eyebrow>
-        <SectionTitle id="bba-curriculum-title" className="mt-1.5">
+        <SectionTitle id="program-curriculum-title" className="mt-1.5">
           {title}
         </SectionTitle>
-        <p className="mt-2 text-base text-zs-body">{body}</p>
+        {body && <p className="mt-2 text-base text-zs-body">{body}</p>}
 
         <div
           role="tablist"
@@ -93,9 +93,9 @@ export function BbaCurriculum() {
                 }}
                 type="button"
                 role="tab"
-                id={`bba-sem-tab-${i}`}
+                id={`program-sem-tab-${i}`}
                 aria-selected={selected}
-                aria-controls="bba-sem-panel"
+                aria-controls="program-sem-panel"
                 tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(i)}
                 onKeyDown={onKeyDown}
@@ -114,8 +114,8 @@ export function BbaCurriculum() {
 
         <div
           role="tabpanel"
-          id="bba-sem-panel"
-          aria-labelledby={`bba-sem-tab-${active}`}
+          id="program-sem-panel"
+          aria-labelledby={`program-sem-tab-${active}`}
           className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,2fr)]"
         >
           <div className="rounded-2xl bg-[#ECF8F3] p-6 lg:p-7">
@@ -123,7 +123,7 @@ export function BbaCurriculum() {
               {sem.label}
             </span>
             <h3 className="mt-4 text-2xl font-extrabold leading-tight tracking-[-0.01em] text-zs-navy">{sem.title}</h3>
-            <p className="mt-3 text-[15px] leading-relaxed text-zs-body">{sem.meta.replace("self-study", "self‑study")}</p>
+            {sem.meta && <p className="mt-3 text-[15px] leading-relaxed text-zs-body">{sem.meta.replace("self-study", "self‑study")}</p>}
           </div>
 
           <div className="grid rounded-2xl border border-[#EEF1F3] bg-white shadow-[0_10px_30px_-18px_rgba(9,23,77,0.18)] md:grid-cols-2">

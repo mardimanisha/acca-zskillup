@@ -3,14 +3,18 @@ import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 
 import { AdvisorButton, BrochureButton, container } from "@/components/programs/program-ui";
-import { footerContent } from "@/content/program-bba-acca";
+import { footerContent } from "@/content/program-shared";
 import { siteContent } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const headingClass = "text-sm font-bold uppercase tracking-[0.04em] text-white";
 const linkClass = "text-[15px] text-white/75 transition-colors hover:text-white";
 
-export function SiteFooter() {
+export function SiteFooter({
+  brochureHref = siteContent.ctas.brochure.href,
+}: {
+  brochureHref?: string;
+}) {
   const { about, columns, contact, legal, copyright } = footerContent;
 
   return (
@@ -63,7 +67,7 @@ export function SiteFooter() {
             </ul>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <AdvisorButton className="h-12 px-5 text-[15px]" />
-              <BrochureButton variant="outlineWhite" className="h-12 px-5 text-[15px] focus-visible:ring-offset-zs-navy" />
+              <BrochureButton href={brochureHref} variant="outlineWhite" className="h-12 px-5 text-[15px] focus-visible:ring-offset-zs-navy" />
             </div>
           </div>
         </div>

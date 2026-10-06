@@ -7,18 +7,27 @@ import {
   Briefcase,
   Calculator,
   CalendarDays,
+  CirclePlay,
+  ClipboardCheck,
+  Clock,
   Download,
   FileText,
   Globe,
   GraduationCap,
   Landmark,
+  Laptop,
   Layers,
+  MessagesSquare,
+  RotateCcw,
   Target,
+  UserCheck,
   Users,
+  Video,
   type LucideIcon,
 } from "lucide-react";
 
-import { programCtas } from "@/content/program-bba-acca";
+import { programCtas } from "@/content/program-shared";
+import type { ProgramIconName } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
 // Shared building blocks for program pages, matching the program-page design:
@@ -37,9 +46,17 @@ export const programIcons = {
   layers: Layers,
   target: Target,
   calculator: Calculator,
-} satisfies Record<string, LucideIcon>;
+  clock: Clock,
+  laptop: Laptop,
+  video: Video,
+  playCircle: CirclePlay,
+  rotate: RotateCcw,
+  messages: MessagesSquare,
+  clipboardCheck: ClipboardCheck,
+  userCheck: UserCheck,
+} satisfies Record<ProgramIconName, LucideIcon>;
 
-export type ProgramIcon = keyof typeof programIcons;
+export type ProgramIcon = ProgramIconName;
 
 // Same horizontal rhythm as the homepage sections.
 export const container = "mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10 xl:px-16";
@@ -68,22 +85,15 @@ export function IconCircle({
   );
 }
 
-export function Eyebrow({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function Eyebrow({ className, ...props }: ComponentProps<"p">) {
   return (
     <p
       className={cn(
         "text-sm font-bold uppercase tracking-[0.04em] text-zs-green",
         className,
       )}
-    >
-      {children}
-    </p>
+      {...props}
+    />
   );
 }
 
@@ -136,14 +146,15 @@ export function AdvisorButton({ variant = "primary", className, arrow = false }:
 
 /** "Download Brochure" — downloads the program brochure PDF. */
 export function BrochureButton({
+  href,
   variant = "primary",
   className,
   arrow = false,
   iconCircle = false,
-}: CtaProps & { iconCircle?: boolean }) {
+}: CtaProps & { href: string; iconCircle?: boolean }) {
   return (
     <a
-      href={programCtas.brochure.href}
+      href={href}
       download
       className={programButtonClass(variant, className)}
     >

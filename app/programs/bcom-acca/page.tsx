@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/site-footer";
 import {
   ProgramCareers,
-  ProgramComparison,
+  ProgramFeatureGrid,
   ProgramFinalCta,
   ProgramLevels,
   ProgramWhoFor,
@@ -13,14 +13,14 @@ import { ProgramHero } from "@/components/programs/sections/program-hero";
 import { ProgramUniversities } from "@/components/programs/sections/program-universities";
 import { ProgramWhy } from "@/components/programs/sections/program-why";
 import { EnquiryFormSection } from "@/components/shared/enquiry-form-section";
-import { bbaPage as page } from "@/content/program-bba-acca";
+import { bcomPage as page } from "@/content/program-bcom-acca";
 
 export const metadata: Metadata = {
-  title: "BBA + ACCA | ZSkillup",
+  title: "B.Com + ACCA | ZSkillup",
   description: page.hero.body,
 };
 
-export default function BbaAccaPage() {
+export default function BcomAccaPage() {
   return (
     <>
       <ProgramHero content={page.hero} brochureHref={page.brochure} />
@@ -28,11 +28,11 @@ export default function BbaAccaPage() {
       <ProgramUniversities content={page.universities} />
       <ProgramCurriculum content={page.curriculum} />
       <ProgramLevels id="acca-learning-title" content={page.accaLearning} tone="mint" />
-      <ProgramComparison id="compare-title" content={page.comparison} tone="white" />
+      <ProgramFeatureGrid id="ai-employability-title" content={page.aiEmployability} tone="white" />
       <ProgramWhoFor id="who-for-title" content={page.whoFor} tone="mint" />
       <ProgramCareers id="careers-title" content={page.careers} tone="white" />
       <ProgramFinalCta id="final-cta-title" content={page.finalCta} brochureHref={page.brochure} />
-      <EnquiryFormSection defaultProgram="BBA + ACCA" />
+      <EnquiryFormSection defaultProgram="B.Com + ACCA" />
       <SiteFooter brochureHref={page.brochure} />
     </>
   );

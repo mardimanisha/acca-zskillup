@@ -24,8 +24,8 @@ export function WhySection() {
           className="mx-auto mb-10 xl:mb-4 compact:mb-3"
         />
 
-        {/* xl: the ZSkillup panel gets more width so its five cards stay short enough to fit the screen */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] compact:grid-cols-[minmax(0,5fr)_minmax(0,9fr)] short:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] compact:gap-4">
+        {/* Panels stack vertically at every size: Why ACCA, then Why ZSkillup */}
+        <div className="grid grid-cols-1 gap-6 compact:gap-4">
           <WhyAccaPanel />
           <WhyZSkillupPanel />
         </div>

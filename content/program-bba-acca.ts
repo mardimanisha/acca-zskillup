@@ -1,27 +1,43 @@
-// All visible copy for the BBA + ACCA program page. Text is verbatim from the
-// approved content brief — do not edit wording here without sign-off.
+// BBA + ACCA program page copy. Text is from the approved content brief and the supplied
+// section designs — do not edit wording here without sign-off.
 
-export const programCtas = {
-  advisor: { label: "Talk to an Advisor", href: "#enquiry-form" },
-  // TODO: drop the supplied brochure PDF at this path.
-  brochure: { label: "Download Brochure", href: "/brochures/bba-acca-brochure.pdf" },
-  comparePrograms: { label: "Compare Programs", href: "/programs/bcom-acca" },
-} as const;
+import {
+  accaExemptions,
+  brochures,
+  curriculumCommon,
+  universitiesCommon,
+} from "@/content/program-shared";
+import type {
+  CareersContent,
+  ComparisonContent,
+  CurriculumContent,
+  FinalCtaContent,
+  HeroContent,
+  LevelsContent,
+  UniversitiesContent,
+  WhoForContent,
+  WhyContent,
+} from "@/content/program-types";
 
-export const bbaHero = {
+// Hero photo shared by all program pages. `composite` is cut from the design screenshot
+// (copy, note, ACCA card and stats strip painted out; 2x upscale). TODO: replace with the
+// original photo, or supply a cut-out student + campus background via `student` / `background`.
+export const programHeroImage = {
+  composite: "/images/hero/bba-hero-campus-v3.jpg",
+  background: null,
+  student: null,
+  alt: "Student holding a laptop",
+} satisfies HeroContent["image"];
+
+// TODO: replace with the supplied section image asset.
+export const programWhyImage = { src: "/images/hero/hero-bg.jpg", alt: "" };
+
+const hero = {
   eyebrow: "GLOBAL FINANCE & AI PROFESSIONAL PROGRAM",
   title: { start: "BBA", highlight: " + ACCA" },
   subtitle: "Business Education Meets Professional Finance",
   body: "A three-year online BBA pathway combining business and management education with ACCA-aligned professional finance learning, AI capabilities and structured employability preparation.",
-  // `composite` is cut from the design screenshot (copy, note, ACCA card and stats
-  // strip painted out; 2x upscale). TODO: replace with the original photo, or supply
-  // a cut-out student + campus background via `student` / `background`.
-  image: {
-    composite: "/images/hero/bba-hero-campus-v3.jpg",
-    background: null as string | null,
-    student: null as string | null,
-    alt: "Student holding a laptop",
-  },
+  image: programHeroImage,
   features: [
     { icon: "briefcase", label: "Business & Management" },
     { icon: "landmark", label: "Professional Finance" },
@@ -34,13 +50,12 @@ export const bbaHero = {
     { icon: "globe", label: "26 Subjects", tone: "mint" },
     { icon: "users", label: "100% Online", tone: "peach" },
   ],
-} as const;
+} satisfies HeroContent;
 
-export const bbaWhy = {
+const why = {
   eyebrow: "WHY CHOOSE BBA + ACCA?",
   titleLines: ["Build Business Breadth and", "Finance Depth Together"],
-  // TODO: replace with the supplied section image asset.
-  image: { src: "/images/hero/hero-bg.jpg", alt: "" },
+  image: programWhyImage,
   items: [
     {
       icon: "briefcase",
@@ -63,75 +78,22 @@ export const bbaWhy = {
       body: "Develop communication, professional positioning and interview capabilities throughout your degree.",
     },
   ],
-} as const;
+} satisfies WhyContent;
 
-// DUMMY partner data for layout only: real university names/logos used as placeholders.
-// Replace with the confirmed partner list (names, logos, campus photos, programs) before launch.
-// Logos and campus photos are cropped from the design mockup (low resolution).
-const universityFeatures = [
-  "Globally recognised degree",
-  "ACCA-aligned learning",
-  "Finance & AI skills",
-  "Employability preparation",
-] as const;
-
-export const bbaUniversities = {
-  eyebrow: "UNIVERSITY PARTNERS",
-  title: "Our Reputed University Partners",
+const universities = {
+  ...universitiesCommon,
   body: "Earn your BBA + ACCA from our reputed university partners while building professional finance, AI and employability skills with ZSkillup.",
-  viewAll: { label: "View All Universities", href: "/universities" },
-  exploreLabel: "Explore University",
-  // Screen-reader-only labels for the carousel controls.
-  a11y: { prev: "Previous universities", next: "Next universities", goTo: "Go to university" },
-  universities: [
-    {
-      slug: "northeastern-university",
-      name: "Northeastern University",
-      logo: "/images/universities/northeastern-logo.png",
-      campus: "/images/universities/northeastern-campus.jpg",
-      tags: ["B.Com + ACCA", "3 Years", "Online"],
-      features: universityFeatures,
-    },
-    {
-      slug: "international-school-of-management",
-      name: "International School of Management",
-      logo: "/images/universities/ism-logo.png",
-      campus: "/images/universities/ism-campus.jpg",
-      tags: ["B.Com + ACCA", "3 Years", "Online"],
-      features: universityFeatures,
-    },
-    {
-      slug: "eu-business-school",
-      name: "EU Business School",
-      logo: "/images/universities/eu-business-school-logo.png",
-      campus: "/images/universities/eu-business-school-campus.jpg",
-      tags: ["BBA + ACCA", "3 Years", "Online"],
-      features: universityFeatures,
-    },
-    {
-      slug: "university-of-east-london",
-      name: "University of East London",
-      logo: "/images/universities/uel-logo.png",
-      campus: "/images/universities/uel-campus.jpg",
-      tags: ["BBA + ACCA", "3 Years", "Online"],
-      features: universityFeatures,
-    },
-  ],
-} as const;
+} satisfies UniversitiesContent;
 
 // Semester split follows "BBA Curriculum Proposal" (Amity University Online x ZSkillUp):
 // `degree` = taught by the university, `zskillup` = taught by ZSkillUp. `code` = ACCA paper.
 // Subject names are from the approved content brief. Hours lines are from the proposal.
-type CurriculumSubject = { name: string; code?: string };
-
-export const bbaCurriculum = {
+const curriculum = {
+  ...curriculumCommon,
   eyebrow: "SEMESTER-WISE CURRICULUM",
   title: "Detailed Learning Structure",
   body: "A balanced blend of university-governed BBA curriculum, ACCA-aligned learning and employability skills.",
-  columns: { degree: "BBA DEGREE CURRICULUM", zskillup: "ZSKILLUP ACCA PREPARATION" },
-  outcomesLabel: "END OF SEMESTER OUTCOMES:",
-  // Screen-reader-only label for the semester tabs.
-  a11y: { tabs: "Semesters" },
+  columns: { ...curriculumCommon.columns, degree: "BBA DEGREE CURRICULUM" },
   semesters: [
     {
       tab: "S1",
@@ -211,18 +173,11 @@ export const bbaCurriculum = {
       ],
       outcomes: ["Strategic Professional Option"],
     },
-  ] satisfies {
-    tab: string;
-    label: string;
-    title: string;
-    meta: string;
-    degree: CurriculumSubject[];
-    zskillup: CurriculumSubject[];
-    outcomes: string[];
-  }[],
-};
+  ],
+} satisfies CurriculumContent;
 
-export const bbaAccaLearning = {
+const accaLearning = {
+  ...accaExemptions,
   eyebrow: "ACCA-ALIGNED LEARNING",
   title: "Build Professional Finance Knowledge Alongside Your Degree",
   levels: [
@@ -252,12 +207,9 @@ export const bbaAccaLearning = {
       ],
     },
   ],
-  highlight: "Designed to seek up to 8 ACCA exam exemptions*",
-  footnote:
-    "*Subject to formal ACCA exemption accreditation, the final accredited university curriculum and individual eligibility. Strategic Professional examinations are not exemptible.",
-} as const;
+} satisfies LevelsContent;
 
-export const bbaComparison = {
+const comparison = {
   eyebrow: "BBA OR B.COM?",
   title: "Choose the Academic Foundation That Fits You",
   cards: [
@@ -274,15 +226,18 @@ export const bbaComparison = {
       current: false,
     },
   ],
-} as const;
+  cta: { label: "Compare Programs", href: "/programs/bcom-acca" },
+} satisfies ComparisonContent;
 
-export const bbaWhoFor = {
+const whoFor = {
   eyebrow: "WHO IS THIS FOR?",
-  body: "Ideal for students who want to combine business and management education, professional finance learning, ACCA-aligned preparation, AI capabilities and career-readiness development.",
+  icon: "users",
+  statement:
+    "Ideal for students who want to combine business and management education, professional finance learning, ACCA-aligned preparation, AI capabilities and career-readiness development.",
   note: "Eligibility: As prescribed by the selected university partner.",
-} as const;
+} satisfies WhoForContent;
 
-export const bbaCareers = {
+const careers = {
   eyebrow: "CAREER POSSIBILITIES",
   roles: [
     "Business Finance Analyst",
@@ -295,62 +250,21 @@ export const bbaCareers = {
     "Corporate Finance Associate",
     "Business Analyst",
   ],
-} as const;
+} satisfies CareersContent;
 
-export const bbaFinalCta = {
+const finalCta = {
   title: "Build the Business Perspective. Build the Finance Expertise.",
-} as const;
+} satisfies FinalCtaContent;
 
-export const enquiryFormContent = {
-  id: "enquiry-form",
-  title: "Not Sure Which Program Is Right for You?",
-  subtitle:
-    "Tell us where you are today. We'll help you understand the available pathways.",
-  fields: {
-    fullName: "Full Name",
-    mobile: "Mobile Number",
-    email: "Email Address",
-    currentEducation: "Current Education",
-    programInterest: "Interested In",
-    city: "City",
-  },
-  submit: "Talk to an Advisor",
-  consent:
-    "By submitting this form, you agree to be contacted regarding program information, admissions and related updates.",
-} as const;
-
-export const footerContent = {
-  about:
-    "Building pathways that connect academic learning, professional capabilities and career readiness for the future of work.",
-  columns: [
-    {
-      title: "Programs",
-      links: [
-        { label: "B.Com + ACCA", href: "/programs/bcom-acca" },
-        { label: "BBA + ACCA", href: "/programs/bba-acca" },
-        { label: "ACCA Only", href: "/programs/acca" },
-      ],
-    },
-    {
-      title: "Explore",
-      links: [
-        { label: "Universities", href: "/universities" },
-        { label: "Careers", href: "/careers" },
-        { label: "Fees", href: "/fees" },
-        { label: "FAQs", href: "/faqs" },
-      ],
-    },
-  ],
-  contact: {
-    title: "Get in Touch",
-    email: "acca@zskillup.com",
-    phone: "+91 9153005252",
-  },
-  legal: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms-and-conditions" },
-    { label: "Refund Policy", href: "/refund-policy" },
-    { label: "Disclaimer", href: "/disclaimer" },
-  ],
-  copyright: "© 2026 ZSkillup Education Private Limited. All rights reserved.",
-} as const;
+export const bbaPage = {
+  brochure: brochures.bba,
+  hero,
+  why,
+  universities,
+  curriculum,
+  accaLearning,
+  comparison,
+  whoFor,
+  careers,
+  finalCta,
+};

@@ -6,6 +6,7 @@ const config: Config = {
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./content/**/*.{ts,tsx}",
+    "./data/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -38,6 +39,17 @@ const config: Config = {
           orange: "#F47A2C",
           pillText: "#3F6B5C",
           cardText: "#3E3E5B",
+        },
+        // University-page palette (sampled from the university page design).
+        uni: {
+          navy: "#0B1F4D",
+          green: "#0E6B3F",
+          greenHover: "#0B5A34",
+          greenDark: "#0B4A2E",
+          mint: "#E6F2EA",
+          cream: "#FBF8F3",
+          body: "#5B6475",
+          line: "#E4E8E2",
         },
         panel: {
           from: "#F3FBF9",

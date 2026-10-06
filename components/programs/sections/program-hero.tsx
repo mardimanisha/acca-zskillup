@@ -6,7 +6,7 @@ import {
   IconCircle,
   container,
 } from "@/components/programs/program-ui";
-import { bbaHero } from "@/content/program-bba-acca";
+import type { HeroContent } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
 // Values below are sampled from the hero design image (scaled to a 72px H1).
@@ -21,15 +21,16 @@ const toneClass = {
 
 /** Campus background + student. Uses separate layers once both assets are supplied. */
 function HeroPhoto({
+  image,
   className,
   sizes,
   preload = false,
 }: {
+  image: HeroContent["image"];
   className?: string;
   sizes: string;
   preload?: boolean;
 }) {
-  const { image } = bbaHero;
 
   if (image.background && image.student) {
     return (
@@ -61,12 +62,12 @@ function HeroPhoto({
   );
 }
 
-export function BbaHero() {
-  const { eyebrow, title, subtitle, body, features, stats } = bbaHero;
+export function ProgramHero({ content, brochureHref }: { content: HeroContent; brochureHref: string }) {
+  const { eyebrow, title, subtitle, body, image, features, stats } = content;
 
   return (
     <section
-      aria-labelledby="bba-hero-title"
+      aria-labelledby="program-hero-title"
       // Fits one screen on desktop, like the homepage hero (77px = header height).
       className="relative overflow-hidden bg-white xl:flex xl:h-[calc(100svh-77px)] xl:min-h-[540px] xl:flex-col"
     >
@@ -90,7 +91,7 @@ export function BbaHero() {
             bottom: "calc(55px - var(--w) * 0.0928)",
           }}
         >
-          <HeroPhoto preload sizes="140vw" className="object-cover" />
+          <HeroPhoto image={image} preload sizes="140vw" className="object-cover" />
           <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[8%] bg-gradient-to-b from-white to-transparent" />
         </div>
         <div
@@ -111,7 +112,7 @@ export function BbaHero() {
           </p>
           {/* Same type scale as the homepage hero h1, including its short/tight screen sizes. */}
           <h1
-            id="bba-hero-title"
+            id="program-hero-title"
             className="mt-4 whitespace-nowrap text-[44px] font-extrabold leading-[1.12] tracking-[-0.02em] text-zs-navy md:text-5xl xl:text-[3.25rem] short:mt-3 short:text-[2.625rem] tight:mt-2 tight:text-[2.375rem]"
           >
             {title.start}
@@ -126,6 +127,7 @@ export function BbaHero() {
           <div className="mt-7 flex flex-col gap-4 sm:flex-row short:mt-5 tight:mt-4">
             <AdvisorButton arrow className={cn(buttonSize, "w-full sm:w-auto")} />
             <BrochureButton
+              href={brochureHref}
               variant="secondary"
               iconCircle
               className={cn(buttonSize, "w-full pl-4 pr-6 sm:w-auto")}
@@ -137,7 +139,7 @@ export function BbaHero() {
             background above and the card floats over it, centred against the text column. */}
         <div className="relative mt-10 lg:static lg:mt-0">
           <div className="relative -mx-4 h-[340px] sm:-mx-6 sm:h-[420px] md:h-[460px] lg:hidden">
-            <HeroPhoto sizes="100vw" className="object-[66%_25%]" />
+            <HeroPhoto image={image} sizes="100vw" className="object-[66%_25%]" />
             <div aria-hidden="true" className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent" />
           </div>
@@ -146,7 +148,7 @@ export function BbaHero() {
             className={cn(
               cardShadow,
               "relative z-10 -mt-14 flex flex-col gap-5 rounded-[14px] border border-white/70 bg-white p-5 short:gap-4 short:p-4",
-              "md:absolute md:right-6 md:top-1/2 md:mt-0 md:w-[284px] md:-translate-y-1/2",
+              "md:absolute md:right-6 md:top-1/2 md:mt-0 md:min-w-[284px] md:-translate-y-1/2",
               // Overhangs the content edge by ~44px, as in the design.
               "lg:right-8 lg:top-[55%] xl:right-5",
             )}

@@ -6,15 +6,15 @@ import Link from "next/link";
 import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
-import { bbaUniversities } from "@/content/program-bba-acca";
+import type { UniversitiesContent } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
 // Values sampled from the University Partners design image.
 const arrowClass =
   "absolute top-1/2 z-10 hidden size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-zs-navy shadow-[0_6px_18px_-6px_rgba(0,0,0,0.4)] transition hover:scale-105 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-white/60 disabled:pointer-events-none disabled:opacity-40 lg:flex";
 
-export function BbaUniversities() {
-  const { eyebrow, title, body, viewAll, exploreLabel, a11y, universities } = bbaUniversities;
+export function ProgramUniversities({ content }: { content: UniversitiesContent }) {
+  const { eyebrow, title, body, viewAll, exploreLabel, a11y, universities } = content;
   const trackRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState(0);
   const [edges, setEdges] = useState({ start: true, end: true });
@@ -51,7 +51,7 @@ export function BbaUniversities() {
 
   return (
     <section
-      aria-labelledby="bba-universities-title"
+      aria-labelledby="program-universities-title"
       className="relative overflow-hidden bg-zs-greenDark text-white"
     >
       {/* Soft lighting so the band isn't a flat fill, as in the design. */}
@@ -65,7 +65,7 @@ export function BbaUniversities() {
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.04em] text-white">{eyebrow}</p>
             <h2
-              id="bba-universities-title"
+              id="program-universities-title"
               className="mt-2 text-3xl font-extrabold leading-[1.15] tracking-[-0.02em] md:text-4xl xl:text-[40px]"
             >
               {title}

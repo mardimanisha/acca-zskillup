@@ -47,9 +47,9 @@ export function WhyZSkillupCard({
 
   return (
     // Default: stacked card with a curved bottom band (as in the design).
-    // `compact` (short desktop screens): icon beside the title, badge top-right, no band.
-    <Card className="relative h-full gap-0 overflow-hidden rounded-2xl border-slate-100 bg-white px-5 pb-16 pt-5 text-center shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)] xl:pt-4 compact:px-4 compact:pb-4 compact:pt-4 compact:text-left short:px-3.5 short:pb-3 short:pt-3">
-      <div className="flex flex-col items-center compact:flex-row compact:gap-3 compact:pr-8">
+    // `compact` (short desktop screens): still stacked and centred, but tighter, with the badge top-right and no band.
+    <Card className="relative h-full gap-0 overflow-hidden rounded-2xl border-slate-100 bg-white px-5 pb-16 pt-5 text-center shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)] xl:pt-4 compact:px-4 compact:pb-4 compact:pt-4 short:px-3.5 short:pb-3 short:pt-3">
+      <div className="flex flex-col items-center">
         <span
           className={cn(
             "flex h-14 w-14 shrink-0 items-center justify-center rounded-full xl:h-12 xl:w-12 compact:h-10 compact:w-10",
@@ -61,7 +61,7 @@ export function WhyZSkillupCard({
             aria-hidden="true"
           />
         </span>
-        <h4 className="mt-3 text-base font-bold leading-snug text-brand-navy xl:mt-2 compact:mt-0 compact:text-[15px]">
+        <h4 className="mt-3 text-base font-bold leading-snug text-brand-navy xl:mt-2 compact:mt-2 compact:text-[15px]">
           {title}
         </h4>
       </div>

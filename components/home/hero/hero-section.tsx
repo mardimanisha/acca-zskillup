@@ -15,7 +15,7 @@ export function HeroSection() {
         src={background.src}
         alt={background.alt}
         fill
-        priority
+        preload
         sizes="100vw"
         className="-z-20 object-cover object-[56%_top]"
       />

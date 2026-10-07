@@ -35,7 +35,7 @@ function HeroPhoto({
   if (image.background && image.student) {
     return (
       <div className={cn("absolute inset-0", className)}>
-        <Image src={image.background} alt="" fill sizes={sizes} className="object-cover object-center" />
+        <Image src={image.background} alt="" fill preload={preload} sizes={sizes} className="object-cover object-center" />
         <div className="absolute inset-y-0 left-1/2 w-[70%] -translate-x-1/2 lg:left-[62%] lg:w-[42%]">
           <Image
             src={image.student}

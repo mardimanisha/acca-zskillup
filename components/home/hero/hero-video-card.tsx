@@ -44,6 +44,7 @@ export function HeroVideoCard({
           src={thumbnailSrc}
           alt={thumbnailAlt}
           fill
+          loading="eager"
           sizes="(min-width: 768px) 460px, 100vw"
           className="object-cover"
         />

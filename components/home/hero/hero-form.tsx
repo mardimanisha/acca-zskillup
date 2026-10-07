@@ -45,10 +45,10 @@ const inputClass =
 
 function FieldRow({ icon: Icon, children }: { icon: LucideIcon; children: ReactNode }) {
   return (
-    <div className="flex gap-3 tight:gap-0">
+    <div className="flex items-end gap-3 tight:gap-0">
       <span
         aria-hidden="true"
-        className="mt-0.5 flex h-8 w-8 shrink-0 items-center tight:hidden justify-center rounded-full border border-slate-200 bg-white text-brand-teal shadow-sm"
+        className="mb-1 short:mb-0.5 flex h-8 w-8 shrink-0 items-center tight:hidden justify-center rounded-full border border-slate-200 bg-white text-brand-teal shadow-sm"
       >
         <Icon className="size-4" />
       </span>

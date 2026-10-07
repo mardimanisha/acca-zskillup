@@ -17,9 +17,10 @@ const demoLogos = {
   hiring: demoHiringNetwork,
 } as const;
 
-// In development only, an empty list falls back to demo data so the layout can be previewed.
+// TEMPORARY: an empty list falls back to demo data in every environment, production included.
+// Remove this fallback (and content/partners.demo.ts) before launch.
 function logosFor(id: keyof typeof demoLogos, logos: readonly PartnerLogo[]): readonly PartnerLogo[] {
-  if (logos.length > 0 || process.env.NODE_ENV === "production") return logos;
+  if (logos.length > 0) return logos;
   return demoLogos[id];
 }
 

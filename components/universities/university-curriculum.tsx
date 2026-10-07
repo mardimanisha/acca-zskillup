@@ -40,7 +40,7 @@ function visibleYears(u: UniversityPage) {
 /** Subjects taught by anyone other than the university get the design's peach chip. */
 function TaughtBy({ value, university }: { value: string; university: string }) {
   if (!filled(value)) return null;
-  const external = !university.toLowerCase().startsWith(value.trim().toLowerCase());
+  const external = !university.toLowerCase().includes(value.trim().toLowerCase());
   return external ? (
     <span className="inline-flex rounded-full bg-uni-cur-peach px-3 py-1 text-[13px] font-semibold leading-none text-uni-cur-peachText">
       {value}

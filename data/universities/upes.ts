@@ -5,11 +5,11 @@ import type { UniversityPage } from "@/data/universities/types";
 // mockup crops). Before launch, override field by field with official information, e.g.
 // `{ ...createDummyUniversityPage({ ... }), intake: "July 2027" }`, or set a field to "" / []
 // to hide that element.
-export const amityUniversityOnline: UniversityPage = createDummyUniversityPage({
-  slug: "amity-university-online",
-  universityName: "Amity University Online",
-  shortName: "Amity",
+export const upes: UniversityPage = createDummyUniversityPage({
+  slug: "upes",
+  universityName: "UPES University",
+  shortName: "UPES",
   degree: "BBA",
-  logo: "/images/universities/amity-logo.png",
-  heroImage: "/images/universities/amity-campus.jpg",
+  logo: "/images/universities/upes-logo.png",
+  heroImage: "/images/universities/upes-campus.jpg",
 });

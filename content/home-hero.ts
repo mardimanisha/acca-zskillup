@@ -32,7 +32,7 @@ export const heroContent = {
     brochure: { label: "Download Brochure", href: "#download-brochure" },
   },
   background: {
-    src: "/images/hero/hero-bg.jpg",
+    src: "/images/hero/hero-bg-finance-v2.jpg",
     alt: "",
   },
   video: {

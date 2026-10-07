@@ -28,8 +28,8 @@ export function WhyZSkillupPanel() {
     <div className="relative overflow-hidden rounded-3xl border border-panel-border bg-gradient-to-br from-panel-from to-panel-to p-6 sm:p-8 xl:p-7 compact:p-6 short:p-5">
       {/* Decoration: quarter-circle + dot grid, top-right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -right-36 -top-36 h-80 w-80 rounded-full bg-accent-teal-tint/80" />
-        <div className="absolute right-8 top-8 hidden grid-cols-6 gap-2.5 sm:grid">
+        <div className="absolute -left-36 -top-36 h-80 w-80 rounded-full bg-accent-teal-tint/80" />
+        <div className="absolute left-8 top-8 hidden grid-cols-6 gap-2.5 sm:grid">
           {Array.from({ length: DOT_GRID_COUNT }, (_, i) => (
             <span key={i} className="h-1 w-1 rounded-full bg-brand-teal/25" />
           ))}
@@ -37,7 +37,7 @@ export function WhyZSkillupPanel() {
       </div>
 
       <div className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="ml-auto max-w-3xl text-right">
           <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy md:text-4xl compact:text-3xl short:text-[1.75rem]">
             {heading.navy}{" "}
             <span className="text-brand-teal">{heading.teal}</span>
@@ -45,7 +45,7 @@ export function WhyZSkillupPanel() {
           <p className="mt-2 text-lg font-medium text-brand-body xl:mt-1 xl:text-xl compact:mt-1 compact:text-lg short:text-base">
             {subheading}
           </p>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm short:leading-snug">
+          <p className="ml-auto mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm short:leading-snug">
             {paragraph}
           </p>
         </div>

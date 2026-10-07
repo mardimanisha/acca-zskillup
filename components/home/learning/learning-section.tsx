@@ -11,7 +11,7 @@ export function LearningSection() {
   return (
     <section
       aria-labelledby="learning-heading"
-      className="relative overflow-hidden bg-gradient-to-r from-white to-[#F5FBFA] py-20"
+      className="relative overflow-hidden bg-gradient-to-r from-white to-[#F5FBFA] py-12 md:py-14"
     >
       {/* Decoration: large mint wave in the bottom-right corner */}
       <svg

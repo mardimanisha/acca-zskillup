@@ -40,7 +40,7 @@ export function WhyAccaPanel() {
       </div>
 
       <div className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="max-w-3xl text-left">
           <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy md:text-4xl compact:text-3xl short:text-[1.75rem]">
             {heading.navy}{" "}
             <span className="text-brand-teal">{heading.teal}</span>
@@ -53,7 +53,7 @@ export function WhyAccaPanel() {
           >
             {subheading}
           </p>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm">
             {paragraph}
           </p>
         </div>

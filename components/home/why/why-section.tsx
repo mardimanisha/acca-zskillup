@@ -11,7 +11,7 @@ export function WhySection() {
     // with generous vertical padding so it reads as separate from the sections around it.
     <section
       aria-labelledby="why-heading"
-      className="bg-white py-16 md:py-20 xl:flex xl:min-h-[calc(100svh-77px)] xl:items-center xl:py-24 compact:py-20 short:py-16"
+      className="bg-white py-10 md:py-14 xl:flex xl:min-h-[calc(100svh-77px)] xl:items-center xl:py-14 compact:py-10 short:py-8"
     >
       <div className="mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10 xl:px-16">
         <SectionHeader

@@ -18,7 +18,7 @@ const icons: Record<TrustIcon, LucideIcon> = {
 
 export function HeroTrustStrip() {
   return (
-    <ul className="grid grid-cols-2 gap-x-4 gap-y-5 md:flex md:items-center md:gap-0">
+    <ul className="grid grid-cols-2 gap-x-4 gap-y-5 rounded-2xl bg-white/80 p-3 backdrop-blur-md md:flex md:items-center md:gap-0 md:px-5">
       {heroContent.trust.map((item, index) => {
         const Icon = icons[item.icon];
         return (

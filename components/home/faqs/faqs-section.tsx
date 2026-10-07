@@ -20,7 +20,7 @@ export function FaqsSection() {
   const { eyebrow, heading, subtext, cta, faqs } = homeFaqsContent;
 
   return (
-    <section aria-labelledby="faqs-heading" className="bg-[#F5FBFA] py-20">
+    <section aria-labelledby="faqs-heading" className="bg-[#F5FBFA] py-12 md:py-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}

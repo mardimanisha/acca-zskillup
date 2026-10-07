@@ -18,7 +18,7 @@ export function ProgramsSection() {
     // On desktop the section fills one screen below the sticky header, like the Hero and Why sections.
     <section
       aria-labelledby="programs-heading"
-      className="relative overflow-hidden bg-[#F5FBFA] py-16 md:py-20 xl:flex xl:min-h-[calc(100svh-77px)] xl:items-center xl:py-12 compact:py-8 short:py-6"
+      className="relative overflow-hidden bg-[#F5FBFA] py-10 md:py-14 xl:flex xl:min-h-[calc(100svh-77px)] xl:items-center xl:py-8 compact:py-6 short:py-4"
     >
       {/* Decoration: soft mint circles cropped at the four corners */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

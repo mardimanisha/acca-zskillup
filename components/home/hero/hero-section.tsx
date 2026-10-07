@@ -17,7 +17,7 @@ export function HeroSection() {
         fill
         priority
         sizes="100vw"
-        className="-z-20 object-cover object-[56%_center]"
+        className="-z-20 object-cover object-[56%_top]"
       />
       {/* Readability overlays: light left-to-right wash so the photo still shows,
           a soft white glow behind the copy, and a stronger wash when content stacks */}

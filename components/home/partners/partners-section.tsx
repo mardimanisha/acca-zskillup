@@ -41,7 +41,7 @@ export function PartnersSection() {
   if (tabs.length === 0) return null;
 
   return (
-    <section aria-labelledby="partners-heading" className="relative overflow-hidden bg-white py-20">
+    <section aria-labelledby="partners-heading" className="relative overflow-hidden bg-white py-12 md:py-14">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -right-40 -top-56 size-[560px] rounded-full bg-panel-from" />
         <div className="absolute -right-10 -top-24 size-[300px] rounded-full bg-panel-to/70" />

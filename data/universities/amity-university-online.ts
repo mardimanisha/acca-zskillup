@@ -133,9 +133,11 @@ export const amityUniversityOnline: UniversityPage = {
     qsThe: "QS / THE", // DUMMY
     other: "Other Statutory or Academic Recognitions", // DUMMY
   },
+  // DUMMY fees for layout only: amounts and options are placeholders, not Amity's fees.
+  // Replace with the official fee sheet before launch, or set to "" / [] to hide.
   fees: {
-    total: "", // [DATA]
-    semester: "",
-    paymentOptions: "",
+    total: "3,60,000", // DUMMY [DATA]
+    semester: "60,000", // DUMMY [DATA]
+    paymentOptions: ["Semester-wise payment", "Instalments", "One-time payment"], // DUMMY [DATA]
   },
 };

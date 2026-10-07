@@ -103,6 +103,15 @@ const config: Config = {
             title: "#2A3066",
             text: "#7E84A3",
           },
+          // Fees + closing CTA ("Program Fees" design).
+          fee: {
+            bg: "#FBF9F5",
+            band: "#EDF9F2",
+            icon: "#018866",
+            pill: "#EAF7F0",
+            value: "#0B6E52",
+            check: "#3FA683",
+          },
         },
         // Universities landing palette (sampled from the /universities design).
         ul: {

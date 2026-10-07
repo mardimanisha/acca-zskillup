@@ -125,6 +125,18 @@ export const universityPageCopy = {
     currency: "₹",
     cta: "Get Fee Details",
   },
+  // Closing call-to-action band. Heading + body from the content PDF's final CTA; eyebrow and
+  // feature labels from the design.
+  journey: {
+    eyebrow: "READY TO START YOUR JOURNEY?",
+    title: "Build More Than a Degree.",
+    body: "Build the professional, digital and career-ready capabilities that can shape your future in finance.",
+    features: [
+      { icon: "globe", lead: "Learn", text: "Industry-Relevant Skills" },
+      { icon: "users", lead: "Build", text: "Global Opportunities" },
+      { icon: "chart", lead: "Shape", text: "a Future-Ready Career" },
+    ],
+  },
   enquiryHref: "#enquiry-form",
   a11y: {
     logoAlt: (u: UniversityPage) => `${u.universityName} logo`,

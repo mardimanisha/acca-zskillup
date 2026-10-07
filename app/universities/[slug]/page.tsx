@@ -8,6 +8,7 @@ import { UniversityHero } from "@/components/universities/university-hero";
 import {
   UniversityAdmission,
   UniversityFees,
+  UniversityJourney,
   UniversityOverview,
   UniversityPathway,
   UniversityWhy,
@@ -55,7 +56,8 @@ export default async function UniversityPage(props: PageProps<"/universities/[sl
       <UniversityPathway tone={nextTone()} />
       {showCurriculum && <UniversityCurriculum university={u} />}
       <UniversityAdmission university={u} />
-      <UniversityFees university={u} tone={nextTone()} />
+      <UniversityFees university={u} />
+      <UniversityJourney university={u} />
       <EnquiryFormSection defaultProgram={defaultProgram} />
       <SiteFooter />
     </>

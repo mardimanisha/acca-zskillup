@@ -69,6 +69,7 @@ export type UniversityPage = {
   fees: {
     total: string;
     semester: string;
-    paymentOptions: string;
+    /** One entry per available payment option; empty hides the card. */
+    paymentOptions: readonly string[];
   };
 };

@@ -5,7 +5,6 @@ import {
   BrainCircuit,
   Briefcase,
   CalendarDays,
-  ChevronDown,
   ClipboardCheck,
   Clock,
   FileText,
@@ -24,8 +23,6 @@ import {
 import { container } from "@/components/programs/program-ui";
 import {
   UniEyebrow,
-  UniEyebrowHeading,
-  UniIconCircle,
   sectionPadding,
   sectionTone,
   serif,
@@ -68,32 +65,41 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
     .map((key) => ({ key, icon: recognitionIcons[key], text: u.recognitions[key].trim() }))
     .filter((r) => r.text);
 
+  // Values sampled from the "Why choose" design image (1357px export, scaled to 1440px):
+  // warm cream band with a mint wash top-right, tall pale-mint card on the right spanning
+  // almost the full band height, icon-circle USP columns separated by hairline dividers.
   return (
-    <section aria-labelledby="uni-why-title" className="relative overflow-hidden bg-uni-cream">
-      {/* Soft warm swoosh, as in the design background. */}
+    <section aria-labelledby="uni-why-title" className="relative overflow-hidden bg-uni-hero-cream">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(38%_80%_at_88%_10%,rgba(222,243,232,0.9)_0%,rgba(222,243,232,0)_100%)]"
+      />
+      {/* Soft lighter sweeps, as in the design background. */}
       <svg
         aria-hidden="true"
-        viewBox="0 0 1440 600"
+        viewBox="0 0 1440 480"
         preserveAspectRatio="none"
         className="pointer-events-none absolute inset-0 size-full"
       >
-        <path d="M0,520 C360,380 760,160 1440,120 L1440,0 L0,0 Z" fill="#FFFFFF" fillOpacity="0.45" />
+        <path d="M560,0 C700,140 860,330 1040,480 L1440,480 L1440,0 Z" fill="#FFFFFF" fillOpacity="0.35" />
+        <path d="M0,300 C260,250 520,300 760,480 L0,480 Z" fill="#FFFFFF" fillOpacity="0.3" />
       </svg>
 
       <div
         className={cn(
           container,
-          sectionPadding,
-          "relative grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start xl:gap-16",
+          "relative grid gap-12 py-16 md:py-20 lg:grid-cols-[minmax(0,1fr)_386px] lg:items-stretch lg:gap-14 lg:py-7",
         )}
       >
-        <div>
-          <UniEyebrow>{copy.why.eyebrow(u)}</UniEyebrow>
+        <div className="lg:py-6">
+          <p className="text-[13px] font-bold uppercase leading-none tracking-[0.12em] text-uni-hero-eyebrow">
+            {copy.why.eyebrow(u)}
+          </p>
           <h2
             id="uni-why-title"
             className={cn(
               serif,
-              "mt-5 text-[32px] font-semibold leading-[1.12] tracking-[-0.015em] text-uni-navy md:text-[42px] xl:text-[48px]",
+              "mt-5 text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-uni-hero-ink md:text-[38px] xl:text-[43px]",
             )}
           >
             {copy.why.title[0]} <br className="hidden sm:block" />
@@ -101,21 +107,26 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
           </h2>
 
           {usps.length > 0 && (
-            <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+            <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-0">
               {usps.map((usp, i) => (
                 <li
                   key={i}
                   className={cn(
-                    "lg:px-7 lg:first:pl-0",
-                    i > 0 && "lg:border-l lg:border-uni-line",
+                    "lg:px-8 lg:py-2 lg:first:pl-0",
+                    i > 0 && "lg:border-l lg:border-[#ECECE7]",
                   )}
                 >
-                  <UniIconCircle icon={usp.icon} className="size-14 [&_svg]:size-6" />
+                  <span
+                    aria-hidden="true"
+                    className="flex size-[60px] items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
+                  >
+                    <usp.icon className="size-7" strokeWidth={1.6} />
+                  </span>
                   {filled(usp.title) && (
-                    <h3 className="mt-5 text-[15px] font-bold leading-snug text-uni-navy">{usp.title}</h3>
+                    <h3 className="mt-6 text-[15px] font-bold leading-[1.45] text-uni-hero-uspTitle">{usp.title}</h3>
                   )}
                   {filled(usp.text) && (
-                    <p className="mt-2 text-sm leading-relaxed text-uni-body">{usp.text}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-uni-hero-body">{usp.text}</p>
                   )}
                 </li>
               ))}
@@ -124,27 +135,30 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
         </div>
 
         {recognitions.length > 0 && (
-          <aside aria-labelledby="uni-recognition-title" className={cn(uniCard, "p-7 lg:mt-2")}>
+          <aside
+            aria-labelledby="uni-recognition-title"
+            className="rounded-2xl bg-uni-hero-card px-8 py-9 shadow-[0_24px_60px_-34px_rgba(10,60,40,0.25)] ring-1 ring-[#E3F2EA]"
+          >
             {u.logo && (
               <Image
                 src={u.logo}
                 alt={copy.a11y.logoAlt(u)}
                 width={240}
                 height={96}
-                className="h-14 w-auto object-contain object-left"
+                className="mx-auto h-[68px] w-auto object-contain mix-blend-multiply"
               />
             )}
             <h3
               id="uni-recognition-title"
-              className={cn("text-lg font-bold leading-snug text-uni-navy", u.logo && "mt-5")}
+              className={cn("text-[17px] font-bold leading-snug text-uni-hero-stat", u.logo && "mt-7")}
             >
               {copy.why.cardTitle}
             </h3>
-            <ul className="mt-5 space-y-4">
+            <ul className="mt-6 space-y-5">
               {recognitions.map(({ key, icon: Icon, text }) => (
-                <li key={key} className="flex items-start gap-3.5">
-                  <Icon aria-hidden="true" className="mt-px size-6 shrink-0 text-uni-green" strokeWidth={1.6} />
-                  <span className="text-sm font-medium leading-snug text-uni-navy">{text}</span>
+                <li key={key} className="flex items-center gap-4">
+                  <Icon aria-hidden="true" className="size-8 shrink-0 text-uni-hero-recIcon" strokeWidth={1.5} />
+                  <span className="text-[15px] font-bold leading-snug text-uni-hero-uspTitle">{text}</span>
                 </li>
               ))}
             </ul>
@@ -155,7 +169,7 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
   );
 }
 
-/* ── Why this integrated pathway (dark-green band) ────────────────── */
+/* ── Why this integrated pathway ──────────────────────────────────── */
 
 const pathwayIcons: Record<(typeof copy.pathway.cards)[number]["icon"], LucideIcon> = {
   graduationCap: GraduationCap,
@@ -164,22 +178,19 @@ const pathwayIcons: Record<(typeof copy.pathway.cards)[number]["icon"], LucideIc
   briefcase: Briefcase,
 };
 
-export function UniversityPathway() {
+export function UniversityPathway({ tone }: { tone: SectionTone }) {
   const { eyebrow, title, cards } = copy.pathway;
 
   return (
-    <section aria-labelledby="uni-pathway-title" className="relative overflow-hidden bg-uni-greenDark text-white">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(60%_80%_at_85%_30%,rgba(255,255,255,0.08),transparent_70%)]"
-      />
-      <WorldMap className="absolute -right-[6%] top-4 hidden w-[58%] max-w-[920px] text-white/20 md:block" />
-
-      <div className={cn(container, sectionPadding, "relative")}>
-        <UniEyebrow className="text-[#A8D9BC]">{eyebrow}</UniEyebrow>
+    <section aria-labelledby="uni-pathway-title" className={sectionTone[tone]}>
+      <div className={cn(container, sectionPadding)}>
+        <UniEyebrow className="text-uni-hero-eyebrow">{eyebrow}</UniEyebrow>
         <h2
           id="uni-pathway-title"
-          className="mt-4 max-w-3xl text-[28px] font-bold leading-[1.2] tracking-[-0.02em] md:text-4xl xl:text-[42px]"
+          className={cn(
+            serif,
+            "mt-5 max-w-3xl text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-uni-hero-ink md:text-[38px] xl:text-[43px]",
+          )}
         >
           {title}
         </h2>
@@ -188,18 +199,15 @@ export function UniversityPathway() {
           {cards.map((card) => {
             const Icon = pathwayIcons[card.icon];
             return (
-              <li
-                key={card.title}
-                className="rounded-2xl border border-white/12 bg-white/[0.07] p-7 backdrop-blur-sm"
-              >
+              <li key={card.title} className={cn(uniCard, "p-7")}>
                 <span
                   aria-hidden="true"
-                  className="flex size-12 items-center justify-center rounded-full bg-white/10 text-[#BFE6CF]"
+                  className="flex size-14 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
                 >
-                  <Icon className="size-[22px]" strokeWidth={1.75} />
+                  <Icon className="size-6" strokeWidth={1.6} />
                 </span>
-                <h3 className="mt-5 text-lg font-bold leading-snug">{card.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-white/75">{card.text}</p>
+                <h3 className="mt-5 text-[17px] font-bold leading-snug text-uni-hero-uspTitle">{card.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-uni-hero-body">{card.text}</p>
               </li>
             );
           })}
@@ -209,9 +217,13 @@ export function UniversityPathway() {
   );
 }
 
-/* ── Program overview ─────────────────────────────────────────────── */
+/* ── Program overview (dark-green "Program Highlights" band) ──────── */
 
-export function UniversityOverview({ university: u, tone }: { university: UniversityPage; tone: SectionTone }) {
+// Values sampled from the "Program Highlights" design image (1342px export, scaled to 1440px):
+// deep teal-green band with a brighter green glow bottom-left, dotted world map top-right,
+// off-white 12px-radius cards (grey index number, mint icon circle, navy/grey text) and a
+// thin rule with white dots under the card row.
+export function UniversityOverview({ university: u }: { university: UniversityPage }) {
   const { eyebrow, labels, fixed } = copy.overview;
   const items: { label: string; value: string; icon: LucideIcon }[] = [
     { label: labels.degree, value: u.officialDegreeName, icon: GraduationCap },
@@ -225,77 +237,53 @@ export function UniversityOverview({ university: u, tone }: { university: Univer
   ].filter((item) => filled(item.value));
 
   return (
-    <section aria-labelledby="uni-overview-title" className={sectionTone[tone]}>
-      <div className={cn(container, sectionPadding)}>
-        <UniEyebrowHeading id="uni-overview-title">{eyebrow}</UniEyebrowHeading>
-        <dl className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-          {items.map((item) => (
-            <div key={item.label} className={cn(uniCard, "flex flex-col gap-4 p-5 sm:p-6")}>
-              <UniIconCircle icon={item.icon} className="size-11 [&_svg]:size-5" />
-              <div>
-                <dt className="text-[13px] font-medium text-uni-body">{item.label}</dt>
-                <dd className="mt-1 text-base font-bold leading-snug text-uni-navy sm:text-[17px]">
-                  {item.value}
-                </dd>
+    <section aria-labelledby="uni-overview-title" className="relative overflow-hidden bg-uni-band text-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_70%_at_0%_100%,rgba(1,120,80,0.9)_0%,rgba(1,120,80,0)_100%)]"
+      />
+      <WorldMap className="absolute -right-[4%] -top-[2%] hidden w-[46%] max-w-[760px] text-white/25 md:block" />
+
+      <div className={cn(container, "relative py-16 md:py-20 lg:py-[72px]")}>
+        <h2
+          id="uni-overview-title"
+          className="text-[13px] font-bold uppercase leading-none tracking-[0.14em] text-uni-band-eyebrow"
+        >
+          {eyebrow}
+        </h2>
+
+        <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3.5">
+          {items.map((item, i) => (
+            <div
+              key={item.label}
+              className="relative flex items-center gap-4 rounded-xl bg-uni-band-card py-5 pl-5 pr-5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] xl:gap-5 xl:py-6 xl:pl-6"
+            >
+              <span
+                aria-hidden="true"
+                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon xl:size-[60px]"
+              >
+                <item.icon className="size-6 xl:size-7" strokeWidth={1.6} />
+              </span>
+              <div className="min-w-0">
+                <dt className="pr-6 text-sm text-uni-band-label">{item.label}</dt>
+                <dd className="mt-1 text-base font-bold leading-snug text-uni-band-title xl:text-[17px]">{item.value}</dd>
               </div>
+              <span aria-hidden="true" className="absolute right-4 top-3.5 text-[15px] leading-none text-uni-band-num/80">
+                {String(i + 1).padStart(2, "0")}
+              </span>
             </div>
           ))}
         </dl>
-      </div>
-    </section>
-  );
-}
 
-/* ── Curriculum (Year → Semester → subjects) ──────────────────────── */
-
-export function hasCurriculum(u: UniversityPage) {
-  return u.curriculum.some((year) => year.semesters.some((sem) => sem.subjects.some(filled)));
-}
-
-export function UniversityCurriculum({ university: u, tone }: { university: UniversityPage; tone: SectionTone }) {
-  const years = u.curriculum
-    .map((year) => ({
-      ...year,
-      semesters: year.semesters
-        .map((sem) => ({ ...sem, subjects: sem.subjects.filter(filled) }))
-        .filter((sem) => sem.subjects.length),
-    }))
-    .filter((year) => year.semesters.length);
-
-  return (
-    <section aria-labelledby="uni-curriculum-title" className={sectionTone[tone]}>
-      <div className={cn(container, sectionPadding)}>
-        <UniEyebrowHeading id="uni-curriculum-title">{copy.curriculum.eyebrow}</UniEyebrowHeading>
-        <div className="mt-10 space-y-4">
-          {years.map((year, i) => (
-            <details key={year.title || i} open={i === 0} className={cn(uniCard, "group overflow-hidden")}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-uni-green/40 sm:px-8 [&::-webkit-details-marker]:hidden">
-                <h3 className={cn(serif, "text-xl font-semibold text-uni-navy sm:text-2xl")}>{year.title}</h3>
-                <ChevronDown
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-uni-green transition-transform group-open:rotate-180"
-                />
-              </summary>
-              <div className="grid gap-4 border-t border-uni-line px-6 py-6 sm:px-8 md:grid-cols-2">
-                {year.semesters.map((sem, j) => (
-                  <div key={sem.title || j} className="rounded-xl bg-uni-cream p-5 sm:p-6">
-                    {filled(sem.title) && (
-                      <h4 className="text-[13px] font-bold uppercase tracking-[0.08em] text-uni-green">
-                        {sem.title}
-                      </h4>
-                    )}
-                    <ul className={cn("space-y-2.5", filled(sem.title) && "mt-4")}>
-                      {sem.subjects.map((subject) => (
-                        <li key={subject} className="flex items-start gap-3 text-[15px] leading-snug text-uni-navy">
-                          <span aria-hidden="true" className="mt-[7px] size-1.5 shrink-0 rounded-full bg-uni-green" />
-                          {subject}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </details>
+        {/* Decorative rule with a dot under each column, as in the design. */}
+        <div aria-hidden="true" className="relative mt-6 hidden h-2.5 lg:block">
+          <span className="absolute inset-x-[12.5%] top-1/2 h-px -translate-y-1/2 bg-white/25" />
+          {[12.5, 37.5, 62.5, 87.5].map((left) => (
+            <span
+              key={left}
+              className="absolute top-0 size-2.5 -translate-x-1/2 rounded-full bg-white"
+              style={{ left: `${left}%` }}
+            />
           ))}
         </div>
       </div>
@@ -305,43 +293,62 @@ export function UniversityCurriculum({ university: u, tone }: { university: Univ
 
 /* ── Admission process ────────────────────────────────────────────── */
 
-export function UniversityAdmission({ tone }: { tone: SectionTone }) {
+// Values sampled from the "Clear Division of Expertise" design image (1346px export, scaled
+// to 1440px): campus photo panel bleeding off the left edge (~52% wide) with the heading on a
+// dark bottom fade; stacked white cards on the right with a 3px rounded left accent
+// (alternating blue / green), navy title, grey text and a large green figure top-right.
+const admissionAccents = ["border-uni-adm-blue", "border-uni-adm-green"] as const;
+
+export function UniversityAdmission({ university: u }: { university: UniversityPage }) {
   const { eyebrow, steps } = copy.admission;
 
   return (
-    <section aria-labelledby="uni-admission-title" className={sectionTone[tone]}>
-      <div className={cn(container, sectionPadding)}>
-        <UniEyebrowHeading id="uni-admission-title">{eyebrow}</UniEyebrowHeading>
-        <ol className="mt-12 lg:grid lg:grid-cols-5">
-          {steps.map((step, i) => {
-            const last = i === steps.length - 1;
-            return (
-              <li key={step.number} className="flex gap-5 lg:block">
-                <span
-                  aria-hidden="true"
-                  className={cn(serif, "w-14 shrink-0 text-[40px] font-semibold leading-none text-uni-green lg:w-auto lg:text-[56px]")}
-                >
-                  {step.number}
-                </span>
-                {/* Timeline: vertical rule on mobile/tablet, horizontal dot + rule on desktop. */}
-                <div aria-hidden="true" className="mt-6 hidden items-center lg:flex">
-                  <span className="size-3 shrink-0 rounded-full bg-uni-green ring-[5px] ring-uni-mint" />
-                  {!last && <span className="ml-2 h-px flex-1 bg-uni-line" />}
-                </div>
-                <div
-                  className={cn(
-                    "border-l border-uni-line pl-5 lg:mt-6 lg:border-0 lg:pl-0 lg:pr-8",
-                    last ? "pb-0" : "pb-9 lg:pb-0",
-                  )}
-                >
-                  <h3 className="text-base font-bold leading-snug text-uni-navy lg:text-[17px]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-uni-body lg:text-[15px]">{step.text}</p>
-                </div>
-              </li>
-            );
-          })}
+    <section aria-labelledby="uni-admission-title" className="relative overflow-hidden bg-uni-band-card">
+      {/* Photo panel: full-bleed on the left from lg, a banner above the steps below lg. */}
+      <div className="relative h-[260px] overflow-hidden bg-uni-band sm:h-[320px] lg:absolute lg:inset-y-10 lg:left-0 lg:h-auto lg:w-[49%]">
+        {u.heroImage && (
+          <Image
+            src={u.heroImage}
+            alt={copy.a11y.heroAlt(u)}
+            fill
+            sizes="(min-width: 1024px) 49vw, 100vw"
+            className="object-cover object-center"
+          />
+        )}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,20,15,0)_35%,rgba(10,20,15,0.55)_70%,rgba(10,20,15,0.85)_100%)]"
+        />
+        <div className="absolute inset-x-0 bottom-0 px-6 pb-7 sm:px-8 lg:px-10 lg:pb-10 xl:pl-16">
+          <h2
+            id="uni-admission-title"
+            className={cn(serif, "text-[30px] font-semibold leading-[1.1] tracking-[0.01em] text-white md:text-[36px] xl:text-[40px]")}
+          >
+            {eyebrow}
+          </h2>
+        </div>
+      </div>
+
+      {/* Same side gutters as `container`; on lg the steps start 44px right of the photo panel. */}
+      <div className="relative mx-auto max-w-[1760px] px-4 py-10 sm:px-6 lg:py-14 lg:pl-[calc(49%+44px)] lg:pr-10 xl:pr-16">
+        <ol className="space-y-3.5">
+          {steps.map((step, i) => (
+            <li
+              key={step.number}
+              className={cn(
+                "flex items-start justify-between gap-5 rounded-xl border-l-[3px] bg-white py-5 pl-6 pr-6 shadow-[0_14px_36px_-24px_rgba(10,15,75,0.3)] sm:pl-7",
+                admissionAccents[i % admissionAccents.length],
+              )}
+            >
+              <div className="min-w-0">
+                <h3 className="text-[17px] font-bold leading-snug text-uni-adm-title">{step.title}</h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-uni-adm-text">{step.text}</p>
+              </div>
+              <span aria-hidden="true" className="shrink-0 text-[32px] font-bold leading-none text-uni-adm-num xl:text-[36px]">
+                {step.number}
+              </span>
+            </li>
+          ))}
         </ol>
       </div>
     </section>

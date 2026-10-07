@@ -2,50 +2,49 @@ import Image from "next/image";
 import { ArrowRight, Award, BadgeCheck, Download, ShieldCheck, TrendingUp, type LucideIcon } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
-import {
-  UniEyebrow,
-  UniIconCircle,
-  serif,
-  uniButtonClass,
-} from "@/components/universities/university-ui";
+import { serif } from "@/components/universities/university-ui";
 import { universityPageCopy } from "@/content/university-page";
 import type { UniversityPage } from "@/data/universities/types";
 import { cn } from "@/lib/utils";
 
 const copy = universityPageCopy.hero;
 
-// Image edge + dark-green swoosh, in 0–1 (clip) and 0–100 (overlay) units of the photo box.
-// Desktop: curved left edge. Tablet/mobile: the same swoosh turned into a top curve.
-function HeroClipDefs() {
+// Values sampled from the university hero design (1347px-wide export, scaled to 1440px):
+// photo = right 50% of the hero; a near-white veil with a convex right edge sweeps over the
+// photo's left side (0% → 27% of the photo width, top → bottom), and a teal-green swoosh
+// runs along the upper part of that edge, fading out by ~40% of the height.
+
+const buttonBase =
+  "inline-flex h-[54px] w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-lg text-[15px] font-bold transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-2 sm:w-auto [&_svg]:shrink-0";
+
+function SwooshDefs() {
   return (
     <svg aria-hidden="true" width="0" height="0" className="absolute">
       <defs>
-        <clipPath id="uni-hero-clip-side" clipPathUnits="objectBoundingBox">
-          <path d="M0.17,0 C0.05,0.36 0.12,0.76 0.36,1 L1,1 L1,0 Z" />
-        </clipPath>
-        <clipPath id="uni-hero-clip-top" clipPathUnits="objectBoundingBox">
-          <path d="M0,0.16 C0.32,0.03 0.68,0.01 1,0.07 L1,1 L0,1 Z" />
-        </clipPath>
-        <linearGradient id="uni-swoosh-side" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#0B4A2E" />
-          <stop offset="0.55" stopColor="#0E6B3F" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#0E6B3F" stopOpacity="0" />
+        {/* Veil: matches the hero background on the left, mint-tinted and slightly translucent at its edge. */}
+        <linearGradient id="uni-hero-veil" x1="0" y1="0" x2="27" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FCFBF7" />
+          <stop offset="0.6" stopColor="#F4FAF5" />
+          <stop offset="1" stopColor="#E3F4EA" stopOpacity="0.9" />
         </linearGradient>
-        <linearGradient id="uni-swoosh-top" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#0B4A2E" />
-          <stop offset="0.6" stopColor="#0E6B3F" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#0E6B3F" stopOpacity="0" />
+        <linearGradient id="uni-hero-swoosh" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#11806F" />
+          <stop offset="0.5" stopColor="#2AA88D" stopOpacity="0.75" />
+          <stop offset="1" stopColor="#7FD3B8" stopOpacity="0" />
+        </linearGradient>
+        {/* Tablet/mobile: the same treatment turned into a top curve. */}
+        <linearGradient id="uni-hero-veil-top" x1="0" y1="0" x2="0" y2="22" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FCFBF7" />
+          <stop offset="0.6" stopColor="#F4FAF5" />
+          <stop offset="1" stopColor="#E3F4EA" stopOpacity="0.9" />
+        </linearGradient>
+        <linearGradient id="uni-hero-swoosh-top" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#11806F" />
+          <stop offset="0.5" stopColor="#2AA88D" stopOpacity="0.75" />
+          <stop offset="1" stopColor="#7FD3B8" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
-  );
-}
-
-function HeroPhoto({ src, alt, clip, sizes }: { src: string; alt: string; clip: string; sizes: string }) {
-  return (
-    <div className="absolute inset-0" style={{ clipPath: `url(#${clip})` }}>
-      <Image src={src} alt={alt} fill preload sizes={sizes} className="object-cover object-center" />
-    </div>
   );
 }
 
@@ -56,6 +55,7 @@ const trustIcons: Record<keyof UniversityPage["trustMarkers"], LucideIcon> = {
   other: ShieldCheck,
 };
 
+/** Design's stats strip: white band, mint icon circles, bold navy text, thin dividers. */
 function TrustMarkers({ markers }: { markers: UniversityPage["trustMarkers"] }) {
   const items = (Object.keys(trustIcons) as (keyof typeof trustIcons)[])
     .map((key) => ({ key, icon: trustIcons[key], text: markers[key].trim() }))
@@ -64,21 +64,29 @@ function TrustMarkers({ markers }: { markers: UniversityPage["trustMarkers"] }) 
   if (!items.length) return null;
 
   return (
-    <div className={cn(container, "relative pb-10 pt-8 lg:pb-12 lg:pt-10")}>
-      <ul className="grid gap-6 sm:grid-cols-2 sm:gap-y-7 lg:flex lg:gap-0">
-        {items.map((item, i) => (
-          <li
-            key={item.key}
-            className={cn(
-              "flex items-center gap-4 lg:flex-1 lg:px-8 lg:first:pl-0",
-              i % 2 === 1 && "sm:border-l sm:border-uni-line sm:pl-8",
-              i > 0 && "lg:border-l lg:border-uni-line",
-            )}
-          >
-            <UniIconCircle icon={item.icon} className="size-14 [&_svg]:size-6" />
-            <span className="text-base font-bold leading-snug text-uni-navy">{item.text}</span>
-          </li>
-        ))}
+    <div className="relative bg-white">
+      <ul className={cn(container, "grid gap-6 py-8 sm:grid-cols-2 sm:gap-y-7 lg:flex lg:gap-0 lg:py-7")}>
+        {items.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <li
+              key={item.key}
+              className={cn(
+                "flex items-center gap-4 lg:flex-1 lg:px-8 lg:first:pl-0",
+                i % 2 === 1 && "sm:border-l sm:border-uni-hero-line sm:pl-8",
+                i > 0 && "lg:border-l lg:border-uni-hero-line",
+              )}
+            >
+              <span
+                aria-hidden="true"
+                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
+              >
+                <Icon className="size-[26px]" strokeWidth={1.6} />
+              </span>
+              <span className="text-[17px] font-bold leading-snug text-uni-hero-stat">{item.text}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -89,63 +97,67 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
   const hasBody = Boolean(u.officialDegreeName.trim());
 
   return (
-    <section
-      aria-labelledby="uni-hero-title"
-      className="relative overflow-hidden bg-[radial-gradient(120%_90%_at_0%_0%,#EEF6F0_0%,rgba(238,246,240,0)_60%),linear-gradient(180deg,#F8FBF8_0%,#FCFBF7_100%)]"
-    >
-      {u.heroImage && <HeroClipDefs />}
+    <section aria-labelledby="uni-hero-title" className="relative overflow-hidden bg-uni-hero-bg">
+      {u.heroImage && <SwooshDefs />}
 
       <div className="relative">
-        {/* Desktop photo: right ~45%, curved dark-green swoosh on its left edge. */}
+        {/* Desktop photo: right half, under the veil + swoosh. */}
         {u.heroImage && (
-          <div className="absolute inset-y-0 right-0 hidden w-[47%] lg:block">
-            <HeroPhoto src={u.heroImage} alt={alt} clip="uni-hero-clip-side" sizes="47vw" />
+          <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
+            <Image src={u.heroImage} alt={alt} fill preload sizes="50vw" className="object-cover object-center" />
             <svg
               aria-hidden="true"
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               className="absolute inset-0 size-full"
             >
-              <path d="M5,0 C-7,36 2,74 27,100 L36,100 C12,76 5,36 17,0 Z" fill="url(#uni-swoosh-side)" />
-              <path
-                d="M17,0 C5,36 12,76 36,100"
-                fill="none"
-                stroke="#FFFFFF"
-                strokeOpacity="0.7"
-                strokeWidth="2"
-                vectorEffect="non-scaling-stroke"
-              />
+              <path d="M0,0 C12,25 20,60 27,100 L27,101 L0,101 Z" fill="url(#uni-hero-veil)" />
+              <path d="M0,0 L7,0 C9,10 10.5,20 11.5,32 C8,21 4,9 0,0 Z" fill="url(#uni-hero-swoosh)" />
             </svg>
           </div>
         )}
 
+        {/* Soft mint glow across the top, laid over the photo's veil so the two blend seamlessly. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(40%_75%_at_25%_0%,rgba(226,241,228,0.8)_0%,rgba(226,241,228,0)_100%)]"
+        />
+
         <div className={cn(container, "relative")}>
-          <div className="pb-10 pt-12 md:pt-16 lg:w-[55%] lg:pb-16 lg:pr-10 lg:pt-20 xl:pb-20 xl:pt-24">
+          <div className="pb-10 pt-12 md:pt-14 lg:min-h-[440px] lg:w-1/2 lg:pb-7 lg:pr-10 lg:pt-14 xl:min-h-[460px]">
             {u.logo && (
               <Image
                 src={u.logo}
                 alt={universityPageCopy.a11y.logoAlt(u)}
                 width={240}
                 height={96}
-                className="mb-6 h-12 w-auto object-contain object-left"
+                className="mb-5 h-12 w-auto object-contain object-left"
               />
             )}
-            <UniEyebrow>{copy.eyebrow}</UniEyebrow>
-            <h1 id="uni-hero-title" className={cn(serif, "mt-5 font-semibold tracking-[-0.015em] text-uni-navy")}>
-              <span className="block text-[28px] leading-[1.2] sm:text-[34px] xl:text-[40px]">
+            <p className="text-[13px] font-bold uppercase leading-none tracking-[0.12em] text-uni-hero-eyebrow">
+              {copy.eyebrow}
+            </p>
+            <h1 id="uni-hero-title" className={cn(serif, "mt-4 tracking-[-0.015em]")}>
+              <span className="block text-[28px] font-semibold leading-[1.25] text-uni-hero-ink sm:text-[34px] lg:text-[34px] xl:text-[40px]">
                 {copy.titleLine1(u)}
               </span>
-              <span className="mt-1 block text-[40px] leading-[1.08] sm:text-5xl xl:text-[60px]">
+              <span className="mt-1 block text-[36px] font-bold leading-[1.12] text-uni-hero-navy sm:text-[44px] lg:text-[42px] xl:text-[50px]">
                 {u.universityName}
               </span>
             </h1>
             {hasBody && (
-              <p className="mt-6 max-w-[560px] text-base leading-[1.7] text-uni-body md:text-[17px]">
+              <p className="mt-4 max-w-[600px] text-base leading-[1.5] text-uni-hero-body xl:text-[17px]">
                 {copy.body(u)}
               </p>
             )}
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href={universityPageCopy.enquiryHref} className={uniButtonClass("primary", "w-full sm:w-auto")}>
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:gap-5">
+              <a
+                href={universityPageCopy.enquiryHref}
+                className={cn(
+                  buttonBase,
+                  "bg-uni-hero-button px-8 text-white shadow-[0_12px_26px_-14px_rgba(0,122,96,0.9)] hover:bg-uni-hero-buttonHover focus-visible:ring-uni-hero-button/40 [&_svg]:size-[18px]",
+                )}
+              >
                 {copy.advisor}
                 <ArrowRight aria-hidden="true" />
               </a>
@@ -154,11 +166,14 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
                   href={u.brochureUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={uniButtonClass("secondary", "w-full pr-7 sm:w-auto")}
+                  className={cn(
+                    buttonBase,
+                    "rounded-[10px] bg-white pl-6 pr-8 text-uni-navy shadow-[0_10px_30px_-12px_rgba(10,15,75,0.18)] hover:bg-uni-hero-bg focus-visible:ring-uni-hero-button/40",
+                  )}
                 >
                   <span
                     aria-hidden="true"
-                    className="flex size-8 items-center justify-center rounded-full bg-uni-navy text-white [&_svg]:size-4"
+                    className="flex size-[30px] items-center justify-center rounded-full bg-uni-hero-deep text-white [&_svg]:size-[15px]"
                   >
                     <Download strokeWidth={2.5} />
                   </span>
@@ -169,25 +184,18 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
           </div>
         </div>
 
-        {/* Tablet/mobile photo: below the text, swoosh as a top curve. */}
+        {/* Tablet/mobile photo: below the text, veil + swoosh as a top curve. */}
         {u.heroImage && (
           <div className="relative h-[280px] sm:h-[360px] md:h-[420px] lg:hidden">
-            <HeroPhoto src={u.heroImage} alt={alt} clip="uni-hero-clip-top" sizes="100vw" />
+            <Image src={u.heroImage} alt={alt} fill preload sizes="100vw" className="object-cover object-center" />
             <svg
               aria-hidden="true"
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               className="absolute inset-0 size-full"
             >
-              <path d="M0,6 C32,-5 68,-6 100,0 L100,7 C68,1 32,3 0,16 Z" fill="url(#uni-swoosh-top)" />
-              <path
-                d="M0,16 C32,3 68,1 100,7"
-                fill="none"
-                stroke="#FFFFFF"
-                strokeOpacity="0.7"
-                strokeWidth="2"
-                vectorEffect="non-scaling-stroke"
-              />
+              <path d="M0,0 C25,12 60,20 100,22 L100,0 Z" fill="url(#uni-hero-veil-top)" />
+              <path d="M0,0 L0,7 C10,9 20,10.5 32,11.5 C21,8 9,4 0,0 Z" fill="url(#uni-hero-swoosh-top)" />
             </svg>
           </div>
         )}

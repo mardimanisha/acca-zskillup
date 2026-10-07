@@ -64,6 +64,28 @@ export const universityPageCopy = {
   },
   curriculum: {
     eyebrow: "CURRICULUM",
+    title: "A Three-Year Integrated Pathway",
+    download: "Download Curriculum (PDF)",
+    viewFull: "View Full Curriculum",
+    columns: {
+      subject: "Subject",
+      accaCode: "ACCA Code",
+      taughtBy: "Taught By",
+      assessedBy: "Assessed By",
+      classHours: "Class",
+      selfStudyHours: "Self",
+    },
+    hours: (h: number) => `${h}h`,
+    summary: (subjects: number, classHours: number, selfHours: number) =>
+      [
+        `${subjects} subjects`,
+        classHours ? `${classHours}h classroom` : "",
+        selfHours ? `${selfHours}h self-study` : "",
+      ]
+        .filter(Boolean)
+        .join(" · "),
+    // Screen-reader-only labels.
+    a11y: { years: "Curriculum years", semesters: "Semesters" },
   },
   admission: {
     eyebrow: "ADMISSION PROCESS",

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { heroFormSchema } from "@/lib/validations/hero-form";
+import { programFormSchema } from "@/lib/validations/hero-form";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
 
-  const parsed = heroFormSchema.safeParse(body);
+  const parsed = programFormSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, issues: parsed.error.issues },

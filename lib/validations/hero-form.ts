@@ -16,3 +16,6 @@ export const heroFormSchema = z.object({
 });
 
 export type HeroFormValues = z.infer<typeof heroFormSchema>;
+
+/** Program-page form: the program is fixed by the page and the city is not asked. */
+export const programFormSchema = heroFormSchema.extend({ city: z.string().trim().optional() });

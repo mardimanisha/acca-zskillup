@@ -1,11 +1,13 @@
 import Image from "next/image";
 
+import { HeroForm } from "@/components/home/hero/hero-form";
 import {
   AdvisorButton,
   BrochureButton,
   IconCircle,
   container,
 } from "@/components/programs/program-ui";
+import type { programInterestOptions } from "@/content/home-hero";
 import type { HeroContent } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
@@ -62,7 +64,15 @@ function HeroPhoto({
   );
 }
 
-export function ProgramHero({ content, brochureHref }: { content: HeroContent; brochureHref: string }) {
+export function ProgramHero({
+  content,
+  brochureHref,
+  defaultProgram,
+}: {
+  content: HeroContent;
+  brochureHref: string;
+  defaultProgram?: (typeof programInterestOptions)[number];
+}) {
   const { eyebrow, title, subtitle, body, image, features, stats } = content;
 
   return (
@@ -87,12 +97,13 @@ export function ProgramHero({ content, brochureHref }: { content: HeroContent; b
             ["--w" as string]: "max(100vw, min(calc((100cqh - 55px) / 0.3617), 140vw))",
             width: "var(--w)",
             height: "calc(var(--w) * 0.4545)",
-            left: "calc(65vw - var(--w) * 0.653)",
+            left: "calc(56vw - var(--w) * 0.653)",
             bottom: "calc(55px - var(--w) * 0.0928)",
           }}
         >
           <HeroPhoto image={image} preload sizes="140vw" className="object-cover" />
           <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[8%] bg-gradient-to-b from-white to-transparent" />
+          <div aria-hidden="true" className="absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-white to-transparent" />
         </div>
         <div
           aria-hidden="true"
@@ -103,10 +114,10 @@ export function ProgramHero({ content, brochureHref }: { content: HeroContent; b
       <div
         className={cn(
           container,
-          "relative pt-10 lg:pb-[34px] lg:pt-11 xl:flex xl:flex-1 xl:items-center xl:py-6 short:py-4 tight:py-3",
+          "relative grid gap-10 pt-10 lg:pb-[34px] lg:pt-11 xl:flex-1 xl:grid-cols-[minmax(0,1fr)_420px] xl:items-center xl:gap-12 xl:py-6 short:py-4 tight:py-3",
         )}
       >
-        <div className="lg:w-[48%] lg:max-w-[600px]">
+        <div className="max-w-[600px]">
           <p className="inline-flex rounded-full bg-zs-mint px-4 py-2.5 text-xs font-normal leading-none tracking-[0.01em] text-zs-pillText xl:text-[13px]">
             {eyebrow}
           </p>
@@ -133,33 +144,34 @@ export function ProgramHero({ content, brochureHref }: { content: HeroContent; b
               className={cn(buttonSize, "w-full pl-4 pr-6 sm:w-auto")}
             />
           </div>
+
+          {/* Four compact feature cards; they shrink with the screen height so the hero stays on one screen. */}
+          <ul className="mt-6 grid max-w-[600px] gap-2.5 sm:grid-cols-2 short:mt-4 short:gap-2 tight:mt-3 tight:gap-1.5">
+            {features.map((feature) => (
+              <li
+                key={feature.label}
+                className={cn(
+                  cardShadow,
+                  "flex items-center gap-3 rounded-xl border border-white/70 bg-white/90 px-3.5 py-2.5 backdrop-blur short:py-2 tight:py-1.5",
+                )}
+              >
+                <IconCircle icon={feature.icon} className="size-10 [&_svg]:size-[18px] short:size-8 tight:hidden" />
+                <span className="text-[13px] font-semibold leading-snug text-zs-navy">{feature.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Student photo (mobile/tablet) + floating feature card. On desktop the photo is the
-            background above and the card floats over it, centred against the text column. */}
-        <div className="relative mt-10 lg:static lg:mt-0">
-          <div className="relative -mx-4 h-[340px] sm:-mx-6 sm:h-[420px] md:h-[460px] lg:hidden">
+        {/* Mobile/tablet photo, then the form (right column on desktop, over the photo's right edge). */}
+        <div className="relative lg:static">
+          <div className="relative -mx-4 mb-8 h-[300px] sm:-mx-6 sm:h-[380px] lg:hidden">
             <HeroPhoto image={image} sizes="100vw" className="object-[66%_25%]" />
             <div aria-hidden="true" className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent" />
           </div>
-
-          <ul
-            className={cn(
-              cardShadow,
-              "relative z-10 -mt-14 flex flex-col gap-5 rounded-[14px] border border-white/70 bg-white p-5 short:gap-4 short:p-4",
-              "md:absolute md:right-6 md:top-1/2 md:mt-0 md:min-w-[284px] md:-translate-y-1/2",
-              // Overhangs the content edge by ~44px, as in the design.
-              "lg:right-8 lg:top-[55%] xl:right-5",
-            )}
-          >
-            {features.map((feature) => (
-              <li key={feature.label} className="flex items-center gap-3.5">
-                <IconCircle icon={feature.icon} className="size-11 [&_svg]:size-5" />
-                <span className="text-[13px] font-medium leading-snug text-zs-cardText md:whitespace-nowrap">{feature.label}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="w-full max-w-xl xl:max-w-none">
+            <HeroForm defaultProgram={defaultProgram} />
+          </div>
         </div>
       </div>
 

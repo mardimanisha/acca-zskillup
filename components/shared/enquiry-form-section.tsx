@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 
 import { cardClass, container, programButtonClass } from "@/components/programs/program-ui";
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/select";
 import { currentEducationOptions, programInterestOptions } from "@/content/home-hero";
 import { enquiryFormContent as copy } from "@/content/program-shared";
-import { heroFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
+import { heroFormSchema, programFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
 import { cn } from "@/lib/utils";
 
 type ProgramInterest = (typeof programInterestOptions)[number];
@@ -35,11 +35,14 @@ const labelClass = "mb-1.5 text-sm font-semibold text-zs-navy";
 /** Site-wide enquiry form. Every "Talk to an Advisor" CTA links to `#enquiry-form`. */
 export function EnquiryFormSection({
   defaultProgram,
+  hideProgramAndCity = false,
 }: {
   defaultProgram?: ProgramInterest;
+  /** Program pages: the program is fixed by the page, so the program and city fields are not shown. */
+  hideProgramAndCity?: boolean;
 }) {
   const form = useForm<HeroFormValues>({
-    resolver: zodResolver(heroFormSchema),
+    resolver: zodResolver(hideProgramAndCity ? programFormSchema : heroFormSchema) as Resolver<HeroFormValues>,
     defaultValues: {
       fullName: "",
       mobile: "",
@@ -163,7 +166,8 @@ export function EnquiryFormSection({
                   )}
                 />
                 {selectField("currentEducation", currentEducationOptions)}
-                {selectField("programInterest", programInterestOptions)}
+                {!hideProgramAndCity && selectField("programInterest", programInterestOptions)}
+                {!hideProgramAndCity && (
                 <FormField
                   control={form.control}
                   name="city"
@@ -176,6 +180,7 @@ export function EnquiryFormSection({
                     </FormItem>
                   )}
                 />
+                )}
               </div>
 
               <button

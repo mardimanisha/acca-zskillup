@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import {
   ArrowRight,
   BookOpen,
@@ -36,7 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { heroContent } from "@/content/home-hero";
-import { heroFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
+import { heroFormSchema, programFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
 
 const { form: copy } = heroContent;
 
@@ -68,14 +68,15 @@ function IndiaFlag() {
   );
 }
 
-export function HeroForm() {
+export function HeroForm({ defaultProgram }: { defaultProgram?: HeroFormValues["programInterest"] }) {
   const form = useForm<HeroFormValues>({
-    resolver: zodResolver(heroFormSchema),
+    resolver: zodResolver(defaultProgram ? programFormSchema : heroFormSchema) as Resolver<HeroFormValues>,
     defaultValues: {
       fullName: "",
       mobile: "",
       email: "",
       city: "",
+      programInterest: defaultProgram,
     },
   });
 
@@ -200,6 +201,7 @@ export function HeroForm() {
               )}
             />
 
+            {!defaultProgram && (
             <FormField
               control={form.control}
               name="programInterest"
@@ -228,7 +230,9 @@ export function HeroForm() {
                 </FormItem>
               )}
             />
+            )}
 
+            {!defaultProgram && (
             <FormField
               control={form.control}
               name="city"
@@ -246,6 +250,7 @@ export function HeroForm() {
                 </FormItem>
               )}
             />
+            )}
 
           </div>
 

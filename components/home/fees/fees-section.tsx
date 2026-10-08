@@ -1,6 +1,7 @@
 import { BarChart3, FileText, GraduationCap, type LucideIcon } from "lucide-react";
 
 import { FeeCard } from "@/components/home/fees/fee-card";
+import { FeePlanCard } from "@/components/home/fees/fee-plan-card";
 import { FeesIncludes } from "@/components/home/fees/fees-includes";
 import { SectionHeader } from "@/components/shared/section-header";
 import { homeFeesContent, type FeeProgram } from "@/content/home-fees";
@@ -12,7 +13,7 @@ const icons: Record<FeeProgram["icon"], LucideIcon> = {
 };
 
 export function FeesSection() {
-  const { eyebrow, heading, subtext, feeLabel, feeStatus, programs, includes } = homeFeesContent;
+  const { eyebrow, heading, subtext, feeLabel, feeStatus, programs, plans, effectiveFeeLabel, includes } = homeFeesContent;
 
   return (
     <section aria-labelledby="fees-heading" className="relative overflow-hidden bg-white py-12 md:py-14">
@@ -65,6 +66,14 @@ export function FeesSection() {
               href={includes.cta.href}
             />
           </div>
+
+          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-12 lg:grid-cols-4">
+            {plans.map((plan) => (
+              <li key={plan.title}>
+                <FeePlanCard {...plan} effectiveFeeLabel={effectiveFeeLabel} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

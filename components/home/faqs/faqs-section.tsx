@@ -4,26 +4,30 @@ import { ArrowRight } from "lucide-react";
 import { FaqsAccordion } from "@/components/home/faqs/faqs-accordion";
 import { SectionEyebrow, SectionHeader } from "@/components/shared/section-header";
 import { Button } from "@/components/ui/button";
-import { homeFaqsContent } from "@/content/home-faqs";
+import { homeFaqsContent, type Faq } from "@/content/home-faqs";
 
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: homeFaqsContent.faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
+  mainEntity: homeFaqsContent.categories
+    .flatMap((category): readonly Faq[] => category.faqs)
+    .map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
 };
 
 export function FaqsSection() {
-  const { eyebrow, heading, subtext, cta, faqs } = homeFaqsContent;
+  const { eyebrow, heading, subtext, cta, categories } = homeFaqsContent;
 
   return (
     <section aria-labelledby="faqs-heading" className="bg-[#F5FBFA] py-12 md:py-14">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
       />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -39,8 +43,8 @@ export function FaqsSection() {
           subtextClassName="mt-3 xl:mt-3"
         />
 
-        <div className="mx-auto max-w-3xl">
-          <FaqsAccordion faqs={faqs} />
+        <div className="mx-auto max-w-6xl">
+          <FaqsAccordion categories={categories} />
 
           <div className="mt-8 flex justify-center">
             <Button asChild variant="brandOutlineSm" className="w-full md:w-auto">

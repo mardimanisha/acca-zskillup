@@ -7,6 +7,16 @@ export type FeeProgram = {
   cta: { label: string; href: string };
 };
 
+export type FeePlan = {
+  title: string;
+  price: string;
+  /** Struck-through list price; "" hides it. */
+  originalPrice: string;
+  note: string;
+  effectiveFee: string;
+  tone: "green" | "pink" | "yellow" | "navy";
+};
+
 type HomeFeesContent = {
   eyebrow: string;
   heading: { line1: string; line2Navy: string; line2Teal: string };
@@ -14,6 +24,8 @@ type HomeFeesContent = {
   feeLabel: string;
   feeStatus: string;
   programs: readonly FeeProgram[];
+  plans: readonly FeePlan[];
+  effectiveFeeLabel: string;
   includes: {
     title: string;
     intro: string;
@@ -55,6 +67,14 @@ export const homeFeesContent = {
       fee: null,
       cta: { label: "Get Fee Details", href: "/fees" },
     },
+  ],
+  // DUMMY amounts (placeholder from the design mockup) — replace with approved fees before launch.
+  effectiveFeeLabel: "Effective fee of Rs.",
+  plans: [
+    { title: "One-Time Payment", price: "1,01,200", originalPrice: "1,15,000", note: "Self Pay Benefits", effectiveFee: "1,01,200", tone: "green" },
+    { title: "Annual Fee", price: "36,420", originalPrice: "38,334", note: "Self Pay Benefits", effectiveFee: "1,09,260", tone: "pink" },
+    { title: "Per Semester Fee", price: "19,200", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "1,15,000", tone: "yellow" },
+    { title: "24 Months No-Cost EMI", price: "4,552/month", originalPrice: "4,792", note: "0% Interest", effectiveFee: "1,09,260", tone: "navy" },
   ],
   includes: {
     title: "More Value for Your Investment",

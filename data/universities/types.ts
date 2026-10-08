@@ -2,6 +2,8 @@
 // Every string here is rendered verbatim. Leave a field as "" (or an array empty)
 // until the official value is confirmed: the page hides that element entirely.
 
+import type { FeePlan } from "@/content/home-fees";
+
 export type UniversityUsp = {
   title: string;
   text: string;
@@ -67,9 +69,7 @@ export type UniversityPage = {
     other: string;
   };
   fees: {
-    total: string;
-    semester: string;
-    /** One entry per available payment option; empty hides the card. */
-    paymentOptions: readonly string[];
+    /** One card per payment plan; empty hides the fee cards. */
+    plans: readonly FeePlan[];
   };
 };

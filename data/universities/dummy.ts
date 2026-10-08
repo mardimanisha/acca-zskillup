@@ -3,6 +3,7 @@
 // replace each field in the university's own data file with official values, or set it to
 // "" / [] to hide that element.
 
+import { homeFeesContent } from "@/content/home-fees";
 import { brochures } from "@/content/program-shared";
 import type { CurriculumYear, UniversityPage } from "@/data/universities/types";
 
@@ -230,10 +231,7 @@ export function createDummyUniversityPage({
       qsThe: "QS / THE",
       other: "Other Statutory or Academic Recognitions",
     },
-    fees: {
-      total: "3,60,000",
-      semester: "60,000",
-      paymentOptions: ["Semester-wise payment", "Instalments", "One-time payment"],
-    },
+    // DUMMY amounts: the homepage placeholder plans, not confirmed university fees.
+    fees: { plans: homeFeesContent.plans },
   };
 }

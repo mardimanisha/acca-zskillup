@@ -1,6 +1,7 @@
 // Fixed copy for every university page (/universities/[slug]).
 // University-specific values come from data/universities/<slug>.ts.
 
+import { homeFeesContent } from "@/content/home-fees";
 import type { UniversityPage } from "@/data/universities/types";
 
 export const universityPageCopy = {
@@ -119,11 +120,8 @@ export const universityPageCopy = {
     ],
   },
   fees: {
-    title: (u: UniversityPage) => `${u.universityName} ${u.degreeShort} + ACCA`,
-    total: "Total Program Fee",
-    semester: "Semester Fee",
-    paymentOptions: "Available Payment Options",
-    currency: "₹",
+    title: "Fee Structure",
+    effectiveLabel: homeFeesContent.effectiveFeeLabel,
     cta: "Get Fee Details",
   },
   // Closing call-to-action band. Heading + body from the content PDF's final CTA; eyebrow and

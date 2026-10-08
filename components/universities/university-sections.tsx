@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -8,14 +7,12 @@ import {
   BrainCircuit,
   Briefcase,
   CalendarDays,
-  Check,
   ChartColumnIncreasing,
   ClipboardCheck,
   Clock,
   FileText,
   Globe,
   GraduationCap,
-  IndianRupee,
   Landmark,
   Laptop,
   Layers,
@@ -23,10 +20,10 @@ import {
   Trophy,
   UserCheck,
   Users,
-  Wallet,
   type LucideIcon,
 } from "lucide-react";
 
+import { FeePlanCard } from "@/components/home/fees/fee-plan-card";
 import { container } from "@/components/programs/program-ui";
 import {
   UniEyebrow,
@@ -322,9 +319,11 @@ export function UniversityOverview({ university: u }: { university: UniversityPa
 
 // Values sampled from the "Clear Division of Expertise" design image (1346px export, scaled
 // to 1440px): campus photo panel bleeding off the left edge (~52% wide) with the heading on a
-// dark bottom fade; stacked white cards on the right with a 3px rounded left accent
-// (alternating blue / green), navy title, grey text and a large green figure top-right.
+// dark bottom fade; on the right a roadmap: numbered nodes (alternating blue / green) on a vertical
+// route line, each beside a white card with a 3px left accent, navy title and grey text.
 const admissionAccents = ["border-uni-adm-blue", "border-uni-adm-green"] as const;
+const admissionNodes = ["border-uni-adm-blue bg-white text-uni-adm-blue", "border-uni-adm-green bg-white text-uni-adm-green"] as const;
+const admissionNodesFilled = ["bg-uni-adm-blue", "bg-uni-adm-green"] as const;
 
 export function UniversityAdmission({ university: u }: { university: UniversityPage }) {
   const { eyebrow, steps } = copy.admission;
@@ -358,24 +357,39 @@ export function UniversityAdmission({ university: u }: { university: UniversityP
 
       {/* Same side gutters as `container`; on lg the steps start 44px right of the photo panel. */}
       <div className="relative mx-auto max-w-[1760px] px-4 py-10 sm:px-6 lg:py-14 lg:pl-[calc(49%+44px)] lg:pr-10 xl:pr-16">
-        <ol className="space-y-3.5">
-          {steps.map((step, i) => (
-            <li
-              key={step.number}
-              className={cn(
-                "flex items-start justify-between gap-5 rounded-xl border-l-[3px] bg-white py-5 pl-6 pr-6 shadow-[0_14px_36px_-24px_rgba(10,15,75,0.3)] sm:pl-7",
-                admissionAccents[i % admissionAccents.length],
-              )}
-            >
-              <div className="min-w-0">
-                <h3 className="text-[17px] font-bold leading-snug text-uni-adm-title">{step.title}</h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-uni-adm-text">{step.text}</p>
-              </div>
-              <span aria-hidden="true" className="shrink-0 text-[32px] font-bold leading-none text-uni-adm-num xl:text-[36px]">
-                {step.number}
-              </span>
-            </li>
-          ))}
+        {/* Roadmap: a vertical route line through numbered nodes, one card per step. */}
+        <ol className="relative">
+          <span
+            aria-hidden="true"
+            className="absolute bottom-10 left-[22px] top-10 w-0.5 rounded-full bg-[linear-gradient(180deg,#1F6FB8_0%,#16A07A_100%)] opacity-35"
+          />
+          {steps.map((step, i) => {
+            const isLast = i === steps.length - 1;
+            return (
+              <li key={step.number} className="relative pb-5 pl-[68px] last:pb-0">
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute left-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border-[3px] text-[15px] font-extrabold leading-nonefff)]#fff)]",
+                    admissionNodes[i % admissionNodes.length],
+                    isLast && "text-white",
+                    isLast && admissionNodesFilled[i % admissionNodes.length],
+                  )}
+                >
+                  {step.number}
+                </span>
+                <div
+                  className={cn(
+                    "rounded-xl border-l-[3px] bg-white py-5 pl-6 pr-6 shadow-[0_14px_36px_-24px_rgba(10,15,75,0.3)]",
+                    admissionAccents[i % admissionAccents.length],
+                  )}
+                >
+                  <h3 className="text-[17px] font-bold leading-snug text-uni-adm-title">{step.title}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-uni-adm-text">{step.text}</p>
+                </div>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>
@@ -384,46 +398,11 @@ export function UniversityAdmission({ university: u }: { university: UniversityP
 
 /* ── Fees ─────────────────────────────────────────────────────────── */
 
-// Values sampled from the "Program Fees" design image (1342px export, scaled to 1440px):
-// warm off-white band, serif navy heading with an outlined CTA top-right, and white cards with
-// a green icon, navy title and either a tinted value pill or a green-check list.
-function FeeCard({ icon: Icon, solidIcon = false, title, children }: {
-  icon: LucideIcon;
-  solidIcon?: boolean;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="rounded-xl bg-white p-6 shadow-[0_16px_40px_-28px_rgba(10,15,75,0.3)] ring-1 ring-black/[0.03] xl:p-7">
-      <div className="flex items-center gap-3.5">
-        <span
-          aria-hidden="true"
-          className={cn(
-            "flex size-10 shrink-0 items-center justify-center rounded-full",
-            solidIcon ? "bg-uni-fee-icon text-white" : "text-uni-fee-icon",
-          )}
-        >
-          <Icon className={solidIcon ? "size-5" : "size-7"} strokeWidth={solidIcon ? 2.25 : 1.6} />
-        </span>
-        <h3 className="text-base font-bold text-uni-adm-title">{title}</h3>
-      </div>
-      <div className="mt-4 sm:pl-[54px]">{children}</div>
-    </div>
-  );
-}
-
-function FeeValue({ value }: { value: string }) {
-  return (
-    <p className="rounded-lg bg-uni-fee-pill px-5 py-3.5 text-center text-xl font-bold text-uni-fee-value">{value}</p>
-  );
-}
-
+// Same four plan cards as the homepage fee section (coloured outline, price with struck-through
+// list price, note and a green "effective fee" line) under a plain "Fee Structure" heading.
 export function UniversityFees({ university: u }: { university: UniversityPage }) {
   const { fees } = copy;
-  const total = u.fees.total.trim();
-  const semester = u.fees.semester.trim();
-  const options = u.fees.paymentOptions.filter(filled);
-  const cardCount = [total, semester, options.length ? "x" : ""].filter(Boolean).length;
+  const plans = u.fees.plans;
 
   return (
     <section aria-labelledby="uni-fees-title" className="bg-uni-fee-bg">
@@ -431,9 +410,9 @@ export function UniversityFees({ university: u }: { university: UniversityPage }
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <h2
             id="uni-fees-title"
-            className={cn(serif, "text-[28px] font-bold leading-[1.15] tracking-[-0.015em] text-uni-hero-navy md:text-[34px] xl:text-[38px]")}
+            className="font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-uni-hero-navy md:text-[34px]"
           >
-            {fees.title(u)}
+            {fees.title}
           </h2>
           <a
             href={copy.enquiryHref}
@@ -444,37 +423,14 @@ export function UniversityFees({ university: u }: { university: UniversityPage }
           </a>
         </div>
 
-        {cardCount > 0 && (
-          <div
-            className={cn(
-              "mt-9 grid gap-4 md:gap-5",
-              cardCount === 2 && "md:grid-cols-2",
-              cardCount === 3 && "md:grid-cols-2 lg:grid-cols-3",
-            )}
-          >
-            {total && (
-              <FeeCard icon={IndianRupee} solidIcon title={fees.total}>
-                <FeeValue value={`${fees.currency} ${total}`} />
-              </FeeCard>
-            )}
-            {semester && (
-              <FeeCard icon={CalendarDays} title={fees.semester}>
-                <FeeValue value={`${fees.currency} ${semester}`} />
-              </FeeCard>
-            )}
-            {options.length > 0 && (
-              <FeeCard icon={Wallet} title={fees.paymentOptions}>
-                <ul className="space-y-2.5">
-                  {options.map((option) => (
-                    <li key={option} className="flex items-center gap-3 text-[15px] text-uni-adm-text">
-                      <Check aria-hidden="true" className="size-4 shrink-0 text-uni-fee-check" strokeWidth={2.5} />
-                      {option}
-                    </li>
-                  ))}
-                </ul>
-              </FeeCard>
-            )}
-          </div>
+        {plans.length > 0 && (
+          <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {plans.map((plan) => (
+              <li key={plan.title}>
+                <FeePlanCard {...plan} brand effectiveFeeLabel={fees.effectiveLabel} />
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </section>

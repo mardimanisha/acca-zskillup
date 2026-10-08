@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 // Shared building blocks for /universities/[slug], matching the university page design:
 // green 13px uppercase eyebrow, serif navy headings, 8px-radius buttons, 16px-radius white cards.
 
-/** Serif heading face (Fraunces), loaded by the route via `--font-uni-serif`. */
-export const serif = "font-[family-name:var(--font-uni-serif)]";
+/** Heading face: the homepage font (Plus Jakarta Sans via font-sans). Name kept for existing call sites. */
+export const serif = "font-sans";
 
 /** Official logos (public/logos/trust) for the bodies named in the trust strip and recognitions card. */
 export const trustLogos = {

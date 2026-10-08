@@ -5,7 +5,7 @@ import {
   ProgramCareers,
   ProgramComparison,
   ProgramFinalCta,
-  ProgramLevels,
+  ProgramAccaLearning,
   ProgramWhoFor,
 } from "@/components/programs/sections/program-blocks";
 import { ProgramCurriculum } from "@/components/programs/sections/program-curriculum";
@@ -27,7 +27,7 @@ export default function BbaAccaPage() {
       <ProgramWhy content={page.why} brochureHref={page.brochure} />
       <ProgramUniversities content={page.universities} />
       <ProgramCurriculum content={page.curriculum} />
-      <ProgramLevels id="acca-learning-title" content={page.accaLearning} tone="mint" />
+      <ProgramAccaLearning id="acca-learning-title" content={page.accaLearning} tone="mint" />
       <ProgramComparison id="compare-title" content={page.comparison} tone="white" />
       <ProgramWhoFor id="who-for-title" content={page.whoFor} tone="mint" />
       <ProgramCareers id="careers-title" content={page.careers} tone="white" />

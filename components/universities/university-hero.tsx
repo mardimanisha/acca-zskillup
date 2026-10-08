@@ -2,10 +2,12 @@ import Image from "next/image";
 import { ArrowRight, Award, BadgeCheck, Download, ShieldCheck, TrendingUp, type LucideIcon } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
-import { serif } from "@/components/universities/university-ui";
+import { serif, trustLogos as logos } from "@/components/universities/university-ui";
 import { universityPageCopy } from "@/content/university-page";
 import type { UniversityPage } from "@/data/universities/types";
 import { cn } from "@/lib/utils";
+
+type TrustLogo = { src: string; width: number; height: number };
 
 const copy = universityPageCopy.hero;
 
@@ -48,6 +50,13 @@ function SwooshDefs() {
   );
 }
 
+// "other" has no single logo, so it keeps an icon.
+const trustLogos: Partial<Record<keyof UniversityPage["trustMarkers"], TrustLogo>> = {
+  ugc: logos.ugc,
+  naac: logos.naac,
+  ranking: logos.nirf,
+};
+
 const trustIcons: Record<keyof UniversityPage["trustMarkers"], LucideIcon> = {
   ugc: Award,
   naac: BadgeCheck,
@@ -58,7 +67,7 @@ const trustIcons: Record<keyof UniversityPage["trustMarkers"], LucideIcon> = {
 /** Design's stats strip: white band, mint icon circles, bold navy text, thin dividers. */
 function TrustMarkers({ markers }: { markers: UniversityPage["trustMarkers"] }) {
   const items = (Object.keys(trustIcons) as (keyof typeof trustIcons)[])
-    .map((key) => ({ key, icon: trustIcons[key], text: markers[key].trim() }))
+    .map((key) => ({ key, icon: trustIcons[key], logo: trustLogos[key], text: markers[key].trim() }))
     .filter((item) => item.text);
 
   if (!items.length) return null;
@@ -79,9 +88,16 @@ function TrustMarkers({ markers }: { markers: UniversityPage["trustMarkers"] }) 
             >
               <span
                 aria-hidden="true"
-                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
+                className={cn(
+                  "flex size-14 shrink-0 items-center justify-center rounded-full",
+                  item.logo ? "bg-white p-2 ring-1 ring-uni-hero-line" : "bg-uni-hero-mint text-uni-hero-icon",
+                )}
               >
-                <Icon className="size-[26px]" strokeWidth={1.6} />
+                {item.logo ? (
+                  <Image src={item.logo.src} alt="" width={item.logo.width} height={item.logo.height} className="size-full object-contain" />
+                ) : (
+                  <Icon className="size-[26px]" strokeWidth={1.6} />
+                )}
               </span>
               <span className="text-[17px] font-bold leading-snug text-uni-hero-stat">{item.text}</span>
             </li>

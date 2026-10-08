@@ -33,7 +33,7 @@ import {
   sectionPadding,
   sectionTone,
   serif,
-  uniCard,
+  trustLogos,
   type SectionTone,
 } from "@/components/universities/university-ui";
 import { WorldMap } from "@/components/universities/world-map";
@@ -55,6 +55,12 @@ const recognitionIcons: Record<keyof UniversityPage["recognitions"], LucideIcon>
   other: ShieldCheck,
 };
 
+const recognitionLogos: Partial<Record<keyof UniversityPage["recognitions"], (typeof trustLogos)[keyof typeof trustLogos]>> = {
+  ugcStatus: trustLogos.ugc,
+  naac: trustLogos.naac,
+  nirf: trustLogos.nirf,
+};
+
 export function hasWhyContent(u: UniversityPage) {
   return (
     u.usps.some((usp) => filled(usp.title) || filled(usp.text)) ||
@@ -68,7 +74,7 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
     .filter((usp) => filled(usp.title) || filled(usp.text));
 
   const recognitions = (Object.keys(recognitionIcons) as (keyof typeof recognitionIcons)[])
-    .map((key) => ({ key, icon: recognitionIcons[key], text: u.recognitions[key].trim() }))
+    .map((key) => ({ key, icon: recognitionIcons[key], logo: recognitionLogos[key], text: u.recognitions[key].trim() }))
     .filter((r) => r.text);
 
   // Values sampled from the "Why choose" design image (1357px export, scaled to 1440px):
@@ -161,9 +167,13 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
               {copy.why.cardTitle}
             </h3>
             <ul className="mt-6 space-y-5">
-              {recognitions.map(({ key, icon: Icon, text }) => (
+              {recognitions.map(({ key, icon: Icon, logo, text }) => (
                 <li key={key} className="flex items-center gap-4">
-                  <Icon aria-hidden="true" className="size-8 shrink-0 text-uni-hero-recIcon" strokeWidth={1.5} />
+                  {logo ? (
+                    <Image src={logo.src} alt="" width={logo.width} height={logo.height} className="size-9 shrink-0 object-contain" />
+                  ) : (
+                    <Icon aria-hidden="true" className="size-8 shrink-0 text-uni-hero-recIcon" strokeWidth={1.5} />
+                  )}
                   <span className="text-[15px] font-bold leading-snug text-uni-hero-uspTitle">{text}</span>
                 </li>
               ))}
@@ -186,38 +196,52 @@ const pathwayIcons: Record<(typeof copy.pathway.cards)[number]["icon"], LucideIc
 
 export function UniversityPathway({ tone }: { tone: SectionTone }) {
   const { eyebrow, title, cards } = copy.pathway;
+  const last = cards.length - 1;
 
+  // Homepage heading face (Plus Jakarta Sans via font-sans), not the university serif.
   return (
     <section aria-labelledby="uni-pathway-title" className={sectionTone[tone]}>
       <div className={cn(container, sectionPadding)}>
         <UniEyebrow className="text-uni-hero-eyebrow">{eyebrow}</UniEyebrow>
         <h2
           id="uni-pathway-title"
-          className={cn(
-            serif,
-            "mt-5 max-w-3xl text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-uni-hero-ink md:text-[38px] xl:text-[43px]",
-          )}
+          className="mt-5 max-w-3xl font-sans text-[30px] font-extrabold leading-[1.15] tracking-tight text-uni-hero-ink md:text-[38px] xl:text-[44px]"
         >
           {title}
         </h2>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {cards.map((card) => {
+        <ol className="mt-12 grid gap-y-10 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-y-0">
+          {cards.map((card, i) => {
             const Icon = pathwayIcons[card.icon];
             return (
-              <li key={card.title} className={cn(uniCard, "p-7")}>
-                <span
-                  aria-hidden="true"
-                  className="flex size-14 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
+              <li key={card.title} className="flex flex-col">
+                {/* Icon row: the connector runs through every circle from the first to the last. */}
+                <div className="flex items-center" aria-hidden="true">
+                  {i > 0 && <span className="hidden h-px w-8 bg-uni-hero-icon/50 lg:block" />}
+                  <span className="flex size-[72px] shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-uni-hero-icon/60">
+                    <span className="flex size-[58px] items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon">
+                      <Icon className="size-6" strokeWidth={1.6} />
+                    </span>
+                  </span>
+                  {i < last && <span className="hidden h-px flex-1 bg-uni-hero-icon/50 lg:block" />}
+                </div>
+
+                <div
+                  className={cn(
+                    "mt-8 lg:pr-6",
+                    i > 0 && "lg:border-l lg:border-uni-hero-icon/30 lg:pl-8",
+                  )}
                 >
-                  <Icon className="size-6" strokeWidth={1.6} />
-                </span>
-                <h3 className="mt-5 text-[17px] font-bold leading-snug text-uni-hero-uspTitle">{card.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-uni-hero-body">{card.text}</p>
+                  <span className="block text-[17px] font-bold leading-none text-uni-hero-icon">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-5 text-[17px] font-bold leading-snug text-uni-hero-uspTitle">{card.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-uni-hero-body">{card.text}</p>
+                </div>
               </li>
             );
           })}
-        </ul>
+        </ol>
       </div>
     </section>
   );
@@ -227,8 +251,8 @@ export function UniversityPathway({ tone }: { tone: SectionTone }) {
 
 // Values sampled from the "Program Highlights" design image (1342px export, scaled to 1440px):
 // deep teal-green band with a brighter green glow bottom-left, dotted world map top-right,
-// off-white 12px-radius cards (grey index number, mint icon circle, navy/grey text) and a
-// thin rule with white dots under the card row.
+// card-less 4×2 grid: mint icon circle, grey index number, label and bold white value, with
+// hairline dividers between cells and a full-width rule between the two rows.
 export function UniversityOverview({ university: u }: { university: UniversityPage }) {
   const { eyebrow, labels, fixed } = copy.overview;
   const items: { label: string; value: string; icon: LucideIcon }[] = [
@@ -258,11 +282,20 @@ export function UniversityOverview({ university: u }: { university: UniversityPa
           {eyebrow}
         </h2>
 
-        <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3.5">
+        <dl className="mt-10 grid sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
           {items.map((item, i) => (
             <div
               key={item.label}
-              className="relative flex items-center gap-4 rounded-xl bg-uni-band-card py-5 pl-5 pr-5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] xl:gap-5 xl:py-6 xl:pl-6"
+              className={cn(
+                "flex items-start gap-4 border-white/20 py-7 sm:px-6 xl:gap-5 xl:px-8",
+                // Hairlines: rule between rows, vertical divider between cells in a row.
+                i > 0 && "border-t",
+                i < 2 && "sm:border-t-0",
+                i >= 2 && "sm:border-t",
+                i % 2 === 1 ? "sm:border-l" : "sm:pl-0",
+                i < 4 ? "lg:border-t-0" : "lg:border-t",
+                i % 4 === 0 ? "lg:border-l-0 lg:pl-0" : "lg:border-l",
+              )}
             >
               <span
                 aria-hidden="true"
@@ -271,27 +304,15 @@ export function UniversityOverview({ university: u }: { university: UniversityPa
                 <item.icon className="size-6 xl:size-7" strokeWidth={1.6} />
               </span>
               <div className="min-w-0">
-                <dt className="pr-6 text-sm text-uni-band-label">{item.label}</dt>
-                <dd className="mt-1 text-base font-bold leading-snug text-uni-band-title xl:text-[17px]">{item.value}</dd>
+                <span aria-hidden="true" className="block text-[13px] leading-none text-white/60">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <dt className="mt-2.5 text-sm text-white/80">{item.label}</dt>
+                <dd className="mt-1 text-base font-bold leading-snug text-white xl:text-[17px]">{item.value}</dd>
               </div>
-              <span aria-hidden="true" className="absolute right-4 top-3.5 text-[15px] leading-none text-uni-band-num/80">
-                {String(i + 1).padStart(2, "0")}
-              </span>
             </div>
           ))}
         </dl>
-
-        {/* Decorative rule with a dot under each column, as in the design. */}
-        <div aria-hidden="true" className="relative mt-6 hidden h-2.5 lg:block">
-          <span className="absolute inset-x-[12.5%] top-1/2 h-px -translate-y-1/2 bg-white/25" />
-          {[12.5, 37.5, 62.5, 87.5].map((left) => (
-            <span
-              key={left}
-              className="absolute top-0 size-2.5 -translate-x-1/2 rounded-full bg-white"
-              style={{ left: `${left}%` }}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

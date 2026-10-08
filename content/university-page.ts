@@ -67,6 +67,7 @@ export const universityPageCopy = {
     title: "A Three-Year Integrated Pathway",
     download: "Download Curriculum (PDF)",
     viewFull: "View Full Curriculum",
+    externalBadge: "Employability",
     columns: {
       subject: "Subject",
       accaCode: "ACCA Code",

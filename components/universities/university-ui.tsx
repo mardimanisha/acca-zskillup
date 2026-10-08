@@ -9,6 +9,13 @@ import { cn } from "@/lib/utils";
 /** Serif heading face (Fraunces), loaded by the route via `--font-uni-serif`. */
 export const serif = "font-[family-name:var(--font-uni-serif)]";
 
+/** Official logos (public/logos/trust) for the bodies named in the trust strip and recognitions card. */
+export const trustLogos = {
+  ugc: { src: "/logos/trust/ugc.png", width: 76, height: 80 },
+  naac: { src: "/logos/trust/naac.png", width: 96, height: 100 },
+  nirf: { src: "/logos/trust/nirf.png", width: 154, height: 104 },
+} as const;
+
 export const uniCard =
   "rounded-2xl bg-white shadow-[0_18px_50px_-20px_rgba(11,31,77,0.22)] ring-1 ring-uni-line/60";
 

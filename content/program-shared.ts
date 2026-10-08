@@ -73,7 +73,7 @@ export const curriculumCommon = {
   columns: { zskillup: "ZSKILLUP ACCA PREPARATION" },
   outcomesLabel: "END OF SEMESTER OUTCOMES:",
   // Screen-reader-only label for the semester tabs.
-  a11y: { tabs: "Semesters" },
+  a11y: { tabs: "Semesters", years: "Years" },
 } as const;
 
 export const accaExemptions = {

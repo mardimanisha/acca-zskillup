@@ -94,7 +94,7 @@ const curriculum = {
         { name: "Business Law & Business Environment", code: "K3" },
         { name: "Managerial Economics" },
       ],
-      zskillup: [{ name: "AI, Financial Modelling & Business Decision Making" }],
+      zskillup: [{ name: "AI, Financial Modelling & Business Decision Making", badge: "Employability" }],
       outcomes: ["K1 Financial Accounting", "K2 Management Accounting", "K3 Business Law"],
     },
     {

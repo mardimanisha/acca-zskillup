@@ -62,7 +62,7 @@ export type UniversitiesContent = {
   universities: readonly University[];
 };
 
-export type CurriculumSubject = { name: string; code?: string };
+export type CurriculumSubject = { name: string; code?: string; badge?: string };
 
 export type CurriculumContent = {
   eyebrow: string;
@@ -70,7 +70,7 @@ export type CurriculumContent = {
   body?: string;
   columns: { degree: string; zskillup: string };
   outcomesLabel: string;
-  a11y: { tabs: string };
+  a11y: { tabs: string; years: string };
   semesters: readonly {
     tab: string;
     label: string;

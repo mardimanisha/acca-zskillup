@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type Resolver } from "react-hook-form";
 import { Loader2 } from "lucide-react";
@@ -21,6 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { currentEducationOptions, programInterestOptions } from "@/content/home-hero";
+import { selectProgramEvent } from "@/content/fees";
 import { enquiryFormContent as copy } from "@/content/program-shared";
 import { heroFormSchema, programFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
 import { cn } from "@/lib/utils";
@@ -53,6 +55,19 @@ export function EnquiryFormSection({
   });
 
   const { isSubmitting } = form.formState;
+
+  // Pages (e.g. /fees) can pre-select "Interested In" before scrolling to the form.
+  const { setValue } = form;
+  useEffect(() => {
+    const onSelect = (event: Event) => {
+      const value = (event as CustomEvent<string>).detail;
+      if ((programInterestOptions as readonly string[]).includes(value)) {
+        setValue("programInterest", value as ProgramInterest, { shouldDirty: true });
+      }
+    };
+    window.addEventListener(selectProgramEvent, onSelect);
+    return () => window.removeEventListener(selectProgramEvent, onSelect);
+  }, [setValue]);
 
   async function onSubmit(values: HeroFormValues) {
     const response = await fetch("/api/enquiry", {

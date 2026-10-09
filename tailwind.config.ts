@@ -125,6 +125,29 @@ const config: Config = {
           meta: "#7A8199",
           line: "#C9CDDA",
         },
+        // Careers page palette (sampled from the /careers design).
+        cr: {
+          navy: "#0B1F4D",
+          green: "#08A683",
+          greenHover: "#078F72",
+          body: "#5B6475",
+          line: "#DDE2EC",
+          lavender: "#F6F2FD",
+          peach: "#FEF6EE",
+          sky: "#F3F8FE",
+          mint: "#F1FAF6",
+        },
+        // Fees page palette (sampled from the /fees design).
+        fp: {
+          navy: "#0B1F4D",
+          green: "#0E5A3A",
+          greenHover: "#0A4A30",
+          accent: "#12A06E",
+          mint: "#EAF6F0",
+          mintSoft: "#F5FAF8",
+          body: "#5B6475",
+          line: "#DDE8E2",
+        },
         panel: {
           from: "#F3FBF9",
           to: "#EEF8F5",

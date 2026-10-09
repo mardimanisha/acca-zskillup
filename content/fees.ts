@@ -5,27 +5,41 @@ import type { ProgramFeeId } from "@/data/fees";
 export const feesCopy = {
   hero: {
     eyebrow: "PROGRAM FEES",
-    titleLine1: "Invest in the Pathway",
-    titleLine2: "That Fits Your Goals",
-    body: "Compare fees across B.Com + ACCA, BBA + ACCA and ACCA Only and understand what is included before you make your decision.",
+    titleLine1: "Choose Your Program",
+    titleLine2: "and Explore the Fee Details",
+    body: "Each program offers a unique pathway. Select a program to view its fee structure, payment options and what's included.",
   },
   // Replace with the supplied fees hero image (student with laptop in front of a heritage building).
   heroImage: "/images/fees/hero-student.jpg",
   // Photo alt text is decorative until approved copy exists.
   heroImageAlt: "",
+  panel: { eyebrow: "SELECTED PROGRAM" },
   plans: {
     id: "fees-plans-title",
-    eyebrow: "FLEXIBLE PAYMENT OPTIONS",
-    title: "Make Your Learning Journey Easier to Plan",
-    subtitle:
-      "Depending on the selected program and university partner, available options may include semester-wise payment, instalments and one-time payment options.",
+    title: "Fee Structure",
+    subtitle: "Flexible payment options to make your learning journey simpler and more accessible.",
+  },
+  why: {
+    id: "fees-why-title",
+    titlePrefix: "Why Choose",
+    subtitle: "A globally recognised qualification with a flexible fee structure designed for your growth.",
+    items: [
+      "Globally recognised qualification",
+      "Industry aligned learning",
+      "Flexible payment options",
+      "Career support",
+    ],
+    badge: ["Flexible Plans", "for Your Goals"],
+    image: "/images/fees/why-student.jpg",
+    imageAlt: "",
   },
   included: {
     id: "fees-included-title",
-    title: "What's Included?",
+    title: "What's Included in Your Program Fee?",
+    subtitle: "Your program fee includes all the essential components to ensure a complete learning experience.",
     items: [
-      { icon: "graduationCap", label: "Degree tuition where applicable" },
-      { icon: "bookOpen", label: "Professional learning" },
+      { icon: "graduationCap", label: "Degree tuition (where applicable)" },
+      { icon: "bookOpen", label: "ACCA professional learning" },
       { icon: "laptop", label: "Learning platform access" },
       { icon: "fileText", label: "Learning resources" },
       { icon: "chart", label: "Revision and mock support" },
@@ -35,24 +49,40 @@ export const feesCopy = {
   },
   charges: {
     id: "fees-charges-title",
-    eyebrow: "EXTERNAL / ADDITIONAL CHARGES",
-    title: "Know the Full Cost Before You Enrol",
+    title: "Additional Charges",
+    intro:
+      "In addition to the program fee, the following charges may be separately payable as per ACCA's and university's prevailing fee structure.",
     cards: [
       {
-        icon: "receipt",
-        body: "Depending on the pathway, ACCA registration, annual subscription, examination and exemption charges may be separately payable under ACCA's prevailing fee structure.",
+        key: "acca",
+        title: "ACCA Charges",
+        items: [
+          "ACCA registration fee",
+          "Annual subscription fee",
+          "Examination fees",
+          "Exemption charges (if applicable)",
+        ],
+        note: "",
       },
       {
-        icon: "landmark",
-        body: "For degree programs, any university-specific examination, administration or other charges should be clearly disclosed in the final university fee sheet.",
+        key: "university",
+        title: "University Charges",
+        items: ["Examination fee", "Administration charges", "Any other university-specific charges"],
+        note: "These charges should be clearly disclosed in the final university fee sheet.",
       },
     ],
   },
   help: {
     id: "fees-help-title",
-    title: "Need Help Understanding the Fees?",
-    body: "Talk to our team for a complete fee breakdown before you apply.",
+    eyebrow: "NEED HELP?",
+    titleLines: ["Understand the Fees", "in Detail Before You Apply"],
+    body: "Talk to our team for a personalized fee breakdown, payment options and any other queries.",
     cta: { label: "Talk to an Advisor", href: "#enquiry-form" },
+    points: [
+      { icon: "message", label: "Get detailed fee breakdown" },
+      { icon: "fileText", label: "Understand payment options" },
+      { icon: "phone", label: "Clear all your questions" },
+    ],
   },
 } as const;
 

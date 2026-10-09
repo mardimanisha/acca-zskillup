@@ -589,12 +589,12 @@ export function CareersHiringNetwork() {
           {network.title}
         </h2>
 
-        <ul className="mt-8 flex items-center overflow-x-auto pb-2 [scrollbar-width:thin]">
+        <ul className="mt-8 flex items-stretch overflow-x-auto rounded-lg bg-white py-4 shadow-[0_10px_30px_-16px_rgba(11,31,77,0.14)] ring-1 ring-cr-navy/[0.05] [scrollbar-width:thin]">
           {hiringNetwork.map((company, i) => (
             <li
               key={company.name}
               className={cn(
-                "flex h-14 min-w-[140px] flex-1 shrink-0 items-center justify-center px-6",
+                "flex h-14 min-w-[150px] flex-1 shrink-0 items-center justify-center px-6",
                 i > 0 && "border-l border-cr-line",
               )}
             >
@@ -604,7 +604,7 @@ export function CareersHiringNetwork() {
                 width={140}
                 height={48}
                 unoptimized
-                className="h-9 w-auto max-w-full object-contain grayscale"
+                className="h-8 w-auto max-w-full object-contain"
               />
             </li>
           ))}

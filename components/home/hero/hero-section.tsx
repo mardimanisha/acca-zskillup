@@ -17,6 +17,7 @@ export function HeroSection() {
         fill
         preload
         sizes="100vw"
+        quality={90}
         className="-z-20 object-cover object-[56%_top]"
       />
       {/* Readability overlays: light left-to-right wash so the photo still shows,

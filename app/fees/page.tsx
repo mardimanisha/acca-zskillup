@@ -17,12 +17,13 @@ export default async function FeesPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { program } = await searchParams;
+  const { program, university } = await searchParams;
   const initialId = isProgramFeeId(program) ? program : defaultProgramFeeId;
+  const initialUniversity = typeof university === "string" ? university : undefined;
 
   return (
     <>
-      <FeesExplorer initialId={initialId} />
+      <FeesExplorer initialId={initialId} initialUniversity={initialUniversity} />
       <FeesIncluded />
       <FeesCharges />
       <FeesHelp />

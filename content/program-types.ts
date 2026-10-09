@@ -48,6 +48,9 @@ export type University = {
   name: string;
   logo: string;
   campus: string;
+  location: string;
+  monthlyEmi: string;
+  totalFee: string;
   tags: readonly string[];
   features: readonly string[];
 };
@@ -58,6 +61,8 @@ export type UniversitiesContent = {
   body: string;
   viewAll: { label: string; href: string };
   exploreLabel: string;
+  emiLabel: string;
+  totalFeeLabel: string;
   a11y: { prev: string; next: string; goTo: string };
   universities: readonly University[];
 };
@@ -76,8 +81,8 @@ export type CurriculumContent = {
     label: string;
     title: string;
     meta?: string;
-    degree: readonly CurriculumSubject[];
-    zskillup: readonly CurriculumSubject[];
+    /** In the order shown on the page (university and ZSkillUp subjects interleaved, as in the proposal PDFs). */
+    subjects: readonly CurriculumSubject[];
     outcomes: readonly string[];
   }[];
 };

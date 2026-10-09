@@ -25,7 +25,7 @@ export function FaqsSection() {
   const { eyebrow, heading, subtext, help, categories } = homeFaqsContent;
 
   return (
-    <section aria-labelledby="faqs-heading" className="bg-[#F5FBFA] py-12 md:py-14">
+    <section aria-labelledby="faqs-heading" className="bg-[#F5FBFA] section-y">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

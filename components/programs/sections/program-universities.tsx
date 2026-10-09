@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
 import type { UniversitiesContent } from "@/content/program-types";
@@ -14,7 +14,7 @@ const arrowClass =
   "absolute top-1/2 z-10 hidden size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-zs-navy shadow-[0_6px_18px_-6px_rgba(0,0,0,0.4)] transition hover:scale-105 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-white/60 disabled:pointer-events-none disabled:opacity-40 lg:flex";
 
 export function ProgramUniversities({ content }: { content: UniversitiesContent }) {
-  const { eyebrow, title, body, viewAll, exploreLabel, a11y, universities } = content;
+  const { eyebrow, title, body, viewAll, exploreLabel, emiLabel, totalFeeLabel, a11y, universities } = content;
   const trackRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState(0);
   const [edges, setEdges] = useState({ start: true, end: true });
@@ -52,7 +52,7 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
   return (
     <section
       aria-labelledby="program-universities-title"
-      className="relative overflow-hidden bg-zs-greenDark text-white"
+      className="relative overflow-hidden bg-[#014331] text-white"
     >
       {/* Soft lighting so the band isn't a flat fill, as in the design. */}
       <div
@@ -60,7 +60,7 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
         className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_15%_0%,rgba(255,255,255,0.06),transparent_70%),radial-gradient(ellipse_50%_70%_at_90%_100%,rgba(0,0,0,0.18),transparent_70%)]"
       />
 
-      <div className={cn(container, "relative py-14 lg:py-16")}>
+      <div className={cn(container, "relative section-y")}>
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.04em] text-white">{eyebrow}</p>
@@ -121,6 +121,11 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
                       className="h-auto max-h-12 w-auto max-w-[85%] object-contain object-left"
                     />
                   </div>
+                  <h3 className="mt-2 text-lg font-bold leading-snug">{uni.name}</h3>
+                  <p className="mt-1 flex items-center gap-1.5 text-sm text-[#6B7186]">
+                    <MapPin aria-hidden="true" className="size-4 shrink-0 text-zs-green" />
+                    {uni.location}
+                  </p>
                   <ul className="mt-3 flex w-fit items-center rounded-md bg-[#F1F4F7] px-2 py-1 text-xs font-semibold text-[#5B6478]">
                     {uni.tags.map((tag, i) => (
                       <li key={tag} className={cn("px-1.5", i > 0 && "border-l border-[#D3D9E2]")}>
@@ -128,6 +133,16 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
                       </li>
                     ))}
                   </ul>
+                  <dl className="mt-4 grid grid-cols-2 gap-3 rounded-lg bg-[#F1F4F7] px-3 py-3">
+                    <div>
+                      <dt className="text-xs font-medium text-[#6B7186]">{emiLabel}</dt>
+                      <dd className="mt-0.5 text-base font-extrabold text-zs-green">{uni.monthlyEmi}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs font-medium text-[#6B7186]">{totalFeeLabel}</dt>
+                      <dd className="mt-0.5 text-base font-extrabold">{uni.totalFee}</dd>
+                    </div>
+                  </dl>
                   <ul className="mt-4 space-y-2.5">
                     {uni.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2.5 text-sm text-[#6B7186]">

@@ -1,7 +1,7 @@
 // ACCA Only program page copy, from "ZSkillupACCA Website Content.pdf" (PAGE 4 | ACCA ONLY).
 // Do not edit wording here without sign-off.
 
-import { programHeroImage } from "@/content/program-bba-acca";
+import { accaHeroImage } from "@/content/program-bba-acca";
 import { brochures } from "@/content/program-shared";
 import type {
   FeatureGridContent,
@@ -16,7 +16,7 @@ const hero = {
   title: { start: "ACCA", highlight: " Only" },
   subtitle: "Focus Your Journey on Professional Finance",
   body: "Prepare for ACCA through structured live online and recorded learning, professional preparation and career-readiness support, without enrolling in a B.Com or BBA degree pathway.",
-  image: programHeroImage,
+  image: accaHeroImage,
   // Labels reuse the "Learn your way" titles below.
   features: [
     { icon: "video", label: "Live Online Learning" },

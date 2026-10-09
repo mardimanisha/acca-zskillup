@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { EnquiryFormSection } from "@/components/shared/enquiry-form-section";
+import { UniversitiesExplorer } from "@/components/universities/landing/universities-explorer";
 import {
-  UniversitiesCards,
   UniversitiesHero,
   UniversitiesPathway,
 } from "@/components/universities/landing/universities-landing";
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 export default function UniversitiesLandingPage() {
   return (
     <>
-      <UniversitiesHero />
-      <UniversitiesCards universities={publishedUniversities} />
+      <UniversitiesHero universityCount={publishedUniversities.length} />
+      <UniversitiesExplorer universities={publishedUniversities} />
       <UniversitiesPathway />
       <EnquiryFormSection />
       <SiteFooter />

@@ -19,6 +19,11 @@ import {
 } from "lucide-react";
 
 import { feesSerif } from "@/components/fees/fees-ui";
+import {
+  UniversityFeeSection,
+  UniversityPicker,
+  universitiesForProgram,
+} from "@/components/fees/university-fees";
 import { TbaBadge } from "@/components/shared/tba-badge";
 import { container } from "@/components/programs/program-ui";
 import { toBeAnnounced } from "@/content/site";
@@ -177,7 +182,7 @@ function ProgramPanel({ program }: { program: ProgramFee }) {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className={cn(container, "relative lg:flex lg:min-h-[480px] lg:items-center")}>
-        <div className="py-10 sm:py-12 lg:w-[52%] lg:py-14">
+        <div className="py-10 md:py-14 lg:w-[52%]">
           <p className={eyebrowClass}>
             <span aria-hidden="true" className="block h-[2px] w-3 bg-fp-green" />
             {copy.panel.eyebrow}
@@ -265,7 +270,7 @@ function WhyChoose({ program }: { program: ProgramFee }) {
       <span aria-hidden="true" className="absolute -left-24 top-1/2 size-80 -translate-y-1/2 rounded-full bg-white/50" />
       <span aria-hidden="true" className="absolute -right-20 -top-20 size-72 rounded-full bg-[#D6EFE4]/50" />
 
-      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1.12fr_1fr] lg:gap-14 lg:py-20">
+      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-12 px-4 section-y sm:px-6 lg:grid-cols-[1.12fr_1fr] lg:gap-14">
         <div className="relative mx-auto aspect-[490/390] w-full max-w-[560px] lg:mx-0">
           <span aria-hidden="true" className="absolute left-0 top-[30%] h-[56%] w-[13%] rounded-2xl bg-[#FBEEDD]" />
           <span aria-hidden="true" className="absolute right-0 top-[2%] h-[98%] w-[42%] rounded-[44px] bg-[#CFEBDD]/80" />
@@ -333,19 +338,41 @@ function WhyChoose({ program }: { program: ProgramFee }) {
   );
 }
 
-export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
+export function FeesExplorer({
+  initialId,
+  initialUniversity,
+}: {
+  initialId: ProgramFeeId;
+  initialUniversity?: string;
+}) {
   const [activeId, setActiveId] = useState<ProgramFeeId>(initialId);
+  const [universitySlug, setUniversitySlug] = useState(initialUniversity ?? "");
   const uid = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const active = programFees.find((p) => p.id === activeId) ?? programFees[0];
   const tabId = (id: ProgramFeeId) => `${uid}-tab-${id}`;
   const panelId = `${uid}-panel`;
+  const universityOptions = universitiesForProgram(activeId);
+  // Fall back to the first option when the chosen university doesn't offer this program.
+  const activeUniversity = universityOptions.find((o) => o.slug === universitySlug) ?? universityOptions[0];
+
+  function syncUrl(program: ProgramFeeId, university: string | undefined) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("program", program);
+    if (university) url.searchParams.set("university", university);
+    else url.searchParams.delete("university");
+    window.history.replaceState(null, "", url);
+  }
 
   function select(id: ProgramFeeId) {
     setActiveId(id);
-    const url = new URL(window.location.href);
-    url.searchParams.set("program", id);
-    window.history.replaceState(null, "", url);
+    const options = universitiesForProgram(id);
+    syncUrl(id, (options.find((o) => o.slug === universitySlug) ?? options[0])?.slug);
+  }
+
+  function selectUniversity(slug: string) {
+    setUniversitySlug(slug);
+    syncUrl(activeId, slug);
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -374,7 +401,7 @@ export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-cover bg-center opacity-100 [mask-image:linear-gradient(to_right,transparent,black_60%)] sm:block"
           style={{ backgroundImage: "url(/images/fees/hero-bg.jpg)" }}
         />
-        <div className={cn(container, "relative pb-10 pt-12 sm:pt-16 lg:pb-12 lg:pt-16")}>
+        <div className={cn(container, "relative pb-10 pt-12 sm:pt-16 lg:pb-14 lg:pt-16")}>
           <p className={eyebrowClass}>
             <span aria-hidden="true" className="block h-[2px] w-3 bg-fp-green" />
             {copy.hero.eyebrow}
@@ -446,6 +473,12 @@ export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
               );
             })}
           </div>
+
+          <UniversityPicker
+            options={universityOptions}
+            selected={activeUniversity?.slug ?? ""}
+            onSelect={selectUniversity}
+          />
         </div>
       </section>
 
@@ -453,25 +486,36 @@ export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
         <div key={activeId} className="animate-in fade-in duration-300">
           <ProgramPanel program={active} />
 
-          <section aria-labelledby={copy.plans.id} className="bg-fp-mintSoft">
-            <div className={cn(container, "py-14 lg:py-20")}>
-              <h2
-                id={copy.plans.id}
-                className={cn(feesSerif, "text-[30px] leading-[1.15] text-fp-navy md:text-[38px]")}
-              >
-                {copy.plans.title}
-              </h2>
-              <p className="mt-3 max-w-[760px] text-base leading-[1.65] text-[#4A5280]">{copy.plans.subtitle}</p>
+          {activeUniversity ? (
+            <UniversityFeeSection
+              programName={active.name}
+              options={universityOptions}
+              selected={activeUniversity.slug}
+              onSelect={selectUniversity}
+              ctaHref={copy.help.cta.href}
+              onCta={() => preselectProgram(active.id)}
+            />
+          ) : (
+            <section aria-labelledby={copy.plans.id} className="bg-fp-mintSoft">
+              <div className={cn(container, "section-y")}>
+                <h2
+                  id={copy.plans.id}
+                  className={cn(feesSerif, "text-[30px] leading-[1.15] text-fp-navy md:text-[38px]")}
+                >
+                  {copy.plans.title}
+                </h2>
+                <p className="mt-3 max-w-[760px] text-base leading-[1.65] text-[#4A5280]">{copy.plans.subtitle}</p>
 
-              {active.plans.length > 0 && (
-                <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                  {active.plans.map((plan, index) => (
-                    <PlanCard key={`${plan.title}-${index}`} plan={plan} index={index} programId={active.id} />
-                  ))}
-                </ul>
-              )}
-            </div>
-          </section>
+                {active.plans.length > 0 && (
+                  <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    {active.plans.map((plan, index) => (
+                      <PlanCard key={`${plan.title}-${index}`} plan={plan} index={index} programId={active.id} />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </section>
+          )}
 
           <WhyChoose program={active} />
         </div>

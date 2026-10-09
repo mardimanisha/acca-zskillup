@@ -146,9 +146,9 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
               <Image
                 src={u.logo}
                 alt={universityPageCopy.a11y.logoAlt(u)}
-                width={240}
-                height={96}
-                className="mb-5 h-12 w-auto object-contain object-left"
+                width={320}
+                height={128}
+                className="mb-6 h-16 w-auto object-contain object-left md:h-20"
               />
             )}
             <p className="text-[13px] font-bold uppercase leading-none tracking-[0.12em] text-uni-hero-eyebrow">

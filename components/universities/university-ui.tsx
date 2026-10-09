@@ -19,7 +19,7 @@ export const trustLogos = {
 export const uniCard =
   "rounded-2xl bg-white shadow-[0_18px_50px_-20px_rgba(11,31,77,0.22)] ring-1 ring-uni-line/60";
 
-export const sectionPadding = "py-16 md:py-20 lg:py-24";
+export const sectionPadding = "section-y";
 
 export const sectionTone = {
   white: "bg-white",

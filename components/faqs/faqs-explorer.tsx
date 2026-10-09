@@ -101,7 +101,7 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
 
   return (
     <section aria-labelledby={`${uid}-heading`} className="bg-white">
-      <div className={cn(container, "pb-12 pt-8 sm:pt-10 lg:pb-16")}>
+      <div className={cn(container, "pb-10 pt-8 sm:pt-10 md:pb-14")}>
         <div className="mx-auto max-w-[1120px]">
           <div
             role="tablist"

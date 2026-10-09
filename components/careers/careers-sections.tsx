@@ -25,6 +25,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { HiringNetworkRow } from "@/components/careers/hiring-network-rows";
 import { container } from "@/components/programs/program-ui";
 import { serif } from "@/components/universities/university-ui";
 import { careersCopy as copy } from "@/content/careers";
@@ -318,7 +319,7 @@ export function CareersIndustries() {
 
   return (
     <section aria-labelledby="cr-industries-title" className="bg-white">
-      <div className={cn(container, "py-12 lg:py-16 xl:py-20")}>
+      <div className={cn(container, "section-y")}>
         <div className="lg:flex lg:items-start lg:justify-between lg:gap-10">
           <div>
             <Eyebrow>{industries.eyebrow}</Eyebrow>
@@ -397,62 +398,43 @@ export function CareersRoles() {
 
   return (
     <section id={roles.id} aria-labelledby="cr-roles-title" className="scroll-mt-[76px] bg-white">
-      <div className={cn(container, "py-12 lg:py-16 xl:py-20")}>
-        <div className="lg:flex lg:items-end lg:justify-between lg:gap-10">
-          <div>
-            <Eyebrow>{roles.eyebrow}</Eyebrow>
-            <TwoToneTitle
-              as="h2"
-              id="cr-roles-title"
-              line1={roles.titleLine1}
-              line2={roles.titleLine2}
-              stacked={false}
-              className={cn("mt-4", h2Size)}
-            />
-          </div>
-          <p className="mt-4 max-w-[400px] text-sm leading-[1.6] text-[#6B7299] lg:mt-0 lg:pb-2">{roles.intro}</p>
+      <div className={cn(container, "section-y")}>
+        <div>
+          <Eyebrow>{roles.eyebrow}</Eyebrow>
+          <TwoToneTitle
+            as="h2"
+            id="cr-roles-title"
+            line1={roles.titleLine1}
+            line2={roles.titleLine2}
+            stacked={false}
+            className={cn("mt-4", h2Size)}
+          />
+          <p className="mt-4 max-w-[560px] text-sm leading-[1.6] text-[#6B7299] lg:text-base">{roles.intro}</p>
         </div>
 
-        {/* Row-aligned cards, filled column by column: items 1-3 left, items 4-6 right. */}
-        <ul className="mt-8 grid gap-4 sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-3 lg:mt-9 lg:gap-5">
+        <ul className="mx-auto mt-8 grid max-w-[1020px] gap-4 sm:grid-cols-2 lg:mt-9 lg:grid-cols-3">
           {roles.columns.flat().map((role) => (
             <li
               key={role.title}
-              className={cn(
-                "flex items-center gap-4 rounded-xl p-5 ring-1 ring-white/70 sm:gap-5 lg:min-h-[148px] lg:px-7",
-                cardToneClass[role.card],
-              )}
+              className={cn("flex flex-col items-center gap-3 rounded-xl px-5 py-5 text-center ring-1 ring-white/70", cardToneClass[role.card])}
             >
               <span
                 aria-hidden="true"
-                className={cn(
-                  "flex size-[64px] shrink-0 items-center justify-center rounded-full sm:size-[72px]",
-                  roleCircle[role.tone],
-                )}
+                className={cn("flex size-12 shrink-0 items-center justify-center rounded-full", roleCircle[role.tone])}
               >
-                <IndustryIcon name={role.icon} className={cn("size-7 sm:size-8", industryTone[role.tone].icon)} />
+                <IndustryIcon name={role.icon} className={cn("size-6", industryTone[role.tone].icon)} />
               </span>
-              <div className="min-w-0 flex-1">
-                <h3 className="text-base font-bold leading-snug text-cr-navy sm:text-[17px] xl:text-lg">{role.title}</h3>
-                <ul className="mt-2.5 space-y-1 text-sm text-[#6B7299]">
+              <div className="min-w-0">
+                <h3 className="text-base font-bold leading-snug text-cr-navy">{role.title}</h3>
+                <ul className="mt-2 space-y-1 text-sm text-[#6B7299]">
                   {role.roles.map((name) => (
-                    <li key={name} className="flex items-start gap-2.5">
+                    <li key={name} className="flex items-start justify-center gap-2.5">
                       <span aria-hidden="true" className="mt-[9px] size-1 shrink-0 rounded-full bg-[#6B7299]" />
                       {name}
                     </li>
                   ))}
                 </ul>
               </div>
-              {/* Decorative arrow, not a link. */}
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "flex size-9 shrink-0 items-center justify-center rounded-full border text-cr-navy",
-                  industryTone[role.tone].arrow,
-                )}
-              >
-                <ArrowRight className="size-4" strokeWidth={2.25} />
-              </span>
             </li>
           ))}
         </ul>
@@ -467,7 +449,7 @@ export function CareersJourney() {
 
   return (
     <section aria-labelledby="cr-journey-title" className="bg-white">
-      <div className={cn(container, "py-12 lg:py-16 xl:py-20")}>
+      <div className={cn(container, "section-y")}>
         <Eyebrow>{journey.eyebrow}</Eyebrow>
         <TwoToneTitle
           as="h2"
@@ -528,7 +510,7 @@ export function CareersReadiness() {
     >
       {/* Desktop: text and photo side by side; the photo is as tall as the text block and bleeds off the right edge. */}
       <div className="w-full lg:my-auto lg:flex lg:items-stretch">
-        <div className={cn(container, "py-12 lg:mx-0 lg:w-[62%] lg:py-10")}>
+        <div className={cn(container, "section-y lg:mx-0 lg:w-[62%]")}>
           <Eyebrow>{readiness.eyebrow}</Eyebrow>
           <TwoToneTitle
             as="h2"
@@ -583,32 +565,17 @@ export function CareersHiringNetwork() {
 
   return (
     <section aria-labelledby="cr-network-title" className="bg-white">
-      <div className={cn(container, "py-12 lg:py-16")}>
+      <div className={cn(container, "section-y")}>
         <Eyebrow>{network.eyebrow}</Eyebrow>
         <h2 id="cr-network-title" className={cn(serif, "mt-4 font-bold tracking-[-0.02em] text-cr-navy", h2Size)}>
           {network.title}
         </h2>
 
-        <ul className="mt-8 flex items-stretch overflow-x-auto rounded-lg bg-white py-4 shadow-[0_10px_30px_-16px_rgba(11,31,77,0.14)] ring-1 ring-cr-navy/[0.05] [scrollbar-width:thin]">
-          {hiringNetwork.map((company, i) => (
-            <li
-              key={company.name}
-              className={cn(
-                "flex h-14 min-w-[150px] flex-1 shrink-0 items-center justify-center px-6",
-                i > 0 && "border-l border-cr-line",
-              )}
-            >
-              <Image
-                src={company.logo}
-                alt={`${company.name} logo`}
-                width={140}
-                height={48}
-                unoptimized
-                className="h-8 w-auto max-w-full object-contain"
-              />
-            </li>
+        <div className="mt-10 space-y-16 lg:space-y-20">
+          {hiringNetwork.map((group, index) => (
+            <HiringNetworkRow key={group.category} group={group} index={index} />
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
@@ -623,7 +590,7 @@ export function CareersCta() {
       <CtaArt className="absolute inset-y-0 right-0 hidden w-[45%] lg:block" sizes="41vw" />
 
       <div className={cn(container, "relative lg:flex lg:min-h-[min(30vw,480px)] lg:items-center")}>
-        <div className="pb-10 pt-12 sm:pt-16 lg:w-[58%] lg:py-16">
+        <div className="pb-10 pt-12 sm:pt-16 lg:w-[58%] lg:pb-14 lg:pt-16">
           <TwoToneTitle
             as="h2"
             id="cr-cta-title"

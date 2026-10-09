@@ -60,7 +60,7 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
       aria-labelledby="program-curriculum-title"
       className="relative overflow-hidden bg-[#FBFDFD] bg-[radial-gradient(50%_60%_at_100%_0%,rgba(230,244,236,0.8)_0%,rgba(230,244,236,0)_100%)]"
     >
-      <div className={cn(container, "relative py-16 lg:py-20")}>
+      <div className={cn(container, "relative section-y")}>
         <Eyebrow>{eyebrow}</Eyebrow>
         <SectionTitle id="program-curriculum-title" className="mt-1.5">
           {title}
@@ -151,7 +151,7 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
               </div>
               {sem.meta && <p className="text-sm text-uni-cur-meta">{sem.meta.replace("self-study", "self‑study")}</p>}
             </div>
-            <SubjectList subjects={[...sem.degree, ...sem.zskillup]} />
+            <SubjectList subjects={sem.subjects} />
           </div>
         </div>
       </div>

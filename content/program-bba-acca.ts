@@ -19,14 +19,27 @@ import type {
   WhyContent,
 } from "@/content/program-types";
 
-// Hero photo shared by all program pages. `composite` is cut from the design screenshot
-// (copy, note, ACCA card and stats strip painted out; 2x upscale). TODO: replace with the
-// original photo, or supply a cut-out student + campus background via `student` / `background`.
-export const programHeroImage = {
-  composite: "/images/hero/bba-hero-campus-v3.jpg",
+// Each program page has its own hero photo (free-licence Unsplash stock, cropped to the hero's
+// 2.2:1 frame with the subject at ~65% of the width; the left side fades to white in the layout).
+export const bbaHeroImage = {
+  composite: "/images/hero/bba-hero.jpg",
   background: null,
   student: null,
-  alt: "Student holding a laptop",
+  alt: "Business student working on a laptop",
+} satisfies HeroContent["image"];
+
+export const bcomHeroImage = {
+  composite: "/images/hero/bcom-hero.jpg",
+  background: null,
+  student: null,
+  alt: "Student holding notebooks in a classroom",
+} satisfies HeroContent["image"];
+
+export const accaHeroImage = {
+  composite: "/images/hero/acca-hero.jpg",
+  background: null,
+  student: null,
+  alt: "Finance professional at her desk with a laptop",
 } satisfies HeroContent["image"];
 
 // TODO: replace with the supplied section image asset.
@@ -37,7 +50,7 @@ const hero = {
   title: { start: "BBA", highlight: " + ACCA" },
   subtitle: "Business Education Meets Professional Finance",
   body: "A three-year online BBA pathway combining business and management education with ACCA-aligned professional finance learning, AI capabilities and structured employability preparation.",
-  image: programHeroImage,
+  image: bbaHeroImage,
   features: [
     { icon: "briefcase", label: "Business & Management" },
     { icon: "landmark", label: "Professional Finance" },
@@ -86,8 +99,7 @@ const universities = {
 } satisfies UniversitiesContent;
 
 // Semester split follows "BBA Curriculum Proposal" (Amity University Online x ZSkillUp):
-// `degree` = taught by the university, `zskillup` = taught by ZSkillUp. `code` = ACCA paper.
-// Subject names are from the approved content brief. Hours lines are from the proposal.
+// Subjects are listed in proposal order. `code` = ACCA paper. Hours lines are from the proposal.
 const curriculum = {
   ...curriculumCommon,
   eyebrow: "SEMESTER-WISE CURRICULUM",
@@ -100,13 +112,13 @@ const curriculum = {
       label: "Semester 01",
       title: "S1: Business & Accounting Foundations",
       meta: "5 subjects · 275h classroom · 550h self-study",
-      degree: [
+      subjects: [
         { name: "Financial Accounting", code: "K1" },
         { name: "Management Accounting & Business Analytics", code: "K2" },
         { name: "Business Law & Business Environment", code: "K3" },
+        { name: "AI, Financial Modelling & Business Decision Making", badge: "Employability" },
         { name: "Business Economics" },
       ],
-      zskillup: [{ name: "AI, Financial Modelling & Business Decision Making", badge: "Employability" }],
       outcomes: ["K1 Financial Accounting", "K2 Management Accounting", "K3 Business Law"],
     },
     {
@@ -114,12 +126,12 @@ const curriculum = {
       label: "Semester 02",
       title: "S2: Business & Accounting Foundations",
       meta: "5 subjects · 275h classroom · 550h self-study",
-      degree: [{ name: "Principles of Marketing" }],
-      zskillup: [
+      subjects: [
         { name: "Financial Reporting", code: "E2" },
         { name: "Taxation", code: "E1" },
         { name: "Performance Management & Data Analysis", code: "E5" },
         { name: "Business Communication" },
+        { name: "Principles of Marketing" },
       ],
       outcomes: ["E1 Taxation", "E2 Financial Reporting", "E5 Performance Management & Data Analysis"],
     },
@@ -128,10 +140,11 @@ const curriculum = {
       label: "Semester 03",
       title: "S3: Professional Expertise & Management Breadth",
       meta: "4 subjects · 220h classroom · 440h self-study",
-      degree: [{ name: "Management, People & Organisations" }, { name: "Operations Management" }],
-      zskillup: [
+      subjects: [
         { name: "Audit, Risk & Control", code: "E3" },
         { name: "Finance & Investment", code: "E4" },
+        { name: "Management, People & Organisations" },
+        { name: "Operations Management" },
       ],
       outcomes: ["E3 Audit, Risk & Control", "E4 Finance & Investment"],
     },
@@ -140,35 +153,36 @@ const curriculum = {
       label: "Semester 04",
       title: "S4: Professional Expertise & Management Breadth",
       meta: "4 subjects · 220h classroom · 440h self-study",
-      degree: [{ name: "International Business & Marketing" }, { name: "Business Research Methods" }],
-      zskillup: [
+      subjects: [
         { name: "Strategy, Leadership & Governance" },
+        { name: "International Business & Marketing" },
         { name: "Business & Sustainability Reporting", code: "S1" },
+        { name: "Business Research Methods" },
       ],
       outcomes: ["S1 Business & Sustainability Reporting"],
     },
     {
       tab: "S5",
       label: "Semester 05",
-      title: "S5: Strategic Professional Learning & Career Transition",
+      title: "S5: Strategic Professional Level & Career Transition",
       meta: "4 subjects · 280h classroom · 560h self-study",
-      degree: [{ name: "Entrepreneurship & Innovation" }],
-      zskillup: [
+      subjects: [
         { name: "Professional Specialisation" },
         { name: "Strategic Business Leader", code: "S2" },
         { name: "Career Readiness Lab I: CV, LinkedIn & Interview Skills" },
+        { name: "Entrepreneurship & Innovation" },
       ],
       outcomes: ["S2 Strategic Business Leader"],
     },
     {
       tab: "S6",
       label: "Semester 06",
-      title: "S6: Strategic Professional Learning & Career Transition",
+      title: "S6: Strategic Professional Level & Career Transition",
       meta: "4 subjects · 280h classroom · 560h self-study",
-      degree: [{ name: "Corporate Strategy & Business Transformation" }],
-      zskillup: [
+      subjects: [
         { name: "Advanced Professional Specialisation" },
-        { name: "Strategic Professional Option" },
+        { name: "Corporate Strategy & Business Transformation" },
+        { name: "Strategic Professional Option (one)", badge: "Option" },
         { name: "Career Readiness Lab II: Mock Interviews, Group Discussions & Placement Preparation" },
       ],
       outcomes: ["Strategic Professional Option"],

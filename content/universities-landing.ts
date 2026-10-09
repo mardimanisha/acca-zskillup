@@ -14,10 +14,28 @@ export const universitiesLandingCopy = {
     // TODO: replace with the supplied HERO_IMAGE (placeholder cropped from the design mockup).
     image: "/images/universities-landing/hero-student.jpg",
   },
+  stats: {
+    universities: (count: number) => ({ value: String(count), label: "Partner universities" }),
+    items: [
+      { value: "2", label: "Degree programs" },
+      { value: "100%", label: "Online learning" },
+      { value: "3 Years", label: "Degree + ACCA" },
+    ],
+  },
+  filter: {
+    label: "Filter by program",
+    all: "All Programs",
+    programSuffix: "+ Global Finance & AI Professional Program",
+    result: (shown: number) => `Showing ${shown} ${shown === 1 ? "university" : "universities"}`,
+    reset: "Clear filter",
+    empty: "No universities are available for this program yet.",
+  },
   cards: {
     id: "universities",
     pathway: (u: UniversityListing) => `${u.degree} + ACCA Pathway`,
     meta: ["100% Online", "3 Years", "6 Semesters"],
+    emiLabel: "Monthly EMI",
+    totalLabel: "Total Program Fee",
     button: "View University",
     href: (u: UniversityListing) => `/universities/${u.slug}`,
   },

@@ -27,6 +27,14 @@
   }
 }
 
+/* Single source of truth for vertical spacing between page sections. */
+@utility section-y {
+  padding-block: 2.5rem;
+  @media (min-width: 48rem) {
+    padding-block: 3.5rem;
+  }
+}
+
 :root {
   --radius: 0.5rem;
   --background: #ffffff;
@@ -81,6 +89,12 @@
   }
   html {
     scroll-behavior: smooth;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href],
+  summary {
+    cursor: pointer;
   }
   body {
     @apply bg-background font-sans text-foreground antialiased;

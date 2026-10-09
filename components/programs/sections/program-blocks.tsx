@@ -1,4 +1,20 @@
-import { ArrowLeftRight, ArrowRight, Briefcase, ChartColumnIncreasing, Check, ChevronsLeft, ChevronsRight, GraduationCap } from "lucide-react";
+import {
+  ArrowLeftRight,
+  ArrowRight,
+  Briefcase,
+  Calculator,
+  ChartColumnIncreasing,
+  Check,
+  ChevronsLeft,
+  ChevronsRight,
+  ClipboardCheck,
+  FileText,
+  GraduationCap,
+  Landmark,
+  Receipt,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 
 import {
   AdvisorButton,
@@ -59,7 +75,7 @@ export function ProgramLevels({ id, content, tone }: SectionProps<LevelsContent>
 
   return (
     <section aria-labelledby={id} className={toneClass[tone]}>
-      <div className={cn(container, "py-16 lg:py-24")}>
+      <div className={cn(container, "section-y")}>
         <SectionHead id={id} eyebrow={eyebrow} title={title} body={body} />
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -96,7 +112,7 @@ export function ProgramAccaLearning({ id, content, tone }: SectionProps<LevelsCo
 
   return (
     <section aria-labelledby={id} className={cn("relative overflow-hidden", toneClass[tone])}>
-      <div className={cn(container, "py-16 lg:py-20")}>
+      <div className={cn(container, "section-y")}>
         <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-10">
           <div>
             <p className="inline-flex rounded-full bg-[#D9EFE3] px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.04em] text-zs-green">
@@ -151,7 +167,7 @@ export function ProgramFeatureGrid({ id, content, tone }: SectionProps<FeatureGr
 
   return (
     <section aria-labelledby={id} className={toneClass[tone]}>
-      <div className={cn(container, "py-16 lg:py-24")}>
+      <div className={cn(container, "section-y")}>
         <SectionHead id={id} eyebrow={eyebrow} title={title} />
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
@@ -172,7 +188,7 @@ export function ProgramComparison({ id, content, tone }: SectionProps<Comparison
 
   return (
     <section aria-labelledby={id} className={cn("overflow-hidden", toneClass[tone])}>
-      <div className={cn(container, "py-16 lg:py-20")}>
+      <div className={cn(container, "section-y")}>
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-12">
           <div>
             <Eyebrow className="text-xs">{eyebrow}</Eyebrow>
@@ -231,7 +247,7 @@ export function ProgramWhoFor({ id, content, tone }: SectionProps<WhoForContent>
   if (statement && !title) {
     return (
       <section aria-labelledby={id} className={toneClass[tone]}>
-        <div className={cn(container, "py-10 lg:py-14")}>
+        <div className={cn(container, "section-y")}>
           <div className="relative overflow-hidden rounded-2xl bg-zs-greenDark px-6 py-10 sm:px-10 md:px-14 md:py-12">
             <div
               aria-hidden="true"
@@ -255,7 +271,7 @@ export function ProgramWhoFor({ id, content, tone }: SectionProps<WhoForContent>
 
   return (
     <section aria-labelledby={id} className={toneClass[tone]}>
-      <div className={cn(container, "py-16 lg:py-24")}>
+      <div className={cn(container, "section-y")}>
         <div className={cn(cardClass, "flex flex-col gap-6 p-7 sm:p-10 md:flex-row md:items-start md:gap-8")}>
           <IconCircle icon={icon} />
           <div className="max-w-4xl">
@@ -292,6 +308,20 @@ export function ProgramWhoFor({ id, content, tone }: SectionProps<WhoForContent>
   );
 }
 
+const roleIcons: [RegExp, LucideIcon][] = [
+  [/audit/i, ClipboardCheck],
+  [/tax/i, Receipt],
+  [/risk|control|compliance/i, ShieldCheck],
+  [/fp&a|analyst|analytics/i, ChartColumnIncreasing],
+  [/report/i, FileText],
+  [/account/i, Calculator],
+  [/bank|treasury|invest/i, Landmark],
+];
+
+function roleIcon(role: string): LucideIcon {
+  return roleIcons.find(([re]) => re.test(role))?.[1] ?? Briefcase;
+}
+
 export function ProgramCareers({ id, content, tone }: SectionProps<CareersContent>) {
   const { eyebrow, title, intro, roles, cta } = content;
 
@@ -304,15 +334,36 @@ export function ProgramCareers({ id, content, tone }: SectionProps<CareersConten
         </Eyebrow>
         {title && <SectionTitle id={id}>{title}</SectionTitle>}
         {intro && <p className="mt-3 max-w-2xl text-base leading-relaxed text-zs-body">{intro}</p>}
-        <ul className="mt-6 flex max-w-4xl flex-wrap justify-center gap-3">
-          {roles.map((role) => (
-            <li
-              key={role}
-              className="rounded-md border border-zs-green/60 bg-white px-5 py-2 text-[13px] font-semibold text-zs-navy shadow-[0_2px_8px_-4px_rgba(15,107,62,0.35)]"
-            >
-              {role}
-            </li>
-          ))}
+        <ul className="mt-8 flex w-full max-w-6xl flex-wrap justify-center gap-3 text-left">
+          {roles.map((role) => {
+            const Icon = roleIcon(role);
+            const inner = (
+              <>
+                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-zs-mint text-zs-green transition-colors group-hover:bg-zs-green group-hover:text-white">
+                  <Icon aria-hidden="true" className="size-5" strokeWidth={1.75} />
+                </span>
+                <span className="min-w-0 flex-1 text-[15px] font-semibold leading-snug text-zs-navy">{role}</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 shrink-0 text-zs-green opacity-60 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
+                />
+              </>
+            );
+            const cardCls =
+              "group flex h-full items-center gap-3 rounded-xl border border-zs-green/30 bg-white px-4 py-3.5 shadow-[0_2px_8px_-4px_rgba(15,107,62,0.25)] transition-all hover:-translate-y-0.5 hover:border-zs-green hover:shadow-[0_10px_24px_-10px_rgba(15,107,62,0.45)]";
+
+            return (
+              <li key={role} className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)] xl:w-[calc(20%-0.6rem)]">
+                {cta ? (
+                  <a href={cta.href} className={cn(cardCls, "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zs-green")}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div className={cardCls}>{inner}</div>
+                )}
+              </li>
+            );
+          })}
         </ul>
         {cta && (
           <LinkButton href={cta.href} className="mt-10">
@@ -371,7 +422,7 @@ export function ProgramFinalCta({
         className="absolute right-[12%] top-1/2 hidden size-9 -translate-y-1/2 text-brand-tealLight/70 xl:block"
       />
 
-      <div className={cn(container, "relative py-16 lg:py-20")}>
+      <div className={cn(container, "relative section-y")}>
         <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 pb-12 pt-14 text-center sm:px-10">
           {/* Frame, with the top and bottom edges cut away behind the icon and the dots. */}
           <span

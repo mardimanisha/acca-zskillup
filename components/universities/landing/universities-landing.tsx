@@ -8,6 +8,7 @@ import { serif } from "@/components/universities/university-ui";
 import { exemptionsLine } from "@/content/home-hero";
 import { universitiesLandingCopy as copy } from "@/content/universities-landing";
 import type { UniversityListing } from "@/data/universities";
+import { universityProgramFees } from "@/data/university-fees";
 import { cn } from "@/lib/utils";
 
 // Sections of /universities, matching the universities landing design:
@@ -139,8 +140,9 @@ function PathwayArt({ className, sizes }: { className: string; sizes: string }) 
   );
 }
 
-export function UniversitiesHero() {
-  const { hero } = copy;
+export function UniversitiesHero({ universityCount }: { universityCount: number }) {
+  const { hero, stats } = copy;
+  const statItems = universityCount > 0 ? [stats.universities(universityCount), ...stats.items] : stats.items;
 
   return (
     <section aria-labelledby="ul-hero-title" className="relative overflow-hidden bg-white">
@@ -149,7 +151,7 @@ export function UniversitiesHero() {
       {/* Desktop art: right 55%, bleeding off the top-right edge. */}
       <HeroArt className="absolute inset-y-0 right-0 hidden w-[55%] lg:block" sizes="42vw" />
 
-      <div className={cn(container, "relative lg:flex lg:min-h-[min(45vw,720px)] lg:items-center")}>
+      <div className={cn(container, "relative lg:flex lg:min-h-[min(38vw,600px)] lg:items-center")}>
         <div className="pb-10 pt-12 sm:pt-16 lg:w-[57%] lg:pb-14 lg:pt-20">
           <AccentBar />
           <p className="mt-3.5 text-[13px] font-semibold uppercase leading-none tracking-[0.18em] text-ul-green">
@@ -186,6 +188,15 @@ export function UniversitiesHero() {
               {hero.advisor.label}
             </a>
           </div>
+
+          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-ul-line pt-6 sm:flex sm:flex-wrap sm:gap-x-0 sm:gap-y-3">
+            {statItems.map((item, i) => (
+              <div key={item.label} className={cn("sm:pr-6", i > 0 && "sm:border-l sm:border-ul-line sm:pl-6")}>
+                <dd className={cn(serif, "text-2xl font-bold leading-none text-ul-navy xl:text-[28px]")}>{item.value}</dd>
+                <dt className="mt-1.5 text-[13px] leading-tight text-ul-meta">{item.label}</dt>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 
@@ -195,10 +206,15 @@ export function UniversitiesHero() {
   );
 }
 
-function UniversityCard({ university: u }: { university: UniversityListing }) {
+const rupees = (amount: number) => `₹${amount.toLocaleString("en-IN")}`;
+
+export function UniversityCard({ university: u }: { university: UniversityListing }) {
+  const program = u.degree === "BBA" ? "bba" : "bcom";
+  const fee = universityProgramFees.find((f) => f.slug === u.slug && f.program === program);
+
   return (
     <li className="group flex flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_10px_30px_-14px_rgba(10,23,88,0.18)] ring-1 ring-ul-navy/[0.04] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_-16px_rgba(10,23,88,0.28)]">
-      <div className="relative aspect-[29/9]">
+      <div className="relative aspect-[16/5]">
         <Image
           src={u.campusImage}
           alt={copy.a11y.campusAlt(u)}
@@ -207,29 +223,43 @@ function UniversityCard({ university: u }: { university: UniversityListing }) {
           className="object-cover object-center"
         />
       </div>
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-3 xl:px-6 xl:pb-6">
-        <div className="flex h-[72px] items-center justify-center xl:h-20">
+      <div className="flex flex-1 flex-col px-4 pb-4 pt-2 xl:px-5 xl:pb-5">
+        <div className="flex h-14 items-center justify-center xl:h-16">
           <Image
             src={u.logo}
             alt={copy.a11y.logoAlt(u)}
             width={360}
             height={120}
-            className="h-14 w-auto max-w-[75%] object-contain xl:h-16"
+            className="h-11 w-auto max-w-[70%] object-contain xl:h-12"
           />
         </div>
-        <h2 className={cn(serif, "mt-3 text-lg font-bold leading-snug text-ul-navy xl:text-xl")}>{u.officialName}</h2>
-        <p className="mt-1.5 text-[13px] text-ul-meta xl:text-sm">{copy.cards.pathway(u)}</p>
-        <ul className="mt-2 flex flex-wrap items-center text-[13px] text-ul-meta xl:text-sm">
+        <h2 className={cn(serif, "mt-1.5 text-base font-bold leading-snug text-ul-navy xl:text-lg")}>{u.officialName}</h2>
+        <p className="mt-1 text-[13px] text-ul-meta">{copy.cards.pathway(u)}</p>
+        <ul className="mt-1.5 flex flex-wrap items-center text-[13px] text-ul-meta">
           {copy.cards.meta.map((item, i) => (
             <li key={item} className={cn(i > 0 && "ml-2.5 border-l border-ul-line pl-2.5")}>
               {item}
             </li>
           ))}
         </ul>
+        {fee && (
+          <dl className="mt-3 grid grid-cols-2 gap-3 rounded-xl bg-ul-mint/60 px-4 py-3">
+            {fee.emi && (
+              <div>
+                <dt className="text-[13px] text-ul-meta">{copy.cards.emiLabel}</dt>
+                <dd className="mt-0.5 text-lg font-bold text-brand-teal">{rupees(fee.emi.monthly)}</dd>
+              </div>
+            )}
+            <div className={cn(!fee.emi && "col-span-2")}>
+              <dt className="text-[13px] text-ul-meta">{copy.cards.totalLabel}</dt>
+              <dd className="mt-0.5 text-lg font-bold text-ul-navy">{rupees(fee.total)}</dd>
+            </div>
+          </dl>
+        )}
         <div className="mt-auto pt-4">
           <Link
             href={copy.cards.href(u)}
-            className="inline-flex h-9 items-center gap-2 rounded-full border-[1.5px] border-brand-teal px-5 text-[13px] font-semibold text-brand-teal transition-colors hover:bg-brand-teal/5 hover:text-brand-tealDark focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 group-hover:bg-brand-teal/5 xl:h-10 xl:text-sm [&_svg]:size-4"
+            className="inline-flex h-9 items-center gap-2 rounded-full border-[1.5px] border-brand-teal px-4 text-[13px] font-semibold text-brand-teal transition-colors hover:bg-brand-teal/5 hover:text-brand-tealDark focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 group-hover:bg-brand-teal/5 [&_svg]:size-4"
           >
             {copy.cards.button}
             <ArrowRight aria-hidden="true" />
@@ -237,22 +267,6 @@ function UniversityCard({ university: u }: { university: UniversityListing }) {
         </div>
       </div>
     </li>
-  );
-}
-
-export function UniversitiesCards({ universities }: { universities: readonly UniversityListing[] }) {
-  if (!universities.length) return null;
-
-  return (
-    <section id={copy.cards.id} className="scroll-mt-[76px] bg-ul-mint">
-      <div className={cn(container, "py-12 lg:py-14 xl:py-16")}>
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-[18px] xl:gap-6">
-          {universities.map((u) => (
-            <UniversityCard key={`${u.slug}-${u.degree}`} university={u} />
-          ))}
-        </ul>
-      </div>
-    </section>
   );
 }
 
@@ -265,7 +279,7 @@ export function UniversitiesPathway() {
       <PathwayArt className="absolute inset-y-0 right-0 hidden w-[45%] lg:block" sizes="41vw" />
 
       <div className={cn(container, "relative lg:flex lg:min-h-[min(34.5vw,560px)] lg:items-center")}>
-        <div className="pb-10 pt-12 sm:pt-16 lg:w-[56%] lg:pb-24 lg:pt-14">
+        <div className="pb-10 pt-12 sm:pt-16 lg:w-[56%] lg:pb-14 lg:pt-14">
           <AccentBar />
           <TwoToneTitle
             as="h2"

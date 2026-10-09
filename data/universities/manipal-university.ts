@@ -7,7 +7,7 @@ import type { UniversityPage } from "@/data/universities/types";
 // to hide that element.
 export const manipalUniversity: UniversityPage = createDummyUniversityPage({
   slug: "manipal-university",
-  universityName: "Manipal University",
+  universityName: "Manipal Academy of Higher Education (Online Manipal)",
   shortName: "Manipal",
   degree: "B.Com",
   logo: "/images/universities/manipal-logo.png",

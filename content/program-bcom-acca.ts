@@ -1,7 +1,7 @@
 // B.Com + ACCA program page copy, from "ZSkillupACCA Website Content.pdf" (PAGE 2 | B.COM + ACCA).
 // Do not edit wording here without sign-off.
 
-import { programHeroImage, programWhyImage } from "@/content/program-bba-acca";
+import { bcomHeroImage, programWhyImage } from "@/content/program-bba-acca";
 import {
   accaExemptions,
   brochures,
@@ -25,7 +25,7 @@ const hero = {
   title: { start: "B.Com", highlight: " + ACCA" },
   subtitle: "Build Your Commerce Degree and Global Finance Pathway Together",
   body: "A three-year online B.Com pathway integrating commerce education with ACCA-aligned professional learning, AI-enabled finance capabilities and structured employability preparation.",
-  image: programHeroImage,
+  image: bcomHeroImage,
   // Labels reuse the "Why choose this pathway?" titles below.
   features: [
     { icon: "calculator", label: "Commerce Foundation" },
@@ -75,9 +75,8 @@ const universities = {
   body: "Earn your B.Com + ACCA from our reputed university partners while building professional finance, AI and employability skills with ZSkillup.",
 } satisfies UniversitiesContent;
 
-// Subjects and year titles are from the content PDF. The PDF has no teaching split for
-// B.Com, so the columns follow the BBA proposal's pattern: K1–K3 and commerce subjects in
-// the degree column; E/S papers, AI, communication, specialisations and labs with ZSkillup.
+// Semester structure, subject order and hours follow "BCom with Professional & Global Employability Pathway"
+// (University Partner x ZSkillUp curriculum proposal). `code` = ACCA paper.
 const curriculum = {
   ...curriculumCommon,
   eyebrow: "YOUR 3-YEAR JOURNEY",
@@ -88,25 +87,27 @@ const curriculum = {
       tab: "S1",
       label: "Semester 01",
       title: "S1: Commerce & Accounting Foundations",
-      degree: [
+      meta: "5 subjects · 275h classroom · 550h self-study",
+      subjects: [
         { name: "Financial Accounting", code: "K1" },
         { name: "Management Accounting & Business Analytics", code: "K2" },
         { name: "Business Law & Business Environment", code: "K3" },
+        { name: "AI, Financial Modelling & Business Decision Making", badge: "Employability" },
         { name: "Managerial Economics" },
       ],
-      zskillup: [{ name: "AI, Financial Modelling & Business Decision Making", badge: "Employability" }],
       outcomes: ["K1 Financial Accounting", "K2 Management Accounting", "K3 Business Law"],
     },
     {
       tab: "S2",
       label: "Semester 02",
       title: "S2: Commerce & Accounting Foundations",
-      degree: [{ name: "Environmental Studies" }],
-      zskillup: [
+      meta: "5 subjects · 275h classroom · 550h self-study",
+      subjects: [
         { name: "Financial Reporting", code: "E2" },
         { name: "Taxation", code: "E1" },
         { name: "Performance Management & Data Analysis", code: "E5" },
         { name: "Business Communication" },
+        { name: "Environmental Studies" },
       ],
       outcomes: ["E1 Taxation", "E2 Financial Reporting", "E5 Performance Management & Data Analysis"],
     },
@@ -114,10 +115,12 @@ const curriculum = {
       tab: "S3",
       label: "Semester 03",
       title: "S3: Professional Expertise & Commerce Breadth",
-      degree: [{ name: "Corporate Accounting" }, { name: "Cost Accounting" }],
-      zskillup: [
+      meta: "4 subjects · 220h classroom · 440h self-study",
+      subjects: [
         { name: "Audit, Risk & Control", code: "E3" },
         { name: "Finance & Investment", code: "E4" },
+        { name: "Corporate Accounting" },
+        { name: "Cost Accounting" },
       ],
       outcomes: ["E3 Audit, Risk & Control", "E4 Finance & Investment"],
     },
@@ -125,33 +128,37 @@ const curriculum = {
       tab: "S4",
       label: "Semester 04",
       title: "S4: Professional Expertise & Commerce Breadth",
-      degree: [{ name: "Marketing Management" }, { name: "Business Research Methods" }],
-      zskillup: [
+      meta: "4 subjects · 220h classroom · 440h self-study",
+      subjects: [
         { name: "Strategy, Leadership & Governance" },
+        { name: "Marketing Management" },
         { name: "Business & Sustainability Reporting", code: "S1" },
+        { name: "Business Research Methods" },
       ],
       outcomes: ["S1 Business & Sustainability Reporting"],
     },
     {
       tab: "S5",
       label: "Semester 05",
-      title: "S5: Strategic Professional Learning & Career Transition",
-      degree: [{ name: "Corporate Governance & Business Ethics" }],
-      zskillup: [
+      title: "S5: Strategic Professional Level & Career Transition",
+      meta: "4 subjects · 280h classroom · 560h self-study",
+      subjects: [
         { name: "Professional Specialisation" },
         { name: "Strategic Business Leader", code: "S2" },
         { name: "Career Readiness Lab I: CV, LinkedIn & Interview Skills" },
+        { name: "Corporate Governance & Business Ethics" },
       ],
       outcomes: ["S2 Strategic Business Leader"],
     },
     {
       tab: "S6",
       label: "Semester 06",
-      title: "S6: Strategic Professional Learning & Career Transition",
-      degree: [{ name: "International Business & Commerce" }],
-      zskillup: [
+      title: "S6: Strategic Professional Level & Career Transition",
+      meta: "4 subjects · 280h classroom · 560h self-study",
+      subjects: [
         { name: "Advanced Professional Specialisation" },
-        { name: "Strategic Professional Option" },
+        { name: "International Business & Commerce" },
+        { name: "Strategic Professional Option (one)", badge: "Option" },
         { name: "Career Readiness Lab II: Mock Interviews, Group Discussions & Placement Preparation" },
       ],
       outcomes: ["Strategic Professional Option"],

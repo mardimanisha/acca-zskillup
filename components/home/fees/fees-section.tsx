@@ -7,7 +7,7 @@ export function FeesSection() {
   const { eyebrow, heading, subtext, programs, effectiveFeeLabel, includes } = homeFeesContent;
 
   return (
-    <section aria-labelledby="fees-heading" className="relative overflow-hidden bg-white py-12 md:py-14">
+    <section aria-labelledby="fees-heading" className="relative overflow-hidden bg-white section-y">
       {/* Decoration: soft mint organic shape cropped at the top-right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -right-48 -top-64 h-[560px] w-[720px] rotate-[-12deg] rounded-[46%_54%_42%_58%/55%_45%_55%_45%] bg-panel-from" />

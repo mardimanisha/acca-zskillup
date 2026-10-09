@@ -271,7 +271,7 @@ export function UniversityOverview({ university: u }: { university: UniversityPa
       />
       <WorldMap className="absolute -right-[4%] -top-[2%] hidden w-[46%] max-w-[760px] text-white/25 md:block" />
 
-      <div className={cn(container, "relative py-16 md:py-20 lg:py-[72px]")}>
+      <div className={cn(container, "relative section-y")}>
         <h2
           id="uni-overview-title"
           className="text-[13px] font-bold uppercase leading-none tracking-[0.14em] text-uni-band-eyebrow"
@@ -356,7 +356,7 @@ export function UniversityAdmission({ university: u }: { university: UniversityP
       </div>
 
       {/* Same side gutters as `container`; on lg the steps start 44px right of the photo panel. */}
-      <div className="relative mx-auto max-w-[1760px] px-4 py-10 sm:px-6 lg:py-14 lg:pl-[calc(49%+44px)] lg:pr-10 xl:pr-16">
+      <div className="relative mx-auto max-w-[1760px] px-4 section-y sm:px-6 lg:pl-[calc(49%+44px)] lg:pr-10 xl:pr-16">
         {/* Roadmap: a vertical route line through numbered nodes, one card per step. */}
         <ol className="relative">
           <span
@@ -406,7 +406,7 @@ export function UniversityFees({ university: u }: { university: UniversityPage }
 
   return (
     <section aria-labelledby="uni-fees-title" className="bg-uni-fee-bg">
-      <div className={cn(container, "py-16 md:py-20 lg:py-[72px]")}>
+      <div className={cn(container, "section-y")}>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <h2
             id="uni-fees-title"

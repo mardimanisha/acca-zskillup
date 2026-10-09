@@ -33,7 +33,7 @@ export function FacultySection() {
   const { eyebrow, heading, subtext, members } = homeFacultyContent;
 
   return (
-    <section aria-labelledby="faculty-heading" className="relative overflow-hidden bg-white py-10 md:py-14">
+    <section aria-labelledby="faculty-heading" className="relative overflow-hidden bg-white section-y">
       <div className="relative mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10 xl:px-16">
         <SectionHeader
           id="faculty-heading"

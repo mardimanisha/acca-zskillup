@@ -13,6 +13,7 @@ export const heroFormSchema = z.object({
   currentEducation: z.enum(currentEducationOptions),
   programInterest: z.enum(programInterestOptions),
   city: z.string().trim().min(1),
+  requestType: z.enum(["advisor", "brochure"]).optional(),
 });
 
 export type HeroFormValues = z.infer<typeof heroFormSchema>;

@@ -62,7 +62,7 @@ export const careersCopy = {
   },
   roles: {
     id: "career-roles",
-    eyebrow: "EXPLORE CAREER ROLES",
+    eyebrow: "CAREER OPPORTUNITIES",
     titleLine1: "Explore",
     titleLine2: "Career Roles",
     intro: "Discover diverse career roles across finance and build the skills needed to grow in a dynamic, global career landscape.",

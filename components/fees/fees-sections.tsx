@@ -46,7 +46,7 @@ export function FeesIncluded() {
   const { included } = copy;
   return (
     <section aria-labelledby={included.id} className="bg-white">
-      <div className={cn(container, "py-14 lg:py-16")}>
+      <div className={cn(container, "section-y")}>
         <h2
           id={included.id}
           className={cn(feesSerif, "text-[30px] leading-[1.15] text-fp-navy md:text-[40px]")}
@@ -74,7 +74,7 @@ export function FeesCharges() {
   const { charges } = copy;
   return (
     <section aria-labelledby={charges.id} className="bg-fp-mintSoft">
-      <div className={cn(container, "py-14 lg:py-16")}>
+      <div className={cn(container, "section-y")}>
         <h2 id={charges.id} className={cn(feesSerif, "text-[30px] leading-[1.15] text-fp-navy md:text-[40px]")}>
           {charges.title}
         </h2>
@@ -141,7 +141,7 @@ export function FeesHelp() {
         <circle cx="0" cy="160" r="135" />
       </svg>
 
-      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_auto_1fr] lg:gap-14 lg:py-16">
+      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-10 px-4 section-y sm:px-6 lg:grid-cols-[1.2fr_auto_1fr] lg:gap-14">
         <div>
           <p className="flex items-center gap-2 text-xs font-bold uppercase leading-none tracking-[0.04em] text-fp-green">
             <span aria-hidden="true" className="block h-[2px] w-3 bg-fp-green" />

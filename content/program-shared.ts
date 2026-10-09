@@ -14,7 +14,15 @@ export const brochures = {
   accaOnly: "/brochures/acca-only-brochure.pdf",
 } as const;
 
+/** "Download Brochure" form: program choices and the brochure each one downloads. */
+export const brochureOptions = [
+  { program: "B.Com + ACCA", href: brochures.bcom, fileName: "bcom-acca-brochure.pdf" },
+  { program: "BBA + ACCA", href: brochures.bba, fileName: "bba-acca-brochure.pdf" },
+  { program: "ACCA Only (To Be Announced)", href: brochures.accaOnly, fileName: "acca-only-brochure.pdf" },
+] as const;
+
 // DUMMY partner data for layout only: real university names/logos used as placeholders.
+// Location, EMI and total fee are dummy values too.
 // Replace with the confirmed partner list (names, logos, campus photos, programs) before launch.
 // Logos and campus photos are cropped from the design mockup (low resolution).
 const universityFeatures = [
@@ -30,6 +38,9 @@ export const partnerUniversities: readonly University[] = [
     name: "Northeastern University",
     logo: "/images/universities/northeastern-logo.png",
     campus: "/images/universities/northeastern-campus.jpg",
+    location: "Boston, USA",
+    monthlyEmi: "₹16,500",
+    totalFee: "₹5,94,000",
     tags: ["B.Com + ACCA", "3 Years", "Online"],
     features: universityFeatures,
   },
@@ -38,6 +49,9 @@ export const partnerUniversities: readonly University[] = [
     name: "International School of Management",
     logo: "/images/universities/ism-logo.png",
     campus: "/images/universities/ism-campus.jpg",
+    location: "Berlin, Germany",
+    monthlyEmi: "₹15,000",
+    totalFee: "₹5,40,000",
     tags: ["B.Com + ACCA", "3 Years", "Online"],
     features: universityFeatures,
   },
@@ -46,6 +60,9 @@ export const partnerUniversities: readonly University[] = [
     name: "EU Business School",
     logo: "/images/universities/eu-business-school-logo.png",
     campus: "/images/universities/eu-business-school-campus.jpg",
+    location: "Barcelona, Spain",
+    monthlyEmi: "₹14,000",
+    totalFee: "₹5,04,000",
     tags: ["BBA + ACCA", "3 Years", "Online"],
     features: universityFeatures,
   },
@@ -54,6 +71,9 @@ export const partnerUniversities: readonly University[] = [
     name: "University of East London",
     logo: "/images/universities/uel-logo.png",
     campus: "/images/universities/uel-campus.jpg",
+    location: "London, UK",
+    monthlyEmi: "₹13,500",
+    totalFee: "₹4,86,000",
     tags: ["BBA + ACCA", "3 Years", "Online"],
     features: universityFeatures,
   },
@@ -64,6 +84,8 @@ export const universitiesCommon = {
   title: "Our Reputed University Partners",
   viewAll: { label: "View All Universities", href: "/universities" },
   exploreLabel: "Explore University",
+  emiLabel: "Monthly EMI",
+  totalFeeLabel: "Total Program Fee",
   // Screen-reader-only labels for the carousel controls.
   a11y: { prev: "Previous universities", next: "Next universities", goTo: "Go to university" },
   universities: partnerUniversities,
@@ -96,6 +118,7 @@ export const enquiryFormContent = {
     city: "City",
   },
   submit: "Talk to an Advisor",
+  brochure: { programLabel: "Select Program", submit: "Download Brochure" },
   consent:
     "By submitting this form, you agree to be contacted regarding program information, admissions and related updates.",
 } as const;

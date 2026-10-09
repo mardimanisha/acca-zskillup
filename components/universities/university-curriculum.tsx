@@ -65,7 +65,7 @@ export function UniversityCurriculum({ university: u }: { university: University
       aria-labelledby="uni-curriculum-title"
       className="relative overflow-hidden bg-[#FBFDFD] bg-[radial-gradient(50%_60%_at_100%_0%,rgba(230,244,236,0.8)_0%,rgba(230,244,236,0)_100%)]"
     >
-      <div className={cn(container, "relative py-16 md:py-20 lg:py-[72px]")}>
+      <div className={cn(container, "relative section-y")}>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <Eyebrow>{copy.eyebrow}</Eyebrow>

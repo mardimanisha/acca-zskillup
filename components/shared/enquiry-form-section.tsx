@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/select";
 import { currentEducationOptions, programInterestOptions } from "@/content/home-hero";
 import { selectProgramEvent } from "@/content/fees";
-import { enquiryFormContent as copy } from "@/content/program-shared";
+import { brochureOptions, enquiryFormContent as copy } from "@/content/program-shared";
 import { heroFormSchema, programFormSchema, type HeroFormValues } from "@/lib/validations/hero-form";
 import { cn } from "@/lib/utils";
 
@@ -39,10 +39,32 @@ type EnquiryFormProps = {
   /** Program pages: the program is fixed by the page, so the program and city fields are not shown. */
   hideProgramAndCity?: boolean;
   className?: string;
+  /** "brochure": the program select is limited to programs with a brochure, and the button downloads it. */
+  variant?: "advisor" | "brochure";
+  /** Called after a successful submit (the modal closes itself here). */
+  onSuccess?: () => void;
 };
 
+function downloadBrochure(program: string) {
+  const brochure = brochureOptions.find((option) => option.program === program);
+  if (!brochure) return;
+  const link = document.createElement("a");
+  link.href = brochure.href;
+  link.download = brochure.fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
 /** The enquiry fields, submit button and consent line (no heading), reusable inside a modal. */
-export function EnquiryForm({ defaultProgram, hideProgramAndCity = false, className }: EnquiryFormProps) {
+export function EnquiryForm({
+  defaultProgram,
+  hideProgramAndCity = false,
+  className,
+  variant = "advisor",
+  onSuccess,
+}: EnquiryFormProps) {
+  const isBrochure = variant === "brochure";
   const form = useForm<HeroFormValues>({
     resolver: zodResolver(hideProgramAndCity ? programFormSchema : heroFormSchema) as Resolver<HeroFormValues>,
     defaultValues: {
@@ -55,6 +77,7 @@ export function EnquiryForm({ defaultProgram, hideProgramAndCity = false, classN
   });
 
   const { isSubmitting } = form.formState;
+  const selectedProgram = form.watch("programInterest");
 
   // Pages (e.g. /fees) can pre-select "Interested In" before scrolling to the form.
   const { setValue } = form;
@@ -73,25 +96,28 @@ export function EnquiryForm({ defaultProgram, hideProgramAndCity = false, classN
     const response = await fetch("/api/enquiry", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, requestType: variant }),
     });
 
     // TODO: show success / error message once copy is finalised.
     if (response.ok) {
+      if (isBrochure) downloadBrochure(values.programInterest);
       form.reset();
+      onSuccess?.();
     }
   }
 
   const selectField = (
     name: "currentEducation" | "programInterest",
     options: readonly string[],
+    label: string = copy.fields[name],
   ) => (
     <FormField
       control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem className="gap-0">
-          <FormLabel className={labelClass}>{copy.fields[name]}</FormLabel>
+          <FormLabel className={labelClass}>{label}</FormLabel>
           <Select value={field.value ?? ""} onValueChange={field.onChange}>
             <FormControl>
               <SelectTrigger
@@ -164,7 +190,13 @@ export function EnquiryForm({ defaultProgram, hideProgramAndCity = false, classN
                   )}
                 />
                 {selectField("currentEducation", currentEducationOptions)}
-                {!hideProgramAndCity && selectField("programInterest", programInterestOptions)}
+                {isBrochure
+                  ? selectField(
+                      "programInterest",
+                      brochureOptions.map((option) => option.program),
+                      copy.brochure.programLabel,
+                    )
+                  : !hideProgramAndCity && selectField("programInterest", programInterestOptions)}
                 {!hideProgramAndCity && (
                 <FormField
                   control={form.control}
@@ -183,11 +215,11 @@ export function EnquiryForm({ defaultProgram, hideProgramAndCity = false, classN
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || (isBrochure && !selectedProgram)}
                 aria-busy={isSubmitting}
                 className={programButtonClass("primary", "mt-8 w-full disabled:opacity-70 sm:w-auto")}
               >
-                {copy.submit}
+                {isBrochure ? copy.brochure.submit : copy.submit}
                 {isSubmitting && <Loader2 className="animate-spin" aria-hidden="true" />}
               </button>
 
@@ -208,7 +240,7 @@ export function EnquiryFormSection({ defaultProgram, hideProgramAndCity = false 
     >
       {/* Alias for the header's "Talk to an Advisor" link. */}
       <span id="talk-to-advisor" aria-hidden="true" className="block scroll-mt-[76px]" />
-      <div className={cn(container, "py-16 lg:py-24")}>
+      <div className={cn(container, "section-y")}>
         <div className={cn(cardClass, "mx-auto max-w-4xl p-6 sm:p-10")}>
           <h2
             id="enquiry-form-title"

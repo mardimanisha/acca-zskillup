@@ -14,7 +14,7 @@ export function FaqsHelp() {
   return (
     <section aria-labelledby="faqs-help-title" className="bg-white pb-12 lg:pb-16">
       <div className={container}>
-        <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-2xl bg-fp-green px-6 py-8 sm:px-10 sm:py-10">
+        <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-2xl bg-gradient-to-r from-brand-tealLight to-brand-tealDark px-6 py-8 sm:px-10 sm:py-10">
           {/* Decorative curves. */}
           <svg
             aria-hidden="true"
@@ -48,7 +48,7 @@ export function FaqsHelp() {
               <button
                 type="button"
                 onClick={open}
-                className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-md bg-white px-6 text-[15px] font-semibold text-fp-green transition-colors hover:bg-fp-mint focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-fp-green sm:w-auto [&_svg]:size-4"
+                className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-white px-6 text-[15px] font-semibold text-brand-teal transition-colors hover:bg-fp-mint focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-fp-green sm:w-auto [&_svg]:size-4"
               >
                 {enquiryFormContent.submit}
                 <ArrowRight aria-hidden="true" />

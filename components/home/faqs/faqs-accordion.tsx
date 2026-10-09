@@ -27,7 +27,7 @@ export function FaqsAccordion({ categories }: FaqsAccordionProps) {
           <TabsTrigger
             key={category.id}
             value={category.id}
-            className="flex-1 whitespace-normal rounded-full px-4 py-2.5 text-center text-sm font-semibold text-brand-body data-[state=active]:bg-brand-teal data-[state=active]:text-white lg:whitespace-nowrap lg:px-4"
+            className="flex-1 whitespace-normal rounded-full px-4 py-2.5 text-center text-sm font-semibold text-brand-body transition-all duration-300 ease-out data-[state=active]:bg-brand-teal data-[state=active]:text-white lg:whitespace-nowrap lg:px-4"
           >
             {category.label} ({category.faqs.length})
           </TabsTrigger>

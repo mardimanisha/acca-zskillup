@@ -25,7 +25,7 @@ export function WhyZSkillupPanel() {
   const { heading, subheading, paragraph, cards } = homeWhyContent.zskillup;
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-panel-border bg-gradient-to-br from-panel-from to-panel-to p-6 sm:p-8 xl:p-7 compact:p-6 short:p-5">
+    <div className="relative flex h-full flex-col justify-center overflow-hidden rounded-3xl border border-panel-border bg-gradient-to-br from-panel-from to-panel-to p-6 sm:p-8 xl:p-7 compact:p-6 short:p-5">
       {/* Decoration: quarter-circle + dot grid, top-right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -left-36 -top-36 h-80 w-80 rounded-full bg-accent-teal-tint/80" />

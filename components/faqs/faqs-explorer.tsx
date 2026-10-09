@@ -106,7 +106,7 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
           <div
             role="tablist"
             aria-label="FAQ categories"
-            className="-mx-4 flex snap-x snap-mandatory overflow-x-auto border-y border-fp-line bg-white p-1 [scrollbar-width:none] sm:mx-0 sm:rounded-xl sm:border lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+            className="-mx-4 flex snap-x snap-mandatory overflow-x-auto border-y border-fp-line bg-white p-1 [scrollbar-width:none] sm:mx-0 sm:rounded-xl sm:border lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden"
           >
             {faqCategories.map((category, index) => {
               const Icon = icons[category.icon];
@@ -127,8 +127,8 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
                   onClick={() => select(category.id)}
                   onKeyDown={(event) => onKeyDown(event, index)}
                   className={cn(
-                    "relative flex min-w-[210px] shrink-0 snap-start items-center gap-3 rounded-lg px-4 py-3.5 text-left text-[13px] font-semibold leading-snug transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-fp-green/40 lg:min-w-0 lg:flex-1 lg:gap-2.5 lg:px-3",
-                    selected ? "bg-fp-green text-white" : "text-fp-navy hover:bg-fp-mintSoft",
+                    "gradient-fade relative flex min-w-[210px] shrink-0 snap-start items-center gap-3 rounded-lg px-4 py-3.5 text-left text-[13px] font-semibold leading-snug transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-fp-green/40 lg:min-w-[200px] lg:flex-1 lg:gap-2.5 lg:px-3",
+                    selected ? "is-on text-white" : "text-fp-navy hover:bg-fp-mintSoft",
                     showDivider && "before:absolute before:inset-y-3 before:left-0 before:w-px before:bg-fp-line",
                   )}
                 >
@@ -171,7 +171,7 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
                   <li
                     key={item.q}
                     className={cn(
-                      "rounded-[10px] border bg-white transition-colors",
+                      "rounded-[10px] border bg-white transition-colors duration-300",
                       isOpen ? "border-fp-green/40" : "border-fp-line",
                     )}
                   >
@@ -201,15 +201,31 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
                       </button>
                     </h3>
                     <div
+                      className={cn(
+                        "grid transition-[grid-template-rows,opacity] duration-300 ease-out",
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                      )}
+                    >
+                    <div
                       id={answerId}
                       role="region"
                       aria-labelledby={buttonId}
-                      hidden={!isOpen}
-                      className="px-4 pb-5 sm:px-5"
+                      inert={!isOpen}
+                      className="min-h-0 overflow-hidden px-4 sm:px-5"
                     >
+                      <div className="pb-5">
                       <p className="pl-11 text-[15px] leading-[1.7] text-fp-body sm:pl-12">
                         <Answer item={item} onEnquiry={openEnquiry} />
                       </p>
+                      {item.bullets && (
+                        <ul className="mt-2 list-disc space-y-1 pl-16 text-[15px] leading-[1.7] text-fp-body sm:pl-[4.25rem]">
+                          {item.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                      )}
+                      </div>
+                    </div>
                     </div>
                   </li>
                 );

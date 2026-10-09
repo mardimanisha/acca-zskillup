@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/shared/section-header";
 import { homeFeesContent } from "@/content/home-fees";
 
 export function FeesSection() {
-  const { eyebrow, heading, subtext, programs, plans, effectiveFeeLabel, includes } = homeFeesContent;
+  const { eyebrow, heading, subtext, programs, effectiveFeeLabel, includes } = homeFeesContent;
 
   return (
     <section aria-labelledby="fees-heading" className="relative overflow-hidden bg-white py-12 md:py-14">
@@ -15,7 +15,6 @@ export function FeesSection() {
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Desktop: the includes panel sits in the right column beside the header and cards */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-10">
           <SectionHeader
             id="fees-heading"
@@ -32,16 +31,19 @@ export function FeesSection() {
           />
 
           <div className="lg:col-span-12">
-            <FeesExplorer programs={programs} plans={plans} effectiveFeeLabel={effectiveFeeLabel} />
-          </div>
-
-          <div className="lg:col-span-12">
-            <FeesIncludes
-              title={includes.title}
-              intro={includes.intro}
-              items={includes.items}
-              ctaLabel={includes.cta.label}
-              href={includes.cta.href}
+            {/* xl: programs | plans | includes as three columns */}
+            <FeesExplorer
+              programs={programs}
+              effectiveFeeLabel={effectiveFeeLabel}
+              aside={
+                <FeesIncludes
+                  title={includes.title}
+                  intro={includes.intro}
+                  items={includes.items}
+                  ctaLabel={includes.cta.label}
+                  href={includes.cta.href}
+                />
+              }
             />
           </div>
         </div>

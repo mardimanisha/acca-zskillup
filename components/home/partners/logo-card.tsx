@@ -14,7 +14,9 @@ export function LogoCard({ logo }: LogoCardProps) {
         alt={logo.name}
         width={200}
         height={56}
-        loading="lazy"
+        // Eager but low priority: fetched at page load behind the hero, ready before the section is reached.
+        loading="eager"
+        fetchPriority="low"
         sizes="200px"
         className="h-auto max-h-10 w-auto max-w-full object-contain md:max-h-14"
       />

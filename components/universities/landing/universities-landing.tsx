@@ -33,7 +33,7 @@ function TwoToneTitle({
 }
 
 const buttonBase =
-  "inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-md px-7 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ul-green/40 focus-visible:ring-offset-2 [&_svg]:size-[17px] [&_svg]:shrink-0";
+  "inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 [&_svg]:size-[17px] [&_svg]:shrink-0";
 
 // Blob geometry in 0–1 units. The SVG layers use the whole art box; each photo clip uses
 // the photo's own box (offsets below), so the cropped photo and its mask stay aligned.
@@ -171,7 +171,7 @@ export function UniversitiesHero() {
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <a
               href={hero.explore.href}
-              className={cn(buttonBase, "w-full bg-ul-green text-white hover:bg-ul-greenHover sm:w-auto")}
+              className={cn(buttonBase, "w-full bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 sm:w-auto")}
             >
               {hero.explore.label}
               <ArrowRight aria-hidden="true" />
@@ -180,7 +180,7 @@ export function UniversitiesHero() {
               href={hero.advisor.href}
               className={cn(
                 buttonBase,
-                "w-full border border-ul-green bg-white text-ul-navy hover:bg-ul-mint sm:w-auto",
+                "w-full border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark sm:w-auto",
               )}
             >
               {hero.advisor.label}
@@ -229,7 +229,7 @@ function UniversityCard({ university: u }: { university: UniversityListing }) {
         <div className="mt-auto pt-4">
           <Link
             href={copy.cards.href(u)}
-            className="inline-flex h-9 items-center gap-2 rounded-[5px] border border-ul-navy px-5 text-[13px] font-semibold text-ul-navy transition-colors hover:bg-ul-navy hover:text-white focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ul-navy/30 focus-visible:ring-offset-2 group-hover:bg-ul-navy group-hover:text-white xl:h-10 xl:text-sm [&_svg]:size-4"
+            className="inline-flex h-9 items-center gap-2 rounded-full border-[1.5px] border-brand-teal px-5 text-[13px] font-semibold text-brand-teal transition-colors hover:bg-brand-teal/5 hover:text-brand-tealDark focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 group-hover:bg-brand-teal/5 xl:h-10 xl:text-sm [&_svg]:size-4"
           >
             {copy.cards.button}
             <ArrowRight aria-hidden="true" />

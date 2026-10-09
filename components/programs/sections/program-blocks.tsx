@@ -80,7 +80,7 @@ export function ProgramLevels({ id, content, tone }: SectionProps<LevelsContent>
         </div>
 
         {highlight && (
-          <p className="mt-10 rounded-2xl bg-zs-green px-6 py-5 text-center text-lg font-bold text-white sm:text-xl">
+          <p className="mt-10 rounded-2xl bg-gradient-to-r from-brand-tealLight to-brand-tealDark px-6 py-5 text-center text-lg font-bold text-white sm:text-xl">
             {highlight}
           </p>
         )}
@@ -133,7 +133,7 @@ export function ProgramAccaLearning({ id, content, tone }: SectionProps<LevelsCo
         </div>
 
         {highlight && (
-          <p className="mt-8 flex items-center justify-center gap-4 rounded-2xl bg-zs-green px-6 py-5 text-center text-base font-bold text-white sm:text-lg">
+          <p className="mt-8 flex items-center justify-center gap-4 rounded-2xl bg-gradient-to-r from-brand-tealLight to-brand-tealDark px-6 py-5 text-center text-base font-bold text-white sm:text-lg">
             <GraduationCap aria-hidden="true" className="size-6 shrink-0" strokeWidth={1.6} />
             <span aria-hidden="true" className="hidden h-6 w-px bg-white/30 sm:block" />
             {highlight}
@@ -194,7 +194,7 @@ export function ProgramComparison({ id, content, tone }: SectionProps<Comparison
                 className={cn(
                   "flex flex-col items-center rounded-2xl px-6 py-10 text-center sm:px-9 md:py-12",
                   card.current
-                    ? "bg-zs-greenDark text-white shadow-[0_24px_50px_-24px_rgba(2,60,48,0.7)]"
+                    ? "bg-zs-greenDark text-white shadow-[0_24px_50px_-24px_rgba(11,95,87,0.7)]"
                     : "border border-zs-line/70 bg-white text-zs-navy shadow-[0_12px_40px_-20px_rgba(11,31,77,0.18)]",
                 )}
               >
@@ -364,11 +364,11 @@ export function ProgramFinalCta({
       />
       <ChevronsRight
         aria-hidden="true"
-        className="absolute left-[12%] top-1/2 hidden size-9 -translate-y-1/2 text-[#3FA97F]/70 xl:block"
+        className="absolute left-[12%] top-1/2 hidden size-9 -translate-y-1/2 text-brand-tealLight/70 xl:block"
       />
       <ChevronsLeft
         aria-hidden="true"
-        className="absolute right-[12%] top-1/2 hidden size-9 -translate-y-1/2 text-[#3FA97F]/70 xl:block"
+        className="absolute right-[12%] top-1/2 hidden size-9 -translate-y-1/2 text-brand-tealLight/70 xl:block"
       />
 
       <div className={cn(container, "relative py-16 lg:py-20")}>
@@ -398,12 +398,12 @@ export function ProgramFinalCta({
             <AdvisorButton
               variant="white"
               arrow
-              className="h-12 justify-between gap-6 rounded-md bg-gradient-to-b from-white to-[#E4E8E6] px-6 text-sm"
+              className="h-12 justify-between gap-6 bg-white px-6 text-[15px]"
             />
             <BrochureButton
               href={brochureHref}
               variant="outlineWhite"
-              className="h-12 rounded-md border-white/50 px-6 text-sm"
+              className="h-12 border-white/70 px-6 text-[15px]"
             />
           </div>
         </div>

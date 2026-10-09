@@ -99,7 +99,7 @@ export function PartnersTabs({ tabs }: { tabs: PartnersTabData[] }) {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="h-14 shrink-0 gap-3 rounded-full border-[1.5px] border-[#E6EBEA] bg-white px-7 text-base font-medium text-brand-body data-[state=inactive]:hover:border-brand-teal/50 data-[state=active]:border-brand-teal data-[state=active]:bg-[#E3F4F1] data-[state=active]:text-brand-navy"
+                className="h-14 shrink-0 gap-3 rounded-full border-[1.5px] transition-all duration-300 ease-out border-[#E6EBEA] bg-white px-7 text-base font-medium text-brand-body data-[state=inactive]:hover:border-brand-teal/50 data-[state=active]:border-brand-teal data-[state=active]:bg-[#E3F4F1] data-[state=active]:text-brand-navy"
               >
                 <Icon aria-hidden="true" className="h-5 w-5" />
                 {tab.label}
@@ -109,7 +109,9 @@ export function PartnersTabs({ tabs }: { tabs: PartnersTabData[] }) {
         </TabsList>
 
         {tabs.map((tab) => (
-          <TabsContent key={tab.id} value={tab.id}>
+          // forceMount: every tab's logos are in the DOM from the first render, so they are fetched
+          // up front (at low priority) and switching tabs shows them instantly instead of loading then.
+          <TabsContent key={tab.id} value={tab.id} forceMount className="data-[state=inactive]:hidden">
             <LogoGrid logos={tab.logos} marquee={tab.marquee} />
           </TabsContent>
         ))}

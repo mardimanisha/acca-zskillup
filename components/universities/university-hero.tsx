@@ -31,8 +31,8 @@ function SwooshDefs() {
           <stop offset="1" stopColor="#E3F4EA" stopOpacity="0.9" />
         </linearGradient>
         <linearGradient id="uni-hero-swoosh" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#11806F" />
-          <stop offset="0.5" stopColor="#2AA88D" stopOpacity="0.75" />
+          <stop offset="0" stopColor="#0E7C70" />
+          <stop offset="0.5" stopColor="#12877A" stopOpacity="0.75" />
           <stop offset="1" stopColor="#7FD3B8" stopOpacity="0" />
         </linearGradient>
         {/* Tablet/mobile: the same treatment turned into a top curve. */}
@@ -42,8 +42,8 @@ function SwooshDefs() {
           <stop offset="1" stopColor="#E3F4EA" stopOpacity="0.9" />
         </linearGradient>
         <linearGradient id="uni-hero-swoosh-top" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#11806F" />
-          <stop offset="0.5" stopColor="#2AA88D" stopOpacity="0.75" />
+          <stop offset="0" stopColor="#0E7C70" />
+          <stop offset="0.5" stopColor="#12877A" stopOpacity="0.75" />
           <stop offset="1" stopColor="#7FD3B8" stopOpacity="0" />
         </linearGradient>
       </defs>
@@ -177,7 +177,7 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
                 href={universityPageCopy.enquiryHref}
                 className={cn(
                   buttonBase,
-                  "bg-uni-hero-button px-8 text-white shadow-[0_12px_26px_-14px_rgba(0,122,96,0.9)] hover:bg-uni-hero-buttonHover focus-visible:ring-uni-hero-button/40 [&_svg]:size-[18px]",
+                  "bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 focus-visible:ring-brand-teal/40 [&_svg]:size-[18px]",
                 )}
               >
                 {copy.advisor}
@@ -190,12 +190,12 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
                   rel="noopener noreferrer"
                   className={cn(
                     buttonBase,
-                    "rounded-[10px] bg-white pl-6 pr-8 text-uni-navy shadow-[0_10px_30px_-12px_rgba(10,15,75,0.18)] hover:bg-uni-hero-bg focus-visible:ring-uni-hero-button/40",
+                    "border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark pl-3 focus-visible:ring-brand-teal/40",
                   )}
                 >
                   <span
                     aria-hidden="true"
-                    className="flex size-[30px] items-center justify-center rounded-full bg-uni-hero-deep text-white [&_svg]:size-[15px]"
+                    className="flex size-[30px] items-center justify-center rounded-full bg-brand-teal text-white [&_svg]:size-[15px]"
                   >
                     <Download strokeWidth={2.5} />
                   </span>

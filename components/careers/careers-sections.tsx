@@ -142,7 +142,7 @@ function TwoToneTitle({
 const h2Size = "text-[30px] leading-[1.15] sm:text-[36px] lg:text-[40px] xl:text-[44px]";
 
 const buttonBase =
-  "inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-md px-7 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-cr-green/40 focus-visible:ring-offset-2 [&_svg]:size-[17px] [&_svg]:shrink-0";
+  "inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 [&_svg]:size-[17px] [&_svg]:shrink-0";
 
 const whiteCard = "rounded-xl bg-white shadow-[0_12px_34px_-14px_rgba(11,31,77,0.18)] ring-1 ring-cr-navy/[0.04]";
 
@@ -270,14 +270,14 @@ export function CareersHero() {
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <a
               href={hero.explore.href}
-              className={cn(buttonBase, "w-full bg-cr-green text-white hover:bg-cr-greenHover sm:w-auto")}
+              className={cn(buttonBase, "w-full bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 sm:w-auto")}
             >
               {hero.explore.label}
               <ArrowRight aria-hidden="true" />
             </a>
             <a
               href={hero.advisor.href}
-              className={cn(buttonBase, "w-full border border-cr-green bg-white text-cr-navy hover:bg-cr-mint sm:w-auto")}
+              className={cn(buttonBase, "w-full border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark sm:w-auto")}
             >
               {hero.advisor.label}
             </a>
@@ -633,7 +633,7 @@ export function CareersCta() {
           />
           <a
             href={cta.button.href}
-            className={cn(buttonBase, "mt-7 w-full bg-cr-green text-white hover:bg-cr-greenHover sm:w-auto")}
+            className={cn(buttonBase, "mt-7 w-full bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 sm:w-auto")}
           >
             {cta.button.label}
             <ArrowRight aria-hidden="true" />

@@ -92,16 +92,16 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
                         setSemIndex(0);
                       }}
                       className={cn(
-                        "flex h-full w-full items-center gap-4 rounded-xl px-5 py-5 text-left transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40 sm:flex-col sm:items-start sm:gap-3 lg:flex-row lg:items-center lg:gap-4 lg:py-6",
+                        "gradient-fade flex h-full w-full items-center gap-4 rounded-xl px-5 py-5 text-left transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40 sm:flex-col sm:items-start sm:gap-3 lg:flex-row lg:items-center lg:gap-4 lg:py-6",
                         active
-                          ? "bg-uni-cur-active text-white shadow-[0_18px_36px_-20px_rgba(2,111,88,0.9)]"
+                          ? "is-on text-white shadow-[0_18px_36px_-20px_rgba(14,124,112,0.9)]"
                           : "bg-white text-uni-hero-stat shadow-[0_14px_36px_-22px_rgba(10,15,75,0.28)] hover:bg-uni-hero-mint/60",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={cn(
-                          "flex size-14 shrink-0 items-center justify-center rounded-full",
+                          "flex size-14 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
                           active ? "bg-uni-cur-activeIcon text-white" : "bg-uni-hero-mint text-uni-hero-icon",
                         )}
                       >
@@ -138,9 +138,9 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
                       aria-pressed={active}
                       onClick={() => setSemIndex(i)}
                       className={cn(
-                        "h-11 rounded-full px-7 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40",
+                        "gradient-fade h-11 rounded-full px-7 text-[15px] font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40",
                         active
-                          ? "bg-uni-cur-tab text-white"
+                          ? "is-on text-white"
                           : "bg-uni-cur-tabIdle text-uni-cur-text hover:bg-uni-hero-mint",
                       )}
                     >

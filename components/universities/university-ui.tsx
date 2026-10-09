@@ -62,13 +62,13 @@ export function UniIconCircle({ icon: Icon, className }: { icon: LucideIcon; cla
 }
 
 const buttonBase =
-  "inline-flex h-[52px] items-center justify-center gap-2.5 whitespace-nowrap rounded-lg px-7 text-[15px] font-bold transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-2 [&_svg]:shrink-0";
+  "inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-2 [&_svg]:shrink-0";
 
 const buttonVariants = {
   primary:
-    "bg-uni-green text-white shadow-[0_12px_26px_-12px_rgba(14,107,63,0.85)] hover:bg-uni-greenHover focus-visible:ring-uni-green/40 [&_svg]:size-[18px]",
+    "bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 focus-visible:ring-brand-teal/40 [&_svg]:size-[18px]",
   secondary:
-    "bg-white pl-3 text-uni-navy shadow-[0_10px_30px_-10px_rgba(11,31,77,0.2)] hover:bg-uni-cream focus-visible:ring-uni-green/40",
+    "border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark focus-visible:ring-brand-teal/40",
 } as const;
 
 export function uniButtonClass(variant: keyof typeof buttonVariants, className?: string) {

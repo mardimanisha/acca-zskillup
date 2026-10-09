@@ -157,7 +157,7 @@ export function FeesHelp() {
           <p className="mt-4 max-w-[400px] text-base leading-[1.7] text-[#4A5280]">{help.body}</p>
           <a
             href={help.cta.href}
-            className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-md bg-fp-green px-7 text-[15px] font-semibold text-white transition-colors hover:bg-fp-greenHover focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-fp-green/40 focus-visible:ring-offset-2 sm:w-auto [&_svg]:size-4"
+            className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 sm:w-auto [&_svg]:size-4"
           >
             {help.cta.label}
             <ArrowRight aria-hidden="true" />

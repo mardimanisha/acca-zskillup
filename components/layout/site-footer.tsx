@@ -19,7 +19,7 @@ export function SiteFooter({
   const { about, columns, contact, legal, copyright } = footerContent;
 
   return (
-    <footer className="bg-zs-greenDark text-white">
+    <footer className="bg-[#014331] text-white">
       <div className={cn(container, "py-14 lg:py-16")}>
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
           <div>
@@ -75,7 +75,7 @@ export function SiteFooter({
             </ul>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <AdvisorButton className="h-12 px-5 text-[15px]" />
-              <BrochureButton href={brochureHref} variant="outlineWhite" className="h-12 px-5 text-[15px] focus-visible:ring-offset-zs-greenDark" />
+              <BrochureButton href={brochureHref} variant="outlineWhite" className="h-12 px-5 text-[15px] focus-visible:ring-offset-[#014331]" />
             </div>
           </div>
         </div>

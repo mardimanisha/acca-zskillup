@@ -53,9 +53,9 @@ const featureIcons = {
 >;
 
 const buttonBase =
-  "inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-md px-6 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-fp-green/40 focus-visible:ring-offset-2 [&_svg]:size-4 [&_svg]:shrink-0";
-const buttonPrimary = "bg-fp-green text-white hover:bg-fp-greenHover";
-const buttonOutline = "border border-fp-green bg-white text-fp-green hover:bg-fp-mint";
+  "inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 [&_svg]:size-4 [&_svg]:shrink-0";
+const buttonPrimary = "bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110";
+const buttonOutline = "border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark";
 
 const eyebrowClass = "flex items-center gap-2 text-xs font-bold uppercase leading-none tracking-[0.04em] text-fp-green";
 
@@ -140,7 +140,7 @@ function PanelArt({ className, clipId, badge }: { className?: string; clipId: st
       </svg>
       <span
         aria-hidden="true"
-        className="absolute -right-[8%] top-[10%] h-[72%] w-[24%] rounded-full bg-[#1B7A63]"
+        className="absolute -right-[8%] top-[10%] h-[72%] w-[24%] rounded-full bg-brand-teal"
       />
       <div className="absolute inset-0" style={{ clipPath: `url(#${clipId})` }}>
         <Image
@@ -186,9 +186,9 @@ function ProgramPanel({ program }: { program: ProgramFee }) {
             {program.name}
             {program.id === "acca" && <TbaBadge className="ml-3 align-middle text-xs" />}
           </h2>
-          <p className="mt-3 text-base text-[#2A3066]">{program.meta}</p>
+          <p className="mt-3 text-base text-brand-body">{program.meta}</p>
           {program.description && (
-            <p className="mt-5 max-w-[470px] text-base leading-[1.7] text-[#2A3066]">{program.description}</p>
+            <p className="mt-5 max-w-[470px] text-base leading-[1.7] text-brand-body">{program.description}</p>
           )}
           {program.fee && (
             <p className="mt-6 text-[34px] font-bold leading-none tracking-[-0.01em] text-fp-navy sm:text-[40px]">
@@ -210,7 +210,7 @@ function ProgramPanel({ program }: { program: ProgramFee }) {
                     >
                       <Icon strokeWidth={1.6} />
                     </span>
-                    <span className="mt-3 block text-sm leading-snug text-[#2A3066]">{feature.label}</span>
+                    <span className="mt-3 block text-sm leading-snug text-brand-body">{feature.label}</span>
                   </li>
                 );
               })}
@@ -389,7 +389,7 @@ export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
               <span className="text-fp-green">{copy.hero.titleLine2.replace(/^and /, "")}</span>
             </span>
           </h1>
-          <p className="mt-5 max-w-[500px] text-base leading-[1.7] text-[#2A3066]">{copy.hero.body}</p>
+          <p className="mt-5 max-w-[500px] text-base leading-[1.7] text-brand-body">{copy.hero.body}</p>
 
           <div
             role="tablist"
@@ -436,8 +436,8 @@ export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "flex size-8 shrink-0 items-center justify-center rounded-full",
-                      selected ? "bg-fp-green text-white" : "bg-[#F0F3FA] text-fp-navy",
+                      "gradient-fade flex size-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ease-out duration-300",
+                      selected ? "is-on text-white" : "bg-[#F0F3FA] text-fp-navy",
                     )}
                   >
                     <ChevronRight className="size-4" strokeWidth={2.25} />

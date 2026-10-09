@@ -127,7 +127,7 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
                 >
                   <span
                     aria-hidden="true"
-                    className="flex size-[60px] items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
+                    className="flex size-[60px] items-center justify-center rounded-full bg-uni-hero-mint text-brand-teal"
                   >
                     <usp.icon className="size-7" strokeWidth={1.6} />
                   </span>
@@ -216,7 +216,7 @@ export function UniversityPathway({ tone }: { tone: SectionTone }) {
                 <div className="flex items-center" aria-hidden="true">
                   {i > 0 && <span className="hidden h-px w-8 bg-uni-hero-icon/50 lg:block" />}
                   <span className="flex size-[72px] shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-uni-hero-icon/60">
-                    <span className="flex size-[58px] items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon">
+                    <span className="flex size-[58px] items-center justify-center rounded-full bg-uni-hero-mint text-brand-teal">
                       <Icon className="size-6" strokeWidth={1.6} />
                     </span>
                   </span>
@@ -229,7 +229,7 @@ export function UniversityPathway({ tone }: { tone: SectionTone }) {
                     i > 0 && "lg:border-l lg:border-uni-hero-icon/30 lg:pl-8",
                   )}
                 >
-                  <span className="block text-[17px] font-bold leading-none text-uni-hero-icon">
+                  <span className="block text-[17px] font-bold leading-none text-brand-teal">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-5 text-[17px] font-bold leading-snug text-uni-hero-uspTitle">{card.title}</h3>
@@ -296,7 +296,7 @@ export function UniversityOverview({ university: u }: { university: UniversityPa
             >
               <span
                 aria-hidden="true"
-                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon xl:size-[60px]"
+                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-brand-teal xl:size-[60px]"
               >
                 <item.icon className="size-6 xl:size-7" strokeWidth={1.6} />
               </span>
@@ -416,10 +416,10 @@ export function UniversityFees({ university: u }: { university: UniversityPage }
           </h2>
           <a
             href={copy.enquiryHref}
-            className="inline-flex h-[52px] shrink-0 items-center justify-center gap-3 rounded-[10px] border border-uni-cur-border bg-white px-6 text-[15px] font-bold text-uni-hero-stat shadow-[0_10px_28px_-18px_rgba(10,15,75,0.3)] transition-colors hover:bg-uni-hero-mint focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40"
+            className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2"
           >
             {fees.cta}
-            <ArrowRight aria-hidden="true" className="size-[18px] text-uni-hero-icon" />
+            <ArrowRight aria-hidden="true" className="size-[18px] text-brand-teal" />
           </a>
         </div>
 
@@ -455,11 +455,11 @@ export function UniversityJourney({ university: u }: { university: UniversityPag
     <section aria-labelledby="uni-journey-title" className="relative overflow-hidden bg-uni-fee-band">
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-28 -left-32 size-56 rounded-full bg-[radial-gradient(circle_at_70%_30%,#3FC3A8,#06AE95)] opacity-80"
+        className="pointer-events-none absolute -bottom-28 -left-32 size-56 rounded-full bg-[radial-gradient(circle_at_70%_30%,#12877A,#0E7C70)] opacity-80"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 -top-20 size-44 rounded-full bg-[radial-gradient(circle_at_30%_70%,#7DD4BE,#3FB89C)] opacity-70"
+        className="pointer-events-none absolute -right-20 -top-20 size-44 rounded-full bg-[radial-gradient(circle_at_30%_70%,#7FD3B8,#12877A)] opacity-70"
       />
 
       <div
@@ -480,7 +480,7 @@ export function UniversityJourney({ university: u }: { university: UniversityPag
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href={copy.enquiryHref}
-              className="inline-flex h-[56px] w-full items-center justify-center gap-2.5 rounded-[10px] bg-uni-hero-button px-8 text-base font-bold text-white shadow-[0_12px_26px_-14px_rgba(0,122,96,0.9)] transition-all hover:-translate-y-0.5 hover:bg-uni-hero-buttonHover focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40 focus-visible:ring-offset-2 sm:w-auto"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 sm:w-auto"
             >
               {copy.hero.advisor}
               <ArrowRight aria-hidden="true" className="size-[18px]" />
@@ -490,9 +490,9 @@ export function UniversityJourney({ university: u }: { university: UniversityPag
                 href={u.brochureUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-[56px] w-full items-center justify-center gap-3 rounded-[10px] bg-white px-8 text-base font-bold text-uni-hero-stat shadow-[0_10px_30px_-14px_rgba(10,15,75,0.2)] transition-all hover:-translate-y-0.5 hover:bg-uni-hero-mint focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-uni-hero-button/40 focus-visible:ring-offset-2 sm:w-auto"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 sm:w-auto"
               >
-                <Download aria-hidden="true" className="size-5 text-uni-hero-icon" strokeWidth={2.25} />
+                <Download aria-hidden="true" className="size-5 text-brand-teal" strokeWidth={2.25} />
                 {copy.hero.brochure}
               </a>
             )}
@@ -509,7 +509,7 @@ export function UniversityJourney({ university: u }: { university: UniversityPag
               >
                 <span
                   aria-hidden="true"
-                  className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-uni-hero-icon"
+                  className="flex size-14 shrink-0 items-center justify-center rounded-full bg-uni-hero-mint text-brand-teal"
                 >
                   <Icon className="size-7" strokeWidth={1.6} />
                 </span>

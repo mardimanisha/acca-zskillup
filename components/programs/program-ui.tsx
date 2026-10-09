@@ -113,15 +113,15 @@ export function SectionTitle({
 }
 
 const buttonBase =
-  "inline-flex h-14 items-center justify-center gap-2.5 whitespace-nowrap rounded-lg px-7 text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-2 [&_svg]:size-[18px] [&_svg]:shrink-0";
+  "inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-2 [&_svg]:size-[18px] [&_svg]:shrink-0";
 
 const buttonVariants = {
   primary:
-    "bg-zs-green text-white shadow-[0_10px_24px_-12px_rgba(15,107,62,0.8)] hover:bg-zs-greenHover focus-visible:ring-zs-green/40",
+    "bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 focus-visible:ring-brand-teal/40",
   secondary:
-    "bg-white text-zs-navy shadow-[0_8px_28px_-8px_rgba(11,31,77,0.18)] hover:bg-zs-mintSoft focus-visible:ring-zs-green/40",
+    "border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark focus-visible:ring-brand-teal/40",
   white:
-    "bg-white text-zs-greenDark hover:bg-zs-mint focus-visible:ring-white/60 focus-visible:ring-offset-zs-greenDark",
+    "bg-white text-brand-teal hover:bg-zs-mint focus-visible:ring-white/60 focus-visible:ring-offset-zs-greenDark",
   outlineWhite:
     "border-[1.5px] border-white/70 text-white hover:bg-white/10 focus-visible:ring-white/60 focus-visible:ring-offset-zs-greenDark",
 } as const;

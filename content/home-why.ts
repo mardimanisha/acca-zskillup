@@ -67,7 +67,7 @@ export const homeWhyContent = {
         icon: "graduationCap",
         title: "Structured Professional Learning",
         description:
-          "Follow a clear learning journey from finance fundamentals to advanced professional topics, supported by structured preparation, revision and practice.",
+          "Build strong finance fundamentals through a structured learning journey with guided preparation, regular revision, practical application and consistent practice throughout the program.",
       },
       {
         number: "02",
@@ -75,7 +75,7 @@ export const homeWhyContent = {
         icon: "brainCircuit",
         title: "Free AI & Digital Finance Classes",
         description:
-          "Go beyond the core curriculum with additional learning in AI, financial modelling, analytics and technology-driven financial decision-making.",
+          "Develop future-ready finance skills through additional learning in AI, financial modelling, analytics, automation and technology-enabled financial decision-making alongside your core curriculum.",
       },
       {
         number: "03",
@@ -83,7 +83,7 @@ export const homeWhyContent = {
         icon: "headset",
         title: "Free Career Readiness Sessions",
         description:
-          "Build your CV, LinkedIn profile, communication and interview skills through dedicated career-readiness sessions alongside your academic and professional learning.",
+          "Strengthen your CV, LinkedIn profile, communication and interview skills through dedicated career-readiness sessions designed to prepare you for professional opportunities.",
       },
       {
         number: "04",
@@ -91,7 +91,7 @@ export const homeWhyContent = {
         icon: "users",
         title: "Best-in-Class Industry Faculty",
         description:
-          "Learn from academic toppers and experienced industry professionals, including faculty members with achievements across CA, CS, FRM, CPA and ACCA, bringing practical industry context into every class.",
+          "Learn from academic toppers and experienced industry professionals across CA, CS, FRM, CPA and ACCA, bringing practical insights into every learning session.",
       },
       {
         number: "05",
@@ -99,7 +99,7 @@ export const homeWhyContent = {
         icon: "clipboardCheck",
         title: "Professional Preparation",
         description:
-          "Strengthen your exam readiness through structured revision, mock exams, practice and exam-focused preparation.",
+          "Strengthen your professional and exam readiness through structured revision, mock exams, practice sessions, concept reinforcement and focused preparation throughout your learning journey.",
       },
     ] satisfies readonly WhyCardContent[],
   },

@@ -18,6 +18,8 @@ function MarqueeCard({ company }: { company: MarqueeCompany }) {
             sizes="160px"
             // The track extends past the viewport; lazy loading would leave off-screen cards blank until they scroll in.
             loading="eager"
+            // Fetched at page load but behind the hero's own images, so they are ready before the section is reached.
+            fetchPriority="low"
             unoptimized={company.file.endsWith(".svg")}
             // Fixed height + full width with object-contain: SVGs that only have a viewBox (e.g. Protiviti) have no intrinsic width and collapsed to a blank card with w-auto.
             className={`w-full object-contain ${company.showName ? "h-8 md:h-9" : "h-9 md:h-11"}`}

@@ -25,7 +25,7 @@ export function WhySection() {
         />
 
         {/* Panels stack vertically at every size: Why ACCA, then Why ZSkillup */}
-        <div className="grid grid-cols-1 gap-6 compact:gap-4">
+        <div className="grid grid-cols-1 gap-6 lg:auto-rows-fr compact:gap-4">
           <WhyAccaPanel />
           <WhyZSkillupPanel />
         </div>

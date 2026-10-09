@@ -61,11 +61,11 @@ export function WhyZSkillupCard({
             aria-hidden="true"
           />
         </span>
-        <h4 className="mt-3 text-base font-bold leading-snug text-brand-navy xl:mt-2 compact:mt-2 compact:text-[15px]">
+        <h4 className="mt-3 text-base lg:min-h-[2.75em] font-bold leading-snug text-brand-navy xl:mt-2 compact:mt-2 compact:text-[15px]">
           {title}
         </h4>
       </div>
-      <p className="mt-1.5 text-sm leading-relaxed text-brand-body xl:mt-1 xl:leading-snug compact:mt-2 compact:text-[13px] short:mt-1.5">
+      <p className="mx-auto mt-1.5 w-full text-sm leading-relaxed text-brand-body xl:mt-1 xl:leading-snug compact:mt-2 compact:text-[13px] short:mt-1.5">
         {description}
       </p>
 

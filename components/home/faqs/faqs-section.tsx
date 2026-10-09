@@ -49,10 +49,13 @@ export function FaqsSection() {
         <div className="mx-auto max-w-6xl">
           <FaqsAccordion categories={categories} />
 
-          <div className="mx-auto mt-10 max-w-xl rounded-3xl bg-brand-navy px-6 py-8 text-center sm:px-10">
+          <div className="mx-auto mt-10 max-w-xl rounded-3xl bg-brand-tealDark px-6 py-8 text-center sm:px-10">
             <h3 className="text-xl font-bold text-white">{help.title}</h3>
-            <p className="mt-2 text-sm text-white/70">{help.body}</p>
-            <Button asChild variant="brand" className="mt-5 w-full sm:w-auto">
+            <p className="mt-2 text-sm text-white/85">{help.body}</p>
+            <Button
+              asChild
+              className="mt-5 w-full bg-white text-brand-tealDark shadow-none hover:bg-white/90 sm:w-auto"
+            >
               <Link href={help.cta.href}>
                 {help.cta.label}
                 <ArrowRight aria-hidden="true" />

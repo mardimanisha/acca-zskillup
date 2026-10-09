@@ -29,7 +29,7 @@ const faqJsonLd = {
     category.items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      acceptedAnswer: { "@type": "Answer", text: [item.a, ...(item.bullets ?? [])].join(" ") },
     })),
   ),
 };

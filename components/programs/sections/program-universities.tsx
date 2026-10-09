@@ -74,7 +74,7 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
           </div>
           <Link
             href={viewAll.href}
-            className="inline-flex h-12 shrink-0 items-center gap-2.5 self-start rounded-xl border-[1.5px] border-white/80 px-6 text-[15px] font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-white/60"
+            className="inline-flex h-12 shrink-0 items-center gap-2.5 self-start rounded-full border-[1.5px] border-white/80 px-6 text-[15px] font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-white/60"
           >
             {viewAll.label}
             <ArrowRight aria-hidden="true" className="size-4" />

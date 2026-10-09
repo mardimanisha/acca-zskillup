@@ -96,3 +96,23 @@
     transform: translateX(-50%);
   }
 }
+
+/* Smoothly fades the brand gradient in/out (gradients themselves can't be transitioned). */
+.gradient-fade {
+  position: relative;
+  isolation: isolate;
+}
+.gradient-fade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(to right, #12877a, #0b5f57);
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  pointer-events: none;
+}
+.gradient-fade.is-on::after {
+  opacity: 1;
+}

@@ -1,12 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-import { EnquiryForm } from "@/components/shared/enquiry-form-section";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { enquiryFormContent } from "@/content/program-shared";
+import type { EnquiryMode } from "@/components/faqs/enquiry-dialog";
 
-type EnquiryMode = "advisor" | "brochure";
+// The dialog pulls in react-hook-form, zod and the select stack; keep it out of every page's initial JS.
+const loadDialog = () => import("@/components/faqs/enquiry-dialog");
+const EnquiryDialog = dynamic(loadDialog, { ssr: false });
 
 const EnquiryModalContext = createContext<{ open: () => void; openBrochure: () => void } | null>(null);
 
@@ -47,17 +48,24 @@ export function EnquiryModalProvider({ children }: { children: ReactNode }) {
     if (mode) setShownMode(mode);
   }, [mode]);
 
+  // Fetch the dialog chunk once the page is idle so the first click opens it instantly.
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    const handle = idle(() => void loadDialog());
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(handle);
+      else window.clearTimeout(handle);
+    };
+  }, []);
+
+  // Mount only after the first open; afterwards it stays mounted so close animations still play.
+  const [everOpened, setEverOpened] = useState(false);
+  if (mode && !everOpened) setEverOpened(true);
+
   return (
     <EnquiryModalContext.Provider value={value}>
       {children}
-      <Dialog open={mode !== null} onOpenChange={(isOpen) => !isOpen && setMode(null)}>
-        <DialogContent className="max-h-[92vh] overflow-y-auto rounded-2xl p-6 sm:max-w-3xl sm:p-10">
-          <DialogTitle className="sr-only">
-            {shownMode === "brochure" ? enquiryFormContent.brochure.submit : enquiryFormContent.submit}
-          </DialogTitle>
-          <EnquiryForm key={shownMode} variant={shownMode} onSuccess={() => setMode(null)} />
-        </DialogContent>
-      </Dialog>
+      {everOpened && <EnquiryDialog mode={mode} shownMode={shownMode} onClose={() => setMode(null)} />}
     </EnquiryModalContext.Provider>
   );
 }

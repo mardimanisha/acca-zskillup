@@ -16,7 +16,7 @@ import {
 import { useEnquiryModal } from "@/components/faqs/enquiry-modal";
 import { feesSerif } from "@/components/fees/fees-ui";
 import { container } from "@/components/programs/program-ui";
-import { faqCategories, type FaqCategoryId, type FaqIconName, type FaqItem } from "@/data/faqs";
+import { defaultFaqCategoryId, faqCategories, isFaqCategoryId, type FaqCategoryId, type FaqIconName, type FaqItem } from "@/data/faqs";
 import { cn } from "@/lib/utils";
 
 const icons: Record<FaqIconName, LucideIcon> = {
@@ -56,21 +56,26 @@ function Answer({ item, onEnquiry }: { item: FaqItem; onEnquiry: () => void }) {
   return <>{nodes}</>;
 }
 
-export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
-  const [activeId, setActiveId] = useState<FaqCategoryId>(initialId);
+export function FaqsExplorer() {
+  const [activeId, setActiveId] = useState<FaqCategoryId>(defaultFaqCategoryId);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const uid = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const { open: openEnquiry } = useEnquiryModal();
 
-  // Deep links (?category=) can land on a tab that sits off-screen in the scrolling row.
+  // Deep links (?category=) are read on the client so the page itself stays static (fast, cacheable).
+  // They can land on a tab that sits off-screen in the scrolling row, so scroll it into view.
   useEffect(() => {
-    const tab = tabRefs.current[faqCategories.findIndex((category) => category.id === initialId)];
+    const category = new URLSearchParams(window.location.search).get("category");
+    if (!isFaqCategoryId(category)) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setActiveId(category);
+    const tab = tabRefs.current[faqCategories.findIndex((item) => item.id === category)];
     const row = tab?.parentElement;
     if (tab && row && row.scrollWidth > row.clientWidth) {
       row.scrollLeft = tab.offsetLeft - (row.clientWidth - tab.offsetWidth) / 2;
     }
-  }, [initialId]);
+  }, []);
 
   const active = faqCategories.find((category) => category.id === activeId) ?? faqCategories[0];
   const ActiveIcon = icons[active.icon];

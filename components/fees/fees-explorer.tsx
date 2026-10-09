@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
   CalendarDays,
@@ -29,6 +29,8 @@ import { container } from "@/components/programs/program-ui";
 import { toBeAnnounced } from "@/content/site";
 import { feesCopy as copy, programInterestByFeeId, selectProgramEvent } from "@/content/fees";
 import {
+  defaultProgramFeeId,
+  isProgramFeeId,
   programFees,
   type Plan,
   type ProgramFee,
@@ -338,17 +340,23 @@ function WhyChoose({ program }: { program: ProgramFee }) {
   );
 }
 
-export function FeesExplorer({
-  initialId,
-  initialUniversity,
-}: {
-  initialId: ProgramFeeId;
-  initialUniversity?: string;
-}) {
-  const [activeId, setActiveId] = useState<ProgramFeeId>(initialId);
-  const [universitySlug, setUniversitySlug] = useState(initialUniversity ?? "");
+export function FeesExplorer() {
+  const [activeId, setActiveId] = useState<ProgramFeeId>(defaultProgramFeeId);
+  const [universitySlug, setUniversitySlug] = useState("");
   const uid = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Deep links (?program=&university=) are read on the client so the page itself stays static.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const program = params.get("program");
+    const university = params.get("university");
+    /* eslint-disable react-hooks/set-state-in-effect */
+    if (isProgramFeeId(program)) setActiveId(program);
+    if (university) setUniversitySlug(university);
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
+
   const active = programFees.find((p) => p.id === activeId) ?? programFees[0];
   const tabId = (id: ProgramFeeId) => `${uid}-tab-${id}`;
   const panelId = `${uid}-panel`;

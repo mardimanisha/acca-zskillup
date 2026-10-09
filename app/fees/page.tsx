@@ -5,25 +5,16 @@ import { FeesCharges, FeesHelp, FeesIncluded } from "@/components/fees/fees-sect
 import { SiteFooter } from "@/components/layout/site-footer";
 import { EnquiryFormSection } from "@/components/shared/enquiry-form-section";
 import { feesCopy } from "@/content/fees";
-import { defaultProgramFeeId, isProgramFeeId } from "@/data/fees";
 
 export const metadata: Metadata = {
   title: "Fees | ZSkillup",
   description: feesCopy.hero.body,
 };
 
-export default async function FeesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const { program, university } = await searchParams;
-  const initialId = isProgramFeeId(program) ? program : defaultProgramFeeId;
-  const initialUniversity = typeof university === "string" ? university : undefined;
-
+export default function FeesPage() {
   return (
     <>
-      <FeesExplorer initialId={initialId} initialUniversity={initialUniversity} />
+      <FeesExplorer />
       <FeesIncluded />
       <FeesCharges />
       <FeesHelp />

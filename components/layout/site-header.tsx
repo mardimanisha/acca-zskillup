@@ -10,7 +10,7 @@ export function SiteHeader() {
   const { logo } = siteContent;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/70 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/70 bg-white">
       <div className="mx-auto flex h-[76px] max-w-[1760px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-10 xl:px-16">
         <Link
           href={logo.href}

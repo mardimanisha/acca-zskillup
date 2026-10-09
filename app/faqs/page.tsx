@@ -6,7 +6,7 @@ import { FaqsHelp } from "@/components/faqs/faqs-help";
 import { Eyebrow } from "@/components/fees/fees-explorer";
 import { feesSerif } from "@/components/fees/fees-ui";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { defaultFaqCategoryId, faqCategories, isFaqCategoryId } from "@/data/faqs";
+import { faqCategories } from "@/data/faqs";
 import { cn } from "@/lib/utils";
 
 const hero = {
@@ -33,14 +33,7 @@ const faqJsonLd = {
   ),
 };
 
-export default async function FaqsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const { category } = await searchParams;
-  const initialId = isFaqCategoryId(category) ? category : defaultFaqCategoryId;
-
+export default function FaqsPage() {
   return (
     <>
       <script
@@ -74,7 +67,7 @@ export default async function FaqsPage({
         <FaqIllustration className="pointer-events-none absolute bottom-0 right-[4%] hidden h-[86%] w-auto md:block lg:right-[8%]" />
       </section>
 
-      <FaqsExplorer initialId={initialId} />
+      <FaqsExplorer />
       <FaqsHelp />
 
       <SiteFooter />

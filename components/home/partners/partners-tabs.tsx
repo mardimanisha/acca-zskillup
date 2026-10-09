@@ -63,7 +63,7 @@ function LogoGrid({ logos, marquee }: Pick<PartnersTabData, "logos" | "marquee">
   );
 }
 
-const layoutClass = "grid grid-cols-1 items-start gap-12 lg:grid-cols-12";
+const layoutClass = "grid grid-cols-1 items-start gap-8 lg:grid-cols-12";
 
 export function PartnersTabs({ tabs }: { tabs: PartnersTabData[] }) {
   const [active, setActive] = useState<string>(tabs[0]?.id ?? "universities");

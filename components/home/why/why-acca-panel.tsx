@@ -22,7 +22,7 @@ export function WhyAccaPanel() {
   const { heading, subheading, paragraph, globe, items } = homeWhyContent.acca;
 
   return (
-    <div className="relative flex h-full flex-col justify-center overflow-hidden rounded-3xl border border-panel-border bg-gradient-to-br from-panel-from to-panel-to p-6 sm:p-8 xl:p-7 compact:p-6 short:p-5">
+    <div className="relative flex h-full flex-col justify-center overflow-hidden rounded-3xl border border-panel-border bg-gradient-to-br from-panel-from to-panel-to px-6 py-4 sm:px-8 sm:py-5 xl:px-7 xl:py-4 compact:py-3 short:py-3">
       {/* Decoration: soft mint circle + dotted globe with orbit lines, cropped by the top-right corner */}
       <div
         aria-hidden="true"

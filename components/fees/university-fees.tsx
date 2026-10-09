@@ -5,7 +5,7 @@ import { ArrowRight, Check, Info } from "lucide-react";
 
 import { feesSerif } from "@/components/fees/fees-ui";
 import { container } from "@/components/programs/program-ui";
-import { universities } from "@/data/universities";
+import { filterUniversities } from "@/data/universities";
 import {
   formatRupees,
   universityProgramFees,
@@ -15,8 +15,6 @@ import type { ProgramFeeId } from "@/data/fees";
 import { cn } from "@/lib/utils";
 
 type DegreeProgramId = Exclude<ProgramFeeId, "acca">;
-
-const degreeByProgram: Record<DegreeProgramId, "B.Com" | "BBA"> = { bcom: "B.Com", bba: "BBA" };
 
 export type FeeUniversity = {
   slug: string;
@@ -32,8 +30,7 @@ export function isDegreeProgram(id: ProgramFeeId): id is DegreeProgramId {
 /** Universities offering the program that have a fee sheet, in the /universities display order. */
 export function universitiesForProgram(id: ProgramFeeId): FeeUniversity[] {
   if (!isDegreeProgram(id)) return [];
-  return universities
-    .filter((u) => u.published && u.degree === degreeByProgram[id])
+  return filterUniversities(id)
     .flatMap((u) => {
       const fee = universityProgramFees.find((f) => f.slug === u.slug && f.program === id);
       return fee ? [{ slug: u.slug, name: u.officialName, logo: u.logo, fee }] : [];
@@ -206,7 +203,7 @@ export function UniversityFeeSection({
           </div>
         </div>
 
-        <h3 className="mt-12 text-lg font-bold text-fp-navy">Compare universities</h3>
+        <h3 className="mt-8 text-lg font-bold text-fp-navy">Compare universities</h3>
         <div className="mt-4 overflow-x-auto rounded-2xl bg-white shadow-[0_14px_40px_-18px_rgba(11,31,77,0.18)]">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm">
             <caption className="sr-only">{programName} fees by university. Select a row to view its details.</caption>

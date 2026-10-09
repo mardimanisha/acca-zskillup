@@ -36,7 +36,6 @@ import { cn } from "@/lib/utils";
 // two-tone headings, pastel and white cards with tinted icon circles, blob-masked photos.
 
 type Tone = "purple" | "orange" | "blue" | "green" | "yellow";
-type CardTone = "lavender" | "peach" | "blue" | "mint";
 
 const toneClass: Record<Tone, string> = {
   purple: "bg-[#EEE9FC] text-[#7C5CE0]",
@@ -44,13 +43,6 @@ const toneClass: Record<Tone, string> = {
   blue: "bg-[#E6F0FE] text-[#3B82F6]",
   green: "bg-[#E1F5EE] text-cr-green",
   yellow: "bg-[#FFF5D1] text-[#E0A100]",
-};
-
-const cardToneClass: Record<CardTone, string> = {
-  lavender: "bg-cr-lavender",
-  peach: "bg-cr-peach",
-  blue: "bg-cr-sky",
-  mint: "bg-cr-mint",
 };
 
 /** "in" is a generic glyph, not the LinkedIn logo. */
@@ -255,8 +247,8 @@ export function CareersHero() {
       {/* Desktop art: right 50%, bleeding off the top-right edge. */}
       <HeroArt className="absolute inset-y-0 right-0 hidden w-[56%] lg:block" sizes="56vw" />
 
-      <div className={cn(container, "relative lg:flex lg:min-h-[min(42vw,680px)] lg:items-center")}>
-        <div className="pb-10 pt-12 sm:pt-16 lg:w-1/2 lg:pb-14 lg:pt-20">
+      <div className={cn(container, "relative lg:flex lg:min-h-[min(34vw,560px)] lg:items-center")}>
+        <div className="pb-10 pt-12 sm:pt-10 lg:w-1/2 lg:pb-10 lg:pt-14">
           <Eyebrow>{hero.eyebrow}</Eyebrow>
           <TwoToneTitle
             as="h1"
@@ -292,21 +284,12 @@ export function CareersHero() {
   );
 }
 
-const industryTone: Record<Tone, { circle: string; icon: string; arrow: string }> = {
-  purple: { circle: "bg-[#F6EFFE]", icon: "text-[#8E3FEA]", arrow: "border-[#E4D6FA] bg-[#FAF6FE]" },
-  orange: { circle: "bg-[#FFF1E4]", icon: "text-[#F97316]", arrow: "border-[#F8DDC4] bg-[#FFF8F1]" },
-  blue: { circle: "bg-[#E9F2FF]", icon: "text-[#2563EB]", arrow: "border-[#CFE1FA] bg-[#F4F8FF]" },
-  green: { circle: "bg-[#E4F7EF]", icon: "text-[#12B07F]", arrow: "border-[#CDEBDD] bg-[#F3FBF7]" },
-  yellow: { circle: "bg-[#FFF5D1]", icon: "text-[#E0A100]", arrow: "border-[#F3E3A8] bg-[#FFFBEA]" },
-};
-
-/** Slightly deeper circle fills so the circle reads against the pastel role cards. */
-const roleCircle: Record<Tone, string> = {
-  purple: "bg-[#EDE0FC]",
-  orange: "bg-[#FFE8D3]",
-  blue: "bg-[#DDEBFF]",
-  green: "bg-[#D6F2E6]",
-  yellow: "bg-[#FFEFB8]",
+const industryTone: Record<Tone, { circle: string; icon: string }> = {
+  purple: { circle: "bg-[#F6EFFE]", icon: "text-[#8E3FEA]" },
+  orange: { circle: "bg-[#FFF1E4]", icon: "text-[#F97316]" },
+  blue: { circle: "bg-[#E9F2FF]", icon: "text-[#2563EB]" },
+  green: { circle: "bg-[#E4F7EF]", icon: "text-[#12B07F]" },
+  yellow: { circle: "bg-[#FFF5D1]", icon: "text-[#E0A100]" },
 };
 
 function IndustryIcon({ name, className }: { name: IconName; className?: string }) {
@@ -375,16 +358,6 @@ export function CareersIndustries() {
                 <h3 className="text-base font-bold leading-snug text-cr-navy sm:text-[17px] xl:text-lg">{item.title}</h3>
                 <p className="mt-1.5 max-w-[300px] text-sm leading-[1.55] text-[#6B7299]">{item.body}</p>
               </div>
-              {/* Decorative arrow, not a link. */}
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "flex size-9 shrink-0 items-center justify-center rounded-full border text-cr-navy",
-                  industryTone[item.tone].arrow,
-                )}
-              >
-                <ArrowRight className="size-4" strokeWidth={2.25} />
-              </span>
             </li>
           ))}
         </ul>
@@ -397,7 +370,7 @@ export function CareersRoles() {
   const { roles } = copy;
 
   return (
-    <section id={roles.id} aria-labelledby="cr-roles-title" className="scroll-mt-[76px] bg-white">
+    <section id={roles.id} aria-labelledby="cr-roles-title" className="scroll-mt-[76px] bg-[#F4F8F6]">
       <div className={cn(container, "section-y")}>
         <div>
           <Eyebrow>{roles.eyebrow}</Eyebrow>
@@ -412,24 +385,29 @@ export function CareersRoles() {
           <p className="mt-4 max-w-[560px] text-sm leading-[1.6] text-[#6B7299] lg:text-base">{roles.intro}</p>
         </div>
 
-        <ul className="mx-auto mt-8 grid max-w-[1020px] gap-4 sm:grid-cols-2 lg:mt-9 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-9 lg:gap-5">
           {roles.columns.flat().map((role) => (
             <li
               key={role.title}
-              className={cn("flex flex-col items-center gap-3 rounded-xl px-5 py-5 text-center ring-1 ring-white/70", cardToneClass[role.card])}
+              className="flex items-center gap-4 rounded-lg bg-white p-4 shadow-[0_10px_30px_-14px_rgba(11,31,77,0.16)] ring-1 ring-cr-navy/[0.03] sm:gap-5 sm:p-5 lg:min-h-[132px] lg:px-6"
             >
               <span
                 aria-hidden="true"
-                className={cn("flex size-12 shrink-0 items-center justify-center rounded-full", roleCircle[role.tone])}
+                className={cn(
+                  "flex size-[60px] shrink-0 items-center justify-center rounded-full sm:size-[70px]",
+                  industryTone[role.tone].circle,
+                )}
               >
-                <IndustryIcon name={role.icon} className={cn("size-6", industryTone[role.tone].icon)} />
+                <IndustryIcon name={role.icon} className={cn("size-8 sm:size-9", industryTone[role.tone].icon)} />
               </span>
-              <div className="min-w-0">
-                <h3 className="text-base font-bold leading-snug text-cr-navy">{role.title}</h3>
-                <ul className="mt-2 space-y-1 text-sm text-[#6B7299]">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-base font-bold leading-snug text-cr-navy sm:text-[17px] xl:text-lg">{role.title}</h3>
+                <ul className="mt-3 flex flex-wrap gap-2">
                   {role.roles.map((name) => (
-                    <li key={name} className="flex items-start justify-center gap-2.5">
-                      <span aria-hidden="true" className="mt-[9px] size-1 shrink-0 rounded-full bg-[#6B7299]" />
+                    <li
+                      key={name}
+                      className="whitespace-nowrap rounded-full bg-[#E1F5EE] px-3 py-1 text-[13px] font-medium leading-snug text-black"
+                    >
                       {name}
                     </li>
                   ))}
@@ -450,18 +428,17 @@ export function CareersJourney() {
   return (
     <section aria-labelledby="cr-journey-title" className="bg-white">
       <div className={cn(container, "section-y")}>
-        <Eyebrow>{journey.eyebrow}</Eyebrow>
         <TwoToneTitle
           as="h2"
           id="cr-journey-title"
           line1={journey.titleLine1}
           line2={journey.titleLine2}
           stacked={false}
-          className={cn("mt-4", h2Size)}
+          className={h2Size}
         />
 
         {/* Mobile: vertical list, dotted line down the left. Tablet: 3 + 2. Desktop: one row of 5. */}
-        <ol className="mt-10 grid gap-y-6 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-10 lg:grid-cols-5 lg:mt-12">
+        <ol className="mt-10 grid gap-y-6 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-10 lg:grid-cols-5 lg:mt-8">
           {journey.steps.map((step, i) => (
             <li
               key={step.title}
@@ -539,6 +516,7 @@ export function CareersReadiness() {
               alt={readiness.imageAlt}
               fill
               sizes="(min-width: 640px) 90vw, 100vw"
+              quality={90}
               className="object-cover object-[center_30%]"
             />
           </div>
@@ -550,6 +528,7 @@ export function CareersReadiness() {
             alt={readiness.imageAlt}
             fill
             sizes="38vw"
+            quality={90}
             className="object-cover object-center"
           />
         </div>
@@ -571,7 +550,7 @@ export function CareersHiringNetwork() {
           {network.title}
         </h2>
 
-        <div className="mt-10 space-y-16 lg:space-y-20">
+        <div className="mt-8 space-y-8 lg:space-y-10">
           {hiringNetwork.map((group, index) => (
             <HiringNetworkRow key={group.category} group={group} index={index} />
           ))}
@@ -590,7 +569,7 @@ export function CareersCta() {
       <CtaArt className="absolute inset-y-0 right-0 hidden w-[45%] lg:block" sizes="41vw" />
 
       <div className={cn(container, "relative lg:flex lg:min-h-[min(30vw,480px)] lg:items-center")}>
-        <div className="pb-10 pt-12 sm:pt-16 lg:w-[58%] lg:pb-14 lg:pt-16">
+        <div className="pb-10 pt-12 sm:pt-10 lg:w-[58%] lg:pb-10 lg:pt-10">
           <TwoToneTitle
             as="h2"
             id="cr-cta-title"

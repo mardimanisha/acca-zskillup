@@ -5,12 +5,13 @@ import {
   accaExemptions,
   brochures,
   curriculumCommon,
-  universitiesCommon,
+  universitiesCommonFor,
 } from "@/content/program-shared";
 import type {
   CareersContent,
   ComparisonContent,
   CurriculumContent,
+  FeatureGridContent,
   FinalCtaContent,
   HeroContent,
   LevelsContent,
@@ -67,7 +68,8 @@ const hero = {
 
 const why = {
   eyebrow: "WHY CHOOSE BBA + ACCA?",
-  titleLines: ["Build Business Breadth and", "Finance Depth Together"],
+  titleLines: ["Build Business Breadth and Finance Depth Together"],
+  body: "Build four dimensions of your finance career through one integrated learning journey.",
   image: programWhyImage,
   items: [
     {
@@ -94,7 +96,7 @@ const why = {
 } satisfies WhyContent;
 
 const universities = {
-  ...universitiesCommon,
+  ...universitiesCommonFor("bba"),
   body: "Earn your BBA + ACCA from our reputed university partners while building professional finance, AI and employability skills with ZSkillup.",
 } satisfies UniversitiesContent;
 
@@ -102,9 +104,8 @@ const universities = {
 // Subjects are listed in proposal order. `code` = ACCA paper. Hours lines are from the proposal.
 const curriculum = {
   ...curriculumCommon,
-  eyebrow: "SEMESTER-WISE CURRICULUM",
-  title: "Detailed Learning Structure",
-  body: "A balanced blend of university-governed BBA curriculum, ACCA-aligned learning and employability skills.",
+  eyebrow: "YOUR 3-YEAR JOURNEY",
+  title: "From Business Foundations to Professional Finance",
   columns: { ...curriculumCommon.columns, degree: "BBA DEGREE CURRICULUM" },
   semesters: [
     {
@@ -194,6 +195,7 @@ const accaLearning = {
   ...accaExemptions,
   eyebrow: "ACCA-ALIGNED LEARNING",
   title: "Build Professional Finance Knowledge Alongside Your Degree",
+  body: "The proposed curriculum is mapped to ACCA's redesigned qualification structure across Knowledge, Expertise and Strategic Professional learning.",
   levels: [
     {
       icon: "bookOpen",
@@ -222,6 +224,33 @@ const accaLearning = {
     },
   ],
 } satisfies LevelsContent;
+
+const aiEmployability = {
+  eyebrow: "AI + EMPLOYABILITY",
+  title: "Finance Skills for a Changing Workplace",
+  items: [
+    {
+      icon: "brain",
+      title: "AI & Financial Modelling",
+      body: "Explore how AI, modelling and analytical thinking support financial decision-making.",
+    },
+    {
+      icon: "messages",
+      title: "Business Communication",
+      body: "Build the ability to communicate financial and business ideas effectively.",
+    },
+    {
+      icon: "fileText",
+      title: "Career Readiness Lab I",
+      body: "Develop your CV, LinkedIn presence and interview skills.",
+    },
+    {
+      icon: "userCheck",
+      title: "Career Readiness Lab II",
+      body: "Prepare through mock interviews, group discussions and structured placement preparation.",
+    },
+  ],
+} satisfies FeatureGridContent;
 
 const comparison = {
   eyebrow: "BBA OR B.COM?",
@@ -253,6 +282,8 @@ const whoFor = {
 
 const careers = {
   eyebrow: "CAREER POSSIBILITIES",
+  title: "Where Can This Pathway Take You?",
+  intro: "Build capabilities relevant to roles such as",
   roles: [
     "Business Finance Analyst",
     "Financial Analyst",
@@ -264,10 +295,12 @@ const careers = {
     "Corporate Finance Associate",
     "Business Analyst",
   ],
+  cta: { label: "Explore Finance Careers", href: "/careers" },
 } satisfies CareersContent;
 
 const finalCta = {
   title: "Build the Business Perspective. Build the Finance Expertise.",
+  body: "Build the professional, digital and career-ready capabilities that can shape your future in finance.",
 } satisfies FinalCtaContent;
 
 export const bbaPage = {
@@ -277,6 +310,7 @@ export const bbaPage = {
   universities,
   curriculum,
   accaLearning,
+  aiEmployability,
   comparison,
   whoFor,
   careers,

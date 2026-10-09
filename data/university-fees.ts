@@ -63,6 +63,15 @@ export const universityProgramFees: readonly UniversityProgramFee[] = [
   entry("amity-university-online", "bba", 450000, 36, [
     "One-time university registration fee applies at admission.",
   ]),
+  // Added with the second batch of partners; still DUMMY like the entries above.
+  entry("amrita-vishwa-vidyapeetham", "bcom", 510000, 36, []),
+  entry("jain-university", "bcom", 465000, 36, []),
+  entry("lovely-professional-university", "bcom", 435000, 30, []),
+  entry("manipal-university-jaipur", "bcom", 495000, 36, []),
+  entry("sharda-university", "bba", 470000, 36, []),
+  entry("nmims-university", "bba", 570000, 36, []),
+  entry("chandigarh-university", "bba", 440000, 30, []),
+  entry("symbiosis-online", "bba", 555000, 36, []),
 ];
 
 /** Indian digit grouping, e.g. 540000 -> "5,40,000". */

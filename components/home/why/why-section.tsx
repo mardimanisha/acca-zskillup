@@ -11,7 +11,7 @@ export function WhySection() {
     // with generous vertical padding so it reads as separate from the sections around it.
     <section
       aria-labelledby="why-heading"
-      className="bg-white py-10 md:py-14 xl:flex xl:min-h-[calc(100svh-77px)] xl:items-center xl:py-14 compact:py-10 short:py-8"
+      className="bg-white py-10 md:py-10 xl:flex xl:min-h-[calc(100svh-77px)] xl:items-center xl:py-10 compact:py-10 short:py-8"
     >
       <div className="mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10 xl:px-16">
         <SectionHeader
@@ -25,7 +25,7 @@ export function WhySection() {
         />
 
         {/* Panels stack vertically at every size: Why ACCA, then Why ZSkillup */}
-        <div className="grid grid-cols-1 gap-6 lg:auto-rows-fr compact:gap-4">
+        <div className="grid grid-cols-1 gap-6 compact:gap-4">
           <WhyAccaPanel />
           <WhyZSkillupPanel />
         </div>

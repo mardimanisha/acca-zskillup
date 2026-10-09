@@ -141,7 +141,7 @@ export function FeesHelp() {
         <circle cx="0" cy="160" r="135" />
       </svg>
 
-      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-10 px-4 section-y sm:px-6 lg:grid-cols-[1.2fr_auto_1fr] lg:gap-14">
+      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-10 px-4 section-y sm:px-6 lg:grid-cols-[1.2fr_auto_1fr] lg:gap-10">
         <div>
           <p className="flex items-center gap-2 text-xs font-bold uppercase leading-none tracking-[0.04em] text-fp-green">
             <span aria-hidden="true" className="block h-[2px] w-3 bg-fp-green" />

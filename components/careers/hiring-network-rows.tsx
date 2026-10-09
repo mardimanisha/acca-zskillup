@@ -61,7 +61,7 @@ export function HiringNetworkRow({ group, index }: { group: HiringNetworkGroup; 
   return (
     <div className="text-center">
       <h3 className={cn(serif, "text-[24px] font-bold tracking-[-0.02em] text-cr-navy sm:text-[30px]")}>{group.category}</h3>
-      <div className="mt-6">
+      <div className="mt-4">
         <LogoStrip companies={group.companies} leftToRight={index % 2 === 0} />
       </div>
     </div>

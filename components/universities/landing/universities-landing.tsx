@@ -108,7 +108,7 @@ function BlobPhoto({
   return (
     <div className={cn("absolute", className)} style={{ clipPath: `url(#${clip})` }}>
       {/* Decorative photo: no approved alt copy. */}
-      <Image src={src} alt="" fill preload={preload} sizes={sizes} className="object-cover object-center" />
+      <Image src={src} alt="" fill preload={preload} sizes={sizes} quality={90} className="object-cover object-center" />
     </div>
   );
 }
@@ -149,10 +149,10 @@ export function UniversitiesHero({ universityCount }: { universityCount: number 
       <BlobDefs />
 
       {/* Desktop art: right 55%, bleeding off the top-right edge. */}
-      <HeroArt className="absolute inset-y-0 right-0 hidden w-[55%] lg:block" sizes="42vw" />
+      <HeroArt className="absolute right-0 top-1/2 hidden aspect-[535/437] w-[55%] -translate-y-[60%] lg:block" sizes="55vw" />
 
       <div className={cn(container, "relative lg:flex lg:min-h-[min(38vw,600px)] lg:items-center")}>
-        <div className="pb-10 pt-12 sm:pt-16 lg:w-[57%] lg:pb-14 lg:pt-20">
+        <div className="pb-10 pt-12 sm:pt-10 lg:w-[57%] lg:pb-10 lg:pt-14">
           <AccentBar />
           <p className="mt-3.5 text-[13px] font-semibold uppercase leading-none tracking-[0.18em] text-ul-green">
             {hero.eyebrow}
@@ -167,7 +167,7 @@ export function UniversitiesHero({ universityCount }: { universityCount: number 
           <p className="mt-5 max-w-[460px] text-base leading-[1.6] text-ul-body xl:max-w-[500px] xl:text-[17px]">
             {hero.body}
           </p>
-          <p className="mt-6 text-base font-bold text-uni-hero-deep [text-shadow:0_0_6px_rgba(1,87,67,0.55),0_0_16px_rgba(1,87,67,0.35)] xl:text-[17px]">
+          <p className="mt-6 text-base font-bold text-uni-hero-deep [text-shadow:0_0_6px_rgba(1,87,67,0.08),0_0_16px_rgba(1,87,67,0.04)] xl:text-[17px]">
             {exemptionsLine}
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -279,7 +279,7 @@ export function UniversitiesPathway() {
       <PathwayArt className="absolute inset-y-0 right-0 hidden w-[45%] lg:block" sizes="41vw" />
 
       <div className={cn(container, "relative lg:flex lg:min-h-[min(34.5vw,560px)] lg:items-center")}>
-        <div className="pb-10 pt-12 sm:pt-16 lg:w-[56%] lg:pb-14 lg:pt-14">
+        <div className="pb-10 pt-12 sm:pt-10 lg:w-[56%] lg:pb-10 lg:pt-10">
           <AccentBar />
           <TwoToneTitle
             as="h2"

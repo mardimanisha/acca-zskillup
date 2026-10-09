@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
+import { EnquiryModalProvider } from "@/components/faqs/enquiry-modal";
+import { FloatingActions } from "@/components/layout/floating-actions";
 import { SiteHeader } from "@/components/layout/site-header";
 import { siteContent } from "@/content/site";
 
@@ -23,8 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable}`}>
       <body className="min-h-screen">
-        <SiteHeader />
-        <main>{children}</main>
+        <EnquiryModalProvider>
+          <SiteHeader />
+          <main>{children}</main>
+          <FloatingActions />
+        </EnquiryModalProvider>
       </body>
     </html>
   );

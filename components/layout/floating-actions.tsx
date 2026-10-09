@@ -9,9 +9,9 @@ import { siteContent } from "@/content/site";
 // Digits only, with country code (e.g. 919876543210). The WhatsApp button is hidden until this is set.
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
 
-// Footer green. The pill is right-anchored, so the label grows leftwards on hover/focus.
+// Matches the `brand` Button variant. The pill is right-anchored, so the label grows leftwards on hover/focus.
 const fabClass =
-  "group flex h-12 items-center rounded-full bg-[#014331] text-white shadow-lg shadow-black/20 transition-colors duration-300 hover:bg-[#025a43] focus-visible:bg-[#025a43] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[#014331]/40 focus-visible:ring-offset-2 sm:h-14";
+  "group flex h-12 items-center rounded-full bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] transition-[filter] duration-300 hover:brightness-110 focus-visible:brightness-110 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-brand-teal/40 focus-visible:ring-offset-2 sm:h-14";
 
 function FabContent({ icon, label }: { icon: ReactNode; label: string }) {
   return (
@@ -29,7 +29,7 @@ function FabContent({ icon, label }: { icon: ReactNode; label: string }) {
   );
 }
 
-/** Fixed bottom-right stack of conversion shortcuts, shown on the home page. */
+/** Fixed bottom-right stack of conversion shortcuts, rendered site-wide from the root layout. */
 export function FloatingActions() {
   const { open, openBrochure } = useEnquiryModal();
   const advisorLabel = siteContent.ctas.advisor.label;

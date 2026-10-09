@@ -52,11 +52,12 @@ export const demoHiringNetwork: PartnerLogo[] = [
 // Hiring marquee (home partners section, two scrolling rows). `file` is a logo where one was
 // available (the files above, or simple-icons marks in public/logos/demo/hiring-more/); companies
 // without one render as a text wordmark. Same DEMO status as above: not confirmed partners.
-export type MarqueeCompany = { name: string; file?: string; showName?: boolean };
+export type MarqueeCompany = { name: string; file?: string; showName?: boolean; /** Zoom for artwork with built-in padding, so it matches the other logos. */ scale?: number };
 
 // Logos that are only a symbol (no company name in the artwork) get the name printed underneath.
 const SYMBOL_ONLY = new Set(["Barclays", "Deutsche Bank", "Bank of America", "American Express", "Unilever", "Shell", "Razorpay", "PhonePe", "Zerodha", "Mastercard"]);
-const m = (name: string, file?: string): MarqueeCompany => ({ name, file, showName: file ? SYMBOL_ONLY.has(name) : undefined });
+const SCALE: Record<string, number> = { "Baker Tilly": 1.5, Protiviti: 1.4, Paytm: 1.35, Siemens: 1.6 };
+const m = (name: string, file?: string): MarqueeCompany => ({ name, file, showName: file ? SYMBOL_ONLY.has(name) : undefined, scale: SCALE[name] });
 const PNG = new Set(["rsm", "ubs", "alvarez-marsal", "groww"]);
 const more = (slug: string) => `/logos/demo/hiring-more/${slug}.${PNG.has(slug) ? "png" : "svg"}`;
 

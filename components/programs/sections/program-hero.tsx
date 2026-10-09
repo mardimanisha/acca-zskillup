@@ -114,7 +114,7 @@ export function ProgramHero({
       <div
         className={cn(
           container,
-          "relative grid gap-10 pt-10 lg:pb-[34px] lg:pt-11 xl:flex-1 xl:grid-cols-[minmax(0,1fr)_420px] xl:items-center xl:gap-12 xl:py-6 short:py-4 tight:py-3",
+          "relative grid gap-10 pt-10 lg:pb-[34px] lg:pt-11 xl:flex-1 xl:grid-cols-[minmax(0,1fr)_420px] xl:items-center xl:gap-8 xl:py-6 short:py-4 tight:py-3",
         )}
       >
         <div className="max-w-[600px]">

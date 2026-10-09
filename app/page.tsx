@@ -1,5 +1,3 @@
-import { EnquiryModalProvider } from "@/components/faqs/enquiry-modal";
-import { FloatingActions } from "@/components/layout/floating-actions";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { FaqsSection } from "@/components/home/faqs/faqs-section";
 import { FeesSection } from "@/components/home/fees/fees-section";
@@ -12,7 +10,7 @@ import { WhySection } from "@/components/home/why/why-section";
 
 export default function HomePage() {
   return (
-    <EnquiryModalProvider>
+    <>
       <HeroSection />
       <WhySection />
       <ProgramsSection />
@@ -22,7 +20,6 @@ export default function HomePage() {
       <FeesSection />
       <FaqsSection />
       <SiteFooter />
-      <FloatingActions />
-    </EnquiryModalProvider>
+    </>
   );
 }

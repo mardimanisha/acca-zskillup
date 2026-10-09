@@ -72,21 +72,18 @@ export const careersCopy = {
         {
           icon: "document",
           tone: "purple",
-          card: "lavender",
           title: "Accounting & Reporting",
           roles: ["Financial Accountant", "Financial Reporting Associate", "Management Accountant"],
         },
         {
           icon: "percent",
           tone: "blue",
-          card: "blue",
           title: "Taxation",
           roles: ["Tax Associate", "Tax Analyst"],
         },
         {
           icon: "database",
           tone: "orange",
-          card: "peach",
           title: "Finance & Investment",
           roles: ["Financial Analyst", "Corporate Finance Associate", "Investment Analysis Roles"],
         },
@@ -95,21 +92,18 @@ export const careersCopy = {
         {
           icon: "shield",
           tone: "orange",
-          card: "peach",
           title: "Audit, Risk & Controls",
           roles: ["Audit Associate", "Internal Audit Analyst", "Risk & Controls Analyst"],
         },
         {
           icon: "chart",
           tone: "green",
-          card: "mint",
           title: "Planning & Business Finance",
           roles: ["FP&A Analyst", "Business Finance Analyst", "Commercial Finance Associate"],
         },
         {
           icon: "gear",
           tone: "purple",
-          card: "lavender",
           title: "Finance Transformation",
           roles: ["Finance Transformation Analyst", "Data & Finance Analyst", "Business Analysis Roles"],
         },
@@ -117,7 +111,6 @@ export const careersCopy = {
     ],
   },
   journey: {
-    eyebrow: "FROM LEARNING TO LEADING",
     titleLine1: "From Learning",
     titleLine2: "to Leading",
     steps: [
@@ -157,8 +150,7 @@ export const careersCopy = {
     eyebrow: "CAREER READINESS",
     titleLine1: "Your Career Preparation Starts",
     titleLine2: "Before Graduation",
-    // TODO: replace with the supplied READINESS_IMAGE (placeholder cropped from the design mockup).
-    image: "/images/careers/readiness-team.jpg",
+    image: "/images/careers/readiness-team-hd.png",
     imageAlt: "Three colleagues working together at a laptop",
     items: [
       {
@@ -207,8 +199,7 @@ export const careersCopy = {
     titleLine1: "Don't Just Prepare for Exams.",
     titleLine2: "Prepare for the Career That Comes After Them.",
     button: { label: "Talk to a Career Advisor", href: "#enquiry-form" },
-    // TODO: replace with the supplied CTA_IMAGE (placeholder cropped from the design mockup).
-    image: "/images/careers/cta-building.jpg",
-    imageAlt: "Modern office building lined with trees",
+    image: "/images/careers/cta-building-hd.jpg",
+    imageAlt: "Modern glass office towers beside green trees",
   },
 } as const;

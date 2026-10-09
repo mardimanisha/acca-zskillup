@@ -12,7 +12,7 @@ export function FaqsHelp() {
   const { open } = useEnquiryModal();
 
   return (
-    <section aria-labelledby="faqs-help-title" className="bg-white pb-10 md:pb-14">
+    <section aria-labelledby="faqs-help-title" className="bg-white pb-10 md:pb-10">
       <div className={container}>
         <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-2xl bg-gradient-to-r from-brand-tealLight to-brand-tealDark px-6 py-8 sm:px-10 sm:py-10">
           {/* Decorative curves. */}

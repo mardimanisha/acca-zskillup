@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { ArrowRight, Award, BadgeCheck, Download, ShieldCheck, TrendingUp, type LucideIcon } from "lucide-react";
+import { ArrowRight, Award, BadgeCheck, ShieldCheck, TrendingUp, type LucideIcon } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
+import { Button } from "@/components/ui/button";
 import { serif, trustLogos as logos } from "@/components/universities/university-ui";
 import { exemptionsLine } from "@/content/home-hero";
 import { universityPageCopy } from "@/content/university-page";
@@ -16,9 +17,6 @@ const copy = universityPageCopy.hero;
 // photo = right 50% of the hero; a near-white veil with a convex right edge sweeps over the
 // photo's left side (0% → 27% of the photo width, top → bottom), and a teal-green swoosh
 // runs along the upper part of that edge, fading out by ~40% of the height.
-
-const buttonBase =
-  "inline-flex h-[54px] w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-lg text-[15px] font-bold transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-2 sm:w-auto [&_svg]:shrink-0";
 
 function SwooshDefs() {
   return (
@@ -141,7 +139,7 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
         />
 
         <div className={cn(container, "relative")}>
-          <div className="pb-10 pt-12 md:pt-14 lg:min-h-[440px] lg:w-1/2 lg:pb-7 lg:pr-10 lg:pt-14 xl:min-h-[460px]">
+          <div className="pb-10 pt-12 md:pt-10 lg:min-h-[440px] lg:w-1/2 lg:pb-7 lg:pr-10 lg:pt-10 xl:min-h-[460px]">
             {u.logo && (
               <Image
                 src={u.logo}
@@ -168,39 +166,21 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
               </p>
             )}
             <p className="mt-5">
-              <span className="text-base font-bold text-uni-hero-deep [text-shadow:0_0_6px_rgba(1,87,67,0.55),0_0_16px_rgba(1,87,67,0.35)] xl:text-[17px]">
+              <span className="text-base font-bold text-uni-hero-deep [text-shadow:0_0_6px_rgba(1,87,67,0.08),0_0_16px_rgba(1,87,67,0.04)] xl:text-[17px]">
                 {exemptionsLine}
               </span>
             </p>
-            <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:gap-5">
-              <a
-                href={universityPageCopy.enquiryHref}
-                className={cn(
-                  buttonBase,
-                  "bg-gradient-to-r from-brand-tealLight to-brand-tealDark text-white shadow-[0_10px_24px_-10px_rgba(11,95,87,0.7)] hover:brightness-110 focus-visible:ring-brand-teal/40 [&_svg]:size-[18px]",
-                )}
-              >
-                {copy.advisor}
-                <ArrowRight aria-hidden="true" />
-              </a>
+            <div className="mt-4 flex flex-col gap-4 sm:flex-row">
+              <Button asChild variant="brand" className="w-full sm:w-auto">
+                <a href={universityPageCopy.enquiryHref}>{copy.advisor}</a>
+              </Button>
               {u.brochureUrl && (
-                <a
-                  href={u.brochureUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonBase,
-                    "border-[1.5px] border-brand-teal bg-white text-brand-teal hover:bg-brand-teal/5 hover:text-brand-tealDark pl-3 focus-visible:ring-brand-teal/40",
-                  )}
-                >
-                  <span
-                    aria-hidden="true"
-                    className="flex size-[30px] items-center justify-center rounded-full bg-brand-teal text-white [&_svg]:size-[15px]"
-                  >
-                    <Download strokeWidth={2.5} />
-                  </span>
-                  {copy.brochure}
-                </a>
+                <Button asChild variant="brandOutline" className="w-full sm:w-auto">
+                  <a href={u.brochureUrl} target="_blank" rel="noopener noreferrer">
+                    {copy.brochure}
+                    <ArrowRight aria-hidden="true" />
+                  </a>
+                </Button>
               )}
             </div>
           </div>

@@ -3,10 +3,9 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/site-footer";
 import {
   ProgramCareers,
-  ProgramComparison,
+  ProgramFeatureGrid,
   ProgramFinalCta,
   ProgramAccaLearning,
-  ProgramWhoFor,
 } from "@/components/programs/sections/program-blocks";
 import { ProgramHiringPartners } from "@/components/programs/sections/program-hiring-partners";
 import { ProgramCurriculum } from "@/components/programs/sections/program-curriculum";
@@ -29,11 +28,10 @@ export default function BbaAccaPage() {
       <ProgramUniversities content={page.universities} />
       <ProgramCurriculum content={page.curriculum} />
       <ProgramAccaLearning id="acca-learning-title" content={page.accaLearning} tone="mint" />
-      <ProgramComparison id="compare-title" content={page.comparison} tone="white" />
-      <ProgramWhoFor id="who-for-title" content={page.whoFor} tone="mint" />
-      <ProgramCareers id="careers-title" content={page.careers} tone="white" />
+      <ProgramFeatureGrid id="ai-employability-title" content={page.aiEmployability} tone="white" />
+      <ProgramCareers id="careers-title" content={page.careers} tone="mint" />
       <ProgramHiringPartners id="hiring-partners-title" />
-      <ProgramFinalCta id="final-cta-title" content={page.finalCta} brochureHref={page.brochure} />
+      <ProgramFinalCta id="final-cta-title" content={page.finalCta} />
       <EnquiryFormSection defaultProgram="BBA + ACCA" hideProgramAndCity />
       <SiteFooter brochureHref={page.brochure} />
     </>

@@ -1,6 +1,8 @@
 // Copy shared by every program page (CTAs, enquiry form, footer, university partners).
 
 import type { University } from "@/content/program-types";
+import { filterUniversities, type DegreeProgramId } from "@/data/universities";
+import { universityProgramFees } from "@/data/university-fees";
 
 export const programCtas = {
   advisor: { label: "Talk to an Advisor", href: "#enquiry-form" },
@@ -18,13 +20,11 @@ export const brochures = {
 export const brochureOptions = [
   { program: "B.Com + ACCA", href: brochures.bcom, fileName: "bcom-acca-brochure.pdf" },
   { program: "BBA + ACCA", href: brochures.bba, fileName: "bba-acca-brochure.pdf" },
-  { program: "ACCA Only (To Be Announced)", href: brochures.accaOnly, fileName: "acca-only-brochure.pdf" },
 ] as const;
 
-// DUMMY partner data for layout only: real university names/logos used as placeholders.
-// Location, EMI and total fee are dummy values too.
-// Replace with the confirmed partner list (names, logos, campus photos, programs) before launch.
-// Logos and campus photos are cropped from the design mockup (low resolution).
+// Partner cards come from data/universities.ts, filtered to the universities that offer the
+// program. Features are shared copy; location is on the listing. EMI / total fee come from the
+// fee sheet (data/university-fees.ts, dummy until the final sheet) and are hidden when absent.
 const universityFeatures = [
   "Globally recognised degree",
   "ACCA-aligned learning",
@@ -32,64 +32,38 @@ const universityFeatures = [
   "Employability preparation",
 ] as const;
 
-export const partnerUniversities: readonly University[] = [
-  {
-    slug: "northeastern-university",
-    name: "Northeastern University",
-    logo: "/images/universities/northeastern-logo.png",
-    campus: "/images/universities/northeastern-campus.jpg",
-    location: "Boston, USA",
-    monthlyEmi: "₹16,500",
-    totalFee: "₹5,94,000",
-    tags: ["B.Com + ACCA", "3 Years", "Online"],
-    features: universityFeatures,
-  },
-  {
-    slug: "international-school-of-management",
-    name: "International School of Management",
-    logo: "/images/universities/ism-logo.png",
-    campus: "/images/universities/ism-campus.jpg",
-    location: "Berlin, Germany",
-    monthlyEmi: "₹15,000",
-    totalFee: "₹5,40,000",
-    tags: ["B.Com + ACCA", "3 Years", "Online"],
-    features: universityFeatures,
-  },
-  {
-    slug: "eu-business-school",
-    name: "EU Business School",
-    logo: "/images/universities/eu-business-school-logo.png",
-    campus: "/images/universities/eu-business-school-campus.jpg",
-    location: "Barcelona, Spain",
-    monthlyEmi: "₹14,000",
-    totalFee: "₹5,04,000",
-    tags: ["BBA + ACCA", "3 Years", "Online"],
-    features: universityFeatures,
-  },
-  {
-    slug: "university-of-east-london",
-    name: "University of East London",
-    logo: "/images/universities/uel-logo.png",
-    campus: "/images/universities/uel-campus.jpg",
-    location: "London, UK",
-    monthlyEmi: "₹13,500",
-    totalFee: "₹4,86,000",
-    tags: ["BBA + ACCA", "3 Years", "Online"],
-    features: universityFeatures,
-  },
-];
+const rupees = (amount: number) => `₹${amount.toLocaleString("en-IN")}`;
 
-export const universitiesCommon = {
-  eyebrow: "UNIVERSITY PARTNERS",
-  title: "Our Reputed University Partners",
-  viewAll: { label: "View All Universities", href: "/universities" },
-  exploreLabel: "Explore University",
-  emiLabel: "Monthly EMI",
-  totalFeeLabel: "Total Program Fee",
-  // Screen-reader-only labels for the carousel controls.
-  a11y: { prev: "Previous universities", next: "Next universities", goTo: "Go to university" },
-  universities: partnerUniversities,
-} as const;
+export function partnerUniversitiesFor(program: DegreeProgramId): readonly University[] {
+  return filterUniversities(program).map((u) => {
+    const fee = universityProgramFees.find((f) => f.slug === u.slug && f.program === program);
+    return {
+      slug: u.slug,
+      name: u.officialName,
+      logo: u.logo,
+      campus: u.campusImage,
+      location: u.location,
+      monthlyEmi: fee?.emi ? rupees(fee.emi.monthly) : "",
+      totalFee: fee ? rupees(fee.total) : "",
+      tags: [`${u.degree} + ACCA`, "3 Years", "Online"],
+      features: universityFeatures,
+    };
+  });
+}
+
+export function universitiesCommonFor(program: DegreeProgramId) {
+  return {
+    eyebrow: "UNIVERSITY PARTNERS",
+    title: "Our Reputed University Partners",
+    viewAll: { label: "View All Universities", href: "/universities" },
+    exploreLabel: "Explore University",
+    emiLabel: "Monthly EMI",
+    totalFeeLabel: "Total Program Fee",
+    // Screen-reader-only labels for the carousel controls.
+    a11y: { prev: "Previous universities", next: "Next universities", goTo: "Go to university" },
+    universities: partnerUniversitiesFor(program),
+  } as const;
+}
 
 export const curriculumCommon = {
   columns: { zskillup: "ZSKILLUP ACCA PREPARATION" },

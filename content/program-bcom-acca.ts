@@ -6,7 +6,7 @@ import {
   accaExemptions,
   brochures,
   curriculumCommon,
-  universitiesCommon,
+  universitiesCommonFor,
 } from "@/content/program-shared";
 import type {
   CareersContent,
@@ -71,7 +71,7 @@ const why = {
 } satisfies WhyContent;
 
 const universities = {
-  ...universitiesCommon,
+  ...universitiesCommonFor("bcom"),
   body: "Earn your B.Com + ACCA from our reputed university partners while building professional finance, AI and employability skills with ZSkillup.",
 } satisfies UniversitiesContent;
 

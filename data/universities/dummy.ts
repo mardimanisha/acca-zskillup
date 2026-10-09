@@ -3,151 +3,41 @@
 // replace each field in the university's own data file with official values, or set it to
 // "" / [] to hide that element.
 
+import { curriculumYears, semesterLabel } from "@/content/curriculum-years";
 import { homeFeesContent } from "@/content/home-fees";
+import { bbaPage } from "@/content/program-bba-acca";
+import { bcomPage } from "@/content/program-bcom-acca";
 import { brochures } from "@/content/program-shared";
+import type { CurriculumContent } from "@/content/program-types";
 import type { CurriculumYear, UniversityPage } from "@/data/universities/types";
 
 type Degree = "B.Com" | "BBA";
 
-type Subject = [name: string, accaCode: string, taughtByZSkillup?: boolean];
-
 const ZSKILLUP = "ZSkillup";
+const EMPLOYABILITY_BADGE = "Employability";
 
-// Subjects follow the proposed degree + ACCA structure in the content PDF.
-// ACCA codes, "Taught By", "Assessed By" and hours are placeholders.
-const curricula: Record<Degree, readonly { title: string; subtitle: string; semesters: readonly (readonly Subject[])[] }[]> = {
-  BBA: [
-    {
-      title: "Year 1",
-      subtitle: "Business & Accounting Foundations",
-      semesters: [
-        [
-          ["Financial Accounting", "K1"],
-          ["Management Accounting & Business Analytics", "K2"],
-          ["Business Law & Business Environment", "K3"],
-          ["AI, Financial Modelling & Business Decision Making", "", true],
-          ["Business Economics", ""],
-        ],
-        [
-          ["Financial Reporting", "E2"],
-          ["Taxation", "E1"],
-          ["Performance Management & Data Analysis", "E5"],
-          ["Business Communication", "", true],
-          ["Principles of Marketing", ""],
-        ],
-      ],
-    },
-    {
-      title: "Year 2",
-      subtitle: "Professional Expertise & Management Breadth",
-      semesters: [
-        [
-          ["Audit, Risk & Control", "E3"],
-          ["Finance & Investment", "E4"],
-          ["Management, People & Organisations", ""],
-          ["Operations Management", ""],
-        ],
-        [
-          ["Strategy, Leadership & Governance", ""],
-          ["International Business & Marketing", ""],
-          ["Business & Sustainability Reporting", "S1"],
-          ["Business Research Methods", ""],
-        ],
-      ],
-    },
-    {
-      title: "Year 3",
-      subtitle: "Strategic Professional Level & Career Transition",
-      semesters: [
-        [
-          ["Professional Specialisation", ""],
-          ["Strategic Business Leader", "S2"],
-          ["Career Readiness Lab I: CV, LinkedIn & Interview Skills", "", true],
-          ["Entrepreneurship & Innovation", ""],
-        ],
-        [
-          ["Advanced Professional Specialisation", ""],
-          ["Corporate Strategy & Business Transformation", ""],
-          ["Strategic Professional Option", ""],
-          ["Career Readiness Lab II: Mock Interviews, Group Discussions & Placement Preparation", "", true],
-        ],
-      ],
-    },
-  ],
-  "B.Com": [
-    {
-      title: "Year 1",
-      subtitle: "Commerce & Accounting Foundations",
-      semesters: [
-        [
-          ["Financial Accounting", "K1"],
-          ["Management Accounting & Business Analytics", "K2"],
-          ["Business Law & Business Environment", "K3"],
-          ["AI, Financial Modelling & Business Decision Making", "", true],
-          ["Managerial Economics", ""],
-        ],
-        [
-          ["Financial Reporting", "E2"],
-          ["Taxation", "E1"],
-          ["Performance Management & Data Analysis", "E5"],
-          ["Business Communication", "", true],
-          ["Environmental Studies", ""],
-        ],
-      ],
-    },
-    {
-      title: "Year 2",
-      subtitle: "Professional Expertise & Commerce Breadth",
-      semesters: [
-        [
-          ["Audit, Risk & Control", "E3"],
-          ["Finance & Investment", "E4"],
-          ["Corporate Accounting", ""],
-          ["Cost Accounting", ""],
-        ],
-        [
-          ["Strategy, Leadership & Governance", ""],
-          ["Marketing Management", ""],
-          ["Business & Sustainability Reporting", "S1"],
-          ["Business Research Methods", ""],
-        ],
-      ],
-    },
-    {
-      title: "Year 3",
-      subtitle: "Strategic Professional Learning & Career Transition",
-      semesters: [
-        [
-          ["Professional Specialisation", ""],
-          ["Strategic Business Leader", "S2"],
-          ["Career Readiness Lab I: CV, LinkedIn & Interview Skills", "", true],
-          ["Corporate Governance & Business Ethics", ""],
-        ],
-        [
-          ["Advanced Professional Specialisation", ""],
-          ["International Business & Commerce", ""],
-          ["Strategic Professional Option", ""],
-          ["Career Readiness Lab II: Mock Interviews, Group Discussions & Placement Preparation", "", true],
-        ],
-      ],
-    },
-  ],
+// Curriculum is the program page's own (content/program-bba-acca.ts, content/program-bcom-acca.ts),
+// so every university offering a degree shows exactly that program's years, semesters and subjects.
+// Only "Taught By" / "Assessed By" are placeholders; hours are left out (the program pages don't show them).
+const programCurricula: Record<Degree, CurriculumContent> = {
+  BBA: bbaPage.curriculum,
+  "B.Com": bcomPage.curriculum,
 };
 
-function dummyCurriculum(degree: Degree, shortName: string): readonly CurriculumYear[] {
-  let semester = 0;
-  return curricula[degree].map((year) => ({
+function programCurriculum(degree: Degree, shortName: string): readonly CurriculumYear[] {
+  return curriculumYears(programCurricula[degree].semesters).map((year) => ({
     title: year.title,
     subtitle: year.subtitle,
-    semesters: year.semesters.map((subjects) => ({
-      title: `Semester ${++semester}`,
-      subjects: subjects.map(([name, accaCode, zskillup]) => ({
-        name,
-        accaCode,
-        taughtBy: zskillup ? ZSKILLUP : shortName,
+    semesters: year.semesters.map((sem) => ({
+      title: semesterLabel(sem.label),
+      subjects: sem.subjects.map((s) => ({
+        name: s.name,
+        accaCode: s.code ?? "",
+        taughtBy: s.badge === EMPLOYABILITY_BADGE ? ZSKILLUP : shortName,
         assessedBy: shortName,
-        classHours: 55,
-        selfStudyHours: 110,
+        badge: s.badge ?? "",
+        classHours: 0,
+        selfStudyHours: 0,
       })),
     })),
   }));
@@ -222,7 +112,7 @@ export function createDummyUniversityPage({
     eligibility: "10+2 from a recognised board",
     examinationMode: "Online",
     intake: "January 2027",
-    curriculum: dummyCurriculum(degree, shortName),
+    curriculum: programCurriculum(degree, shortName),
     curriculumPdf: "",
     recognitions: {
       ugcStatus: "UGC Status",

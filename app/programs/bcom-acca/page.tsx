@@ -6,7 +6,6 @@ import {
   ProgramFeatureGrid,
   ProgramFinalCta,
   ProgramAccaLearning,
-  ProgramWhoFor,
 } from "@/components/programs/sections/program-blocks";
 import { ProgramHiringPartners } from "@/components/programs/sections/program-hiring-partners";
 import { ProgramCurriculum } from "@/components/programs/sections/program-curriculum";
@@ -30,10 +29,9 @@ export default function BcomAccaPage() {
       <ProgramCurriculum content={page.curriculum} />
       <ProgramAccaLearning id="acca-learning-title" content={page.accaLearning} tone="mint" />
       <ProgramFeatureGrid id="ai-employability-title" content={page.aiEmployability} tone="white" />
-      <ProgramWhoFor id="who-for-title" content={page.whoFor} tone="mint" />
-      <ProgramCareers id="careers-title" content={page.careers} tone="white" />
+      <ProgramCareers id="careers-title" content={page.careers} tone="mint" />
       <ProgramHiringPartners id="hiring-partners-title" />
-      <ProgramFinalCta id="final-cta-title" content={page.finalCta} brochureHref={page.brochure} />
+      <ProgramFinalCta id="final-cta-title" content={page.finalCta} />
       <EnquiryFormSection defaultProgram="B.Com + ACCA" hideProgramAndCity />
       <SiteFooter brochureHref={page.brochure} />
     </>

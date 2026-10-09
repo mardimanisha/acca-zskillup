@@ -97,7 +97,7 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
       <div
         className={cn(
           container,
-          "relative grid gap-12 py-16 md:py-20 lg:grid-cols-[minmax(0,1fr)_386px] lg:items-stretch lg:gap-14 lg:py-7",
+          "relative grid gap-8 py-10 md:py-20 lg:grid-cols-[minmax(0,1fr)_386px] lg:items-stretch lg:gap-10 lg:py-7",
         )}
       >
         <div className="lg:py-6">
@@ -116,7 +116,7 @@ export function UniversityWhy({ university: u }: { university: UniversityPage })
           </h2>
 
           {usps.length > 0 && (
-            <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-0">
+            <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 lg:gap-0">
               {usps.map((usp, i) => (
                 <li
                   key={i}
@@ -207,7 +207,7 @@ export function UniversityPathway({ tone }: { tone: SectionTone }) {
           {title}
         </h2>
 
-        <ol className="mt-12 grid gap-y-10 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-y-0">
+        <ol className="mt-8 grid gap-y-10 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 lg:gap-y-0">
           {cards.map((card, i) => {
             const Icon = pathwayIcons[card.icon];
             return (
@@ -279,7 +279,7 @@ export function UniversityOverview({ university: u }: { university: UniversityPa
           {eyebrow}
         </h2>
 
-        <dl className="mt-10 grid sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+        <dl className="mt-10 grid sm:grid-cols-2 lg:mt-8 lg:grid-cols-4">
           {items.map((item, i) => (
             <div
               key={item.label}
@@ -465,7 +465,7 @@ export function UniversityJourney({ university: u }: { university: UniversityPag
       <div
         className={cn(
           container,
-          "relative grid gap-10 py-16 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:items-center lg:py-[72px]",
+          "relative grid gap-10 py-10 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:items-center lg:py-[72px]",
         )}
       >
         <div>

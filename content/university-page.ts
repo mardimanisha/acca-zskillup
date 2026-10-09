@@ -78,14 +78,6 @@ export const universityPageCopy = {
       selfStudyHours: "Self",
     },
     hours: (h: number) => `${h}h`,
-    summary: (subjects: number, classHours: number, selfHours: number) =>
-      [
-        `${subjects} subjects`,
-        classHours ? `${classHours}h classroom` : "",
-        selfHours ? `${selfHours}h self-study` : "",
-      ]
-        .filter(Boolean)
-        .join(" · "),
     // Screen-reader-only labels.
     a11y: { years: "Curriculum years", semesters: "Semesters" },
   },

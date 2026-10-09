@@ -16,6 +16,8 @@ export type CurriculumSubject = {
   /** Who teaches the subject, exactly as it should appear (e.g. the university's short name). */
   taughtBy: string;
   assessedBy: string;
+  /** Peach pill next to the subject (e.g. "Employability", "Option"); "" hides it. */
+  badge: string;
   /** Classroom hours; 0 hides the value. */
   classHours: number;
   /** Self-study hours; 0 hides the value. */

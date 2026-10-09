@@ -39,7 +39,7 @@ export function HeroSection() {
         className="absolute inset-0 -z-10 bg-white/55 xl:hidden"
       />
 
-      <div className="mx-auto grid w-full max-w-[1760px] grid-cols-1 gap-8 px-4 py-10 sm:px-6 md:py-14 lg:px-10 xl:grid-cols-[minmax(0,1fr)_440px] xl:grid-rows-[auto_1fr] xl:gap-x-12 xl:gap-y-4 xl:px-16 xl:py-6 short:gap-y-2 short:py-4 tight:gap-y-2 tight:py-3">
+      <div className="mx-auto grid w-full max-w-[1760px] grid-cols-1 gap-8 px-4 py-10 sm:px-6 md:py-10 lg:px-10 xl:grid-cols-[minmax(0,1fr)_440px] xl:grid-rows-[auto_1fr] xl:gap-x-12 xl:gap-y-4 xl:px-16 xl:py-6 short:gap-y-2 short:py-4 tight:gap-y-2 tight:py-3">
         <div className="order-1 max-w-[600px] xl:col-start-1 xl:row-start-1">
           <HeroContent />
         </div>

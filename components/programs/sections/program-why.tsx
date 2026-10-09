@@ -30,7 +30,7 @@ export function ProgramWhy({ content, brochureHref }: { content: WhyContent; bro
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-zs-mintSoft to-transparent" />
       </div>
 
-      <div className={cn(container, "relative flex flex-col gap-12 py-16 lg:gap-14 lg:py-24")}>
+      <div className={cn(container, "relative flex flex-col gap-8 py-10 lg:gap-10 lg:py-14")}>
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
           <SectionTitle id="program-why-title">

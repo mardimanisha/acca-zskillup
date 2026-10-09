@@ -49,6 +49,8 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
     if (el && card) el.scrollBy({ left: dir * (card.offsetWidth + 16), behavior: "smooth" });
   }
 
+  if (!universities.length) return null;
+
   return (
     <section
       aria-labelledby="program-universities-title"
@@ -133,16 +135,22 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
                       </li>
                     ))}
                   </ul>
-                  <dl className="mt-4 grid grid-cols-2 gap-3 rounded-lg bg-[#F1F4F7] px-3 py-3">
-                    <div>
-                      <dt className="text-xs font-medium text-[#6B7186]">{emiLabel}</dt>
-                      <dd className="mt-0.5 text-base font-extrabold text-zs-green">{uni.monthlyEmi}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-xs font-medium text-[#6B7186]">{totalFeeLabel}</dt>
-                      <dd className="mt-0.5 text-base font-extrabold">{uni.totalFee}</dd>
-                    </div>
-                  </dl>
+                  {(uni.monthlyEmi || uni.totalFee) && (
+                    <dl className="mt-4 grid grid-cols-2 gap-3 rounded-lg bg-[#F1F4F7] px-3 py-3">
+                      {uni.monthlyEmi && (
+                        <div>
+                          <dt className="text-xs font-medium text-[#6B7186]">{emiLabel}</dt>
+                          <dd className="mt-0.5 text-base font-extrabold text-zs-green">{uni.monthlyEmi}</dd>
+                        </div>
+                      )}
+                      {uni.totalFee && (
+                        <div className={cn(!uni.monthlyEmi && "col-span-2")}>
+                          <dt className="text-xs font-medium text-[#6B7186]">{totalFeeLabel}</dt>
+                          <dd className="mt-0.5 text-base font-extrabold">{uni.totalFee}</dd>
+                        </div>
+                      )}
+                    </dl>
+                  )}
                   <ul className="mt-4 space-y-2.5">
                     {uni.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2.5 text-sm text-[#6B7186]">

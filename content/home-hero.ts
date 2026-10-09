@@ -11,7 +11,6 @@ export const currentEducationOptions = [
 export const programInterestOptions = [
   "B.Com + ACCA",
   "BBA + ACCA",
-  "ACCA Only (To Be Announced)",
   "Not Sure Yet",
 ] as const;
 

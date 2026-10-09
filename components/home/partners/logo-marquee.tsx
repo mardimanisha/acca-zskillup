@@ -22,7 +22,8 @@ function MarqueeCard({ company }: { company: MarqueeCompany }) {
             fetchPriority="low"
             unoptimized={company.file.endsWith(".svg")}
             // Fixed height + full width with object-contain: SVGs that only have a viewBox (e.g. Protiviti) have no intrinsic width and collapsed to a blank card with w-auto.
-            className={`w-full object-contain ${company.showName ? "h-8 md:h-9" : "h-9 md:h-11"}`}
+            style={company.scale ? { transform: `scale(${company.scale})` } : undefined}
+            className="h-9 w-full max-w-[112px] object-contain md:h-10 md:max-w-[128px]"
           />
           {company.showName && (
             <span className="text-xs font-semibold leading-tight text-brand-navy">{company.name}</span>

@@ -27,7 +27,7 @@ export function UniversitiesExplorer({ universities }: { universities: readonly 
       count: universities.filter((u) => u.degree === degree).length,
     })),
   ];
-  const visible = program === "all" ? universities : universities.filter((u) => u.degree === program);
+  const visible = universities.filter((u) => program === "all" || u.degree === program);
 
   return (
     <section id={copy.cards.id} className="scroll-mt-[76px] bg-ul-mint">

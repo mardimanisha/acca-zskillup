@@ -101,12 +101,12 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
 
   return (
     <section aria-labelledby={`${uid}-heading`} className="bg-white">
-      <div className={cn(container, "pb-10 pt-8 sm:pt-10 md:pb-14")}>
+      <div className={cn(container, "pb-10 pt-8 sm:pt-10 md:pb-10")}>
         <div className="mx-auto max-w-[1120px]">
           <div
             role="tablist"
             aria-label="FAQ categories"
-            className="-mx-4 flex snap-x snap-mandatory overflow-x-auto border-y border-fp-line bg-white p-1 [scrollbar-width:none] sm:mx-0 sm:rounded-xl sm:border lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+            className="-mx-4 flex snap-x snap-mandatory overflow-x-auto border-y border-fp-line bg-white p-2 gap-1 [scrollbar-width:none] sm:mx-0 sm:rounded-xl sm:border lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden"
           >
             {faqCategories.map((category, index) => {
               const Icon = icons[category.icon];
@@ -127,7 +127,7 @@ export function FaqsExplorer({ initialId }: { initialId: FaqCategoryId }) {
                   onClick={() => select(category.id)}
                   onKeyDown={(event) => onKeyDown(event, index)}
                   className={cn(
-                    "gradient-fade relative flex min-w-[210px] shrink-0 snap-start items-center gap-3 rounded-lg px-4 py-3.5 text-left text-[13px] font-semibold leading-snug transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-fp-green/40 lg:min-w-[200px] lg:flex-1 lg:gap-2.5 lg:px-3",
+                    "gradient-fade relative flex min-w-[210px] shrink-0 snap-start items-center gap-3 rounded-lg px-5 py-4 text-left text-[13px] font-semibold leading-snug transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-fp-green/40 lg:min-w-[200px] lg:flex-1 lg:gap-3 lg:px-4",
                     selected ? "is-on text-white" : "text-fp-navy hover:bg-fp-mintSoft",
                     showDivider && "before:absolute before:inset-y-3 before:left-0 before:w-px before:bg-fp-line",
                   )}

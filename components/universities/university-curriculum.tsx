@@ -11,15 +11,15 @@ import {
 } from "lucide-react";
 
 import { Eyebrow, SectionTitle, container } from "@/components/programs/program-ui";
+import { SubjectList } from "@/components/programs/sections/program-curriculum";
 import { universityPageCopy } from "@/content/university-page";
 import type { UniversityPage } from "@/data/universities/types";
 import { cn } from "@/lib/utils";
 
 const copy = universityPageCopy.curriculum;
 
-// Matches the program pages' curriculum: year cards on a dotted timeline (active = solid green),
-// white card with pill semester tabs above a bulleted subject list (red ACCA-code chips, peach
-// badge for subjects taught outside the university).
+// Matches the program pages' curriculum (same SubjectList tiles: red ACCA-code chips, peach badge),
+// and the curriculum data itself comes from the program the university offers (data/universities/dummy.ts).
 
 const yearIcons: readonly LucideIcon[] = [GraduationCap, ChartColumnIncreasing, Award];
 
@@ -36,16 +36,6 @@ function visibleYears(u: UniversityPage) {
     .filter((year) => year.semesters.length);
 }
 
-/** Subjects taught by anyone other than the university (the ZSkillup add-ons) get the peach "Employability" badge. */
-function TaughtByBadge({ value, university }: { value: string; university: string }) {
-  if (!filled(value) || university.toLowerCase().includes(value.trim().toLowerCase())) return null;
-  return (
-    <span className="ml-2 inline-flex rounded-full bg-uni-cur-peach px-2.5 py-0.5 align-[1px] text-[11px] font-semibold leading-none text-uni-cur-peachText">
-      {copy.externalBadge}
-    </span>
-  );
-}
-
 export function UniversityCurriculum({ university: u }: { university: UniversityPage }) {
   const years = visibleYears(u);
   const [yearIndex, setYearIndex] = useState(0);
@@ -53,12 +43,7 @@ export function UniversityCurriculum({ university: u }: { university: University
 
   const year = years[Math.min(yearIndex, years.length - 1)];
   const sem = year.semesters[Math.min(semIndex, year.semesters.length - 1)];
-  const subjects = sem.subjects;
-  const summary = copy.summary(
-    subjects.length,
-    subjects.reduce((t, s) => t + s.classHours, 0),
-    subjects.reduce((t, s) => t + s.selfStudyHours, 0),
-  );
+  const subjects = sem.subjects.map((s) => ({ name: s.name, code: s.accaCode, badge: s.badge }));
 
   return (
     <section
@@ -147,7 +132,7 @@ export function UniversityCurriculum({ university: u }: { university: University
           </div>
 
           {/* Semester tabs + subject table. */}
-          <div className="rounded-2xl bg-white p-4 shadow-[0_20px_50px_-28px_rgba(10,15,75,0.28)] ring-1 ring-uni-cur-line sm:p-6">
+          <div className="flex flex-col rounded-2xl bg-white p-4 shadow-[0_20px_50px_-28px_rgba(10,15,75,0.28)] ring-1 ring-uni-cur-line sm:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div aria-label={copy.a11y.semesters} role="group" className="flex flex-wrap gap-2">
                 {year.semesters.map((s, i) => {
@@ -170,25 +155,9 @@ export function UniversityCurriculum({ university: u }: { university: University
                   );
                 })}
               </div>
-              <p className="text-sm text-uni-cur-meta">{summary}</p>
             </div>
 
-            <ul className="mt-5 space-y-3 border-t border-uni-cur-line pt-5">
-              {subjects.map((s) => (
-                <li key={s.name} className="flex items-start gap-3 text-[15px] leading-snug text-[#5F6679]">
-                  <span aria-hidden="true" className="mt-[7px] size-1.5 shrink-0 rounded-full bg-zs-green" />
-                  <span>
-                    {s.name}
-                    {filled(s.accaCode) && (
-                      <span className="ml-2 inline-flex rounded-md bg-[#FEEAE8] px-1.5 py-0.5 align-[1px] text-[11px] font-bold leading-none text-[#F0474D]">
-                        {s.accaCode}
-                      </span>
-                    )}
-                    <TaughtByBadge value={s.taughtBy} university={u.universityName} />
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <SubjectList subjects={subjects} />
 
             {filled(u.curriculumPdf) && (
               <div className="mt-4 flex justify-end">

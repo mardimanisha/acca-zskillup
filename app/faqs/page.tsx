@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { EnquiryModalProvider } from "@/components/faqs/enquiry-modal";
 import { FaqIllustration } from "@/components/faqs/faq-illustration";
 import { FaqsExplorer } from "@/components/faqs/faqs-explorer";
 import { FaqsHelp } from "@/components/faqs/faqs-help";
@@ -75,10 +74,8 @@ export default async function FaqsPage({
         <FaqIllustration className="pointer-events-none absolute bottom-0 right-[4%] hidden h-[86%] w-auto md:block lg:right-[8%]" />
       </section>
 
-      <EnquiryModalProvider>
-        <FaqsExplorer initialId={initialId} />
-        <FaqsHelp />
-      </EnquiryModalProvider>
+      <FaqsExplorer initialId={initialId} />
+      <FaqsHelp />
 
       <SiteFooter />
     </>

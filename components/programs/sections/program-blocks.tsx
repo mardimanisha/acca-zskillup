@@ -16,9 +16,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { FinalCtaButtons } from "@/components/programs/final-cta-buttons";
 import {
-  AdvisorButton,
-  BrochureButton,
   Eyebrow,
   IconCircle,
   LinkButton,
@@ -189,7 +188,7 @@ export function ProgramComparison({ id, content, tone }: SectionProps<Comparison
   return (
     <section aria-labelledby={id} className={cn("overflow-hidden", toneClass[tone])}>
       <div className={cn(container, "section-y")}>
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-8">
           <div>
             <Eyebrow className="text-xs">{eyebrow}</Eyebrow>
             <SectionTitle id={id} className="mt-4 text-3xl md:text-[34px]">
@@ -327,7 +326,7 @@ export function ProgramCareers({ id, content, tone }: SectionProps<CareersConten
 
   return (
     <section aria-labelledby={id} className={toneClass[tone]}>
-      <div className={cn(container, "flex flex-col items-center py-14 text-center lg:py-16")}>
+      <div className={cn(container, "flex flex-col items-center py-10 text-center lg:py-12")}>
         <Briefcase aria-hidden="true" className="size-6 text-zs-green" strokeWidth={1.75} />
         <Eyebrow id={title ? undefined : id} className="mt-2 text-xs">
           {eyebrow}
@@ -375,15 +374,7 @@ export function ProgramCareers({ id, content, tone }: SectionProps<CareersConten
   );
 }
 
-export function ProgramFinalCta({
-  id,
-  content,
-  brochureHref,
-}: {
-  id: string;
-  content: FinalCtaContent;
-  brochureHref: string;
-}) {
+export function ProgramFinalCta({ id, content }: { id: string; content: FinalCtaContent }) {
   const fadeLeft = "linear-gradient(to right, #000, transparent 35%)";
   const fadeRight = "linear-gradient(to left, #000, transparent 35%)";
 
@@ -423,11 +414,11 @@ export function ProgramFinalCta({
       />
 
       <div className={cn(container, "relative section-y")}>
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 pb-12 pt-14 text-center sm:px-10">
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 pb-10 pt-10 text-center sm:px-10">
           {/* Frame, with the top and bottom edges cut away behind the icon and the dots. */}
           <span
             aria-hidden="true"
-            className="absolute inset-0 rounded-2xl border border-white/45 [mask-image:linear-gradient(to_right,#000_calc(50%-48px),transparent_calc(50%-48px),transparent_calc(50%+48px),#000_calc(50%+48px))] [-webkit-mask-image:linear-gradient(to_right,#000_calc(50%-48px),transparent_calc(50%-48px),transparent_calc(50%+48px),#000_calc(50%+48px))]"
+            className="pointer-events-none absolute inset-0 rounded-2xl border border-white/45 [mask-image:linear-gradient(to_right,#000_calc(50%-48px),transparent_calc(50%-48px),transparent_calc(50%+48px),#000_calc(50%+48px))] [-webkit-mask-image:linear-gradient(to_right,#000_calc(50%-48px),transparent_calc(50%-48px),transparent_calc(50%+48px),#000_calc(50%+48px))]"
           />
           <span
             aria-hidden="true"
@@ -445,17 +436,8 @@ export function ProgramFinalCta({
             {content.title}
           </h2>
           {content.body && <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/85">{content.body}</p>}
-          <div className="mt-8 flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row">
-            <AdvisorButton
-              variant="white"
-              arrow
-              className="h-12 justify-between gap-6 bg-white px-6 text-[15px]"
-            />
-            <BrochureButton
-              href={brochureHref}
-              variant="outlineWhite"
-              className="h-12 border-white/70 px-6 text-[15px]"
-            />
+          <div className="relative z-10 mt-8 flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row">
+            <FinalCtaButtons />
           </div>
         </div>
       </div>

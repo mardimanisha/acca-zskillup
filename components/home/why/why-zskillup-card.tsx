@@ -48,7 +48,7 @@ export function WhyZSkillupCard({
   return (
     // Default: stacked card with a curved bottom band (as in the design).
     // `compact` (short desktop screens): still stacked and centred, but tighter, with the badge top-right and no band.
-    <Card className="relative h-full gap-0 overflow-hidden rounded-2xl border-slate-100 bg-white px-5 pb-16 pt-5 text-center shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)] xl:pt-4 compact:px-4 compact:pb-4 compact:pt-4 short:px-3.5 short:pb-3 short:pt-3">
+    <Card className="relative h-full gap-0 overflow-hidden rounded-2xl border-slate-100 bg-white px-5 pb-12 pt-5 text-center shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)] xl:pt-4 compact:px-4 compact:pb-4 compact:pt-4 short:px-3.5 short:pb-3 short:pt-3">
       <div className="flex flex-col items-center">
         <span
           className={cn(

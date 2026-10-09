@@ -182,7 +182,7 @@ function ProgramPanel({ program }: { program: ProgramFee }) {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className={cn(container, "relative lg:flex lg:min-h-[480px] lg:items-center")}>
-        <div className="py-10 md:py-14 lg:w-[52%]">
+        <div className="py-10 md:py-10 lg:w-[52%]">
           <p className={eyebrowClass}>
             <span aria-hidden="true" className="block h-[2px] w-3 bg-fp-green" />
             {copy.panel.eyebrow}
@@ -270,7 +270,7 @@ function WhyChoose({ program }: { program: ProgramFee }) {
       <span aria-hidden="true" className="absolute -left-24 top-1/2 size-80 -translate-y-1/2 rounded-full bg-white/50" />
       <span aria-hidden="true" className="absolute -right-20 -top-20 size-72 rounded-full bg-[#D6EFE4]/50" />
 
-      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-12 px-4 section-y sm:px-6 lg:grid-cols-[1.12fr_1fr] lg:gap-14">
+      <div className="relative mx-auto grid w-full max-w-[1120px] items-center gap-8 px-4 section-y sm:px-6 lg:grid-cols-[1.12fr_1fr] lg:gap-10">
         <div className="relative mx-auto aspect-[490/390] w-full max-w-[560px] lg:mx-0">
           <span aria-hidden="true" className="absolute left-0 top-[30%] h-[56%] w-[13%] rounded-2xl bg-[#FBEEDD]" />
           <span aria-hidden="true" className="absolute right-0 top-[2%] h-[98%] w-[42%] rounded-[44px] bg-[#CFEBDD]/80" />
@@ -401,7 +401,7 @@ export function FeesExplorer({
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-cover bg-center opacity-100 [mask-image:linear-gradient(to_right,transparent,black_60%)] sm:block"
           style={{ backgroundImage: "url(/images/fees/hero-bg.jpg)" }}
         />
-        <div className={cn(container, "relative pb-10 pt-12 sm:pt-16 lg:pb-14 lg:pt-16")}>
+        <div className={cn(container, "relative pb-10 pt-12 sm:pt-10 lg:pb-10 lg:pt-10")}>
           <p className={eyebrowClass}>
             <span aria-hidden="true" className="block h-[2px] w-3 bg-fp-green" />
             {copy.hero.eyebrow}

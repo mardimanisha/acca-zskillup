@@ -6,6 +6,7 @@ import { BarChart3, FileText, GraduationCap, type LucideIcon } from "lucide-reac
 import { FeePlanCard } from "@/components/home/fees/fee-plan-card";
 import { TbaBadge } from "@/components/shared/tba-badge";
 import type { FeeProgram } from "@/content/home-fees";
+import { toBeAnnounced } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const icons: Record<FeeProgram["icon"], LucideIcon> = {
@@ -86,13 +87,19 @@ export function FeesExplorer({ programs, effectiveFeeLabel, aside }: FeesExplore
         className="flex flex-col rounded-2xl bg-white p-4 shadow-[0_20px_50px_-28px_rgba(10,15,75,0.28)] ring-1 ring-uni-cur-line sm:p-6"
       >
         <h3 className="sr-only">{program.title} fee plans</h3>
-        <ul className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 sm:auto-rows-fr">
-          {program.plans.map((plan) => (
-            <li key={plan.title}>
-              <FeePlanCard {...plan} effectiveFeeLabel={effectiveFeeLabel} />
-            </li>
-          ))}
-        </ul>
+        {program.comingSoon ? (
+          <div className="flex flex-1 items-center justify-center rounded-xl bg-uni-hero-mint/40 px-6 py-16 text-center">
+            <p className="text-2xl font-bold text-uni-hero-stat sm:text-3xl">{toBeAnnounced}</p>
+          </div>
+        ) : (
+          <ul className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 sm:auto-rows-fr">
+            {program.plans.map((plan) => (
+              <li key={plan.title}>
+                <FeePlanCard {...plan} effectiveFeeLabel={effectiveFeeLabel} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {aside && <div className="lg:col-span-2 xl:col-span-1">{aside}</div>}

@@ -23,7 +23,7 @@ export function LearningSection() {
         <path d="M0 300 C180 280 380 230 600 60 V300 Z" fill="currentColor" />
       </svg>
 
-      <div className="relative mx-auto grid w-full max-w-[1760px] grid-cols-1 gap-12 px-4 sm:px-6 lg:px-10 xl:grid-cols-12 xl:items-stretch xl:gap-10 xl:px-16 min-[106.25rem]:gap-12">
+      <div className="relative mx-auto grid w-full max-w-[1760px] grid-cols-1 gap-8 px-4 sm:px-6 lg:px-10 xl:grid-cols-12 xl:items-stretch xl:gap-10 xl:px-16 min-[106.25rem]:gap-8">
         {/* Below xl: content first, visual below. xl+: side by side, with type and spacing
             tightened so the content fits the visual's height; the feature rows then stretch to fill
             it. The title scales with the column (container query) so each part stays on one line. */}

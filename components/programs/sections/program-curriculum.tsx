@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Award, ChartColumnIncreasing, GraduationCap, type LucideIcon } from "lucide-react";
 
 import { Eyebrow, SectionTitle, container } from "@/components/programs/program-ui";
+import { curriculumYears, semesterLabel } from "@/content/curriculum-years";
 import type { CurriculumContent, CurriculumSubject } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
@@ -11,17 +12,17 @@ import { cn } from "@/lib/utils";
 // dotted timeline and a white card with pill semester tabs above bulleted subject lists (red
 // ACCA-code chips), degree and ZSkillup subjects combined in one list. Semesters are paired into years (S1+S2 = Year 1, ...).
 
-const SEMESTERS_PER_YEAR = 2;
 const yearIcons: readonly LucideIcon[] = [GraduationCap, ChartColumnIncreasing, Award];
 
-/** "S1: Commerce & Accounting Foundations" -> "Commerce & Accounting Foundations". */
-const yearSubtitle = (title: string) => title.replace(/^S\d+:\s*/, "");
-
-function SubjectList({ subjects }: { subjects: readonly CurriculumSubject[] }) {
+/** Shared with the university pages so both curricula render subjects identically. */
+export function SubjectList({ subjects }: { subjects: readonly CurriculumSubject[] }) {
   return (
-    <ul className="mt-5 space-y-3 border-t border-uni-cur-line pt-5">
+    <ul className="mt-5 grid content-start gap-3 border-t border-uni-cur-line pt-5 sm:grid-cols-2">
       {subjects.map((s) => (
-        <li key={s.name} className="flex items-start gap-3 text-[15px] leading-snug text-[#5F6679]">
+        <li
+          key={s.name}
+          className="flex items-start gap-3 rounded-xl bg-uni-cur-tabIdle/60 px-4 py-3.5 text-[15px] leading-snug text-[#5F6679]"
+        >
           <span aria-hidden="true" className="mt-[7px] size-1.5 shrink-0 rounded-full bg-zs-green" />
           <span>
             {s.name}
@@ -47,10 +48,7 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
   const [yearIndex, setYearIndex] = useState(0);
   const [semIndex, setSemIndex] = useState(0);
 
-  const years = Array.from({ length: Math.ceil(semesters.length / SEMESTERS_PER_YEAR) }, (_, i) => {
-    const items = semesters.slice(i * SEMESTERS_PER_YEAR, (i + 1) * SEMESTERS_PER_YEAR);
-    return { title: `Year ${i + 1}`, subtitle: yearSubtitle(items[0].title), semesters: items };
-  });
+  const years = curriculumYears(semesters);
 
   const year = years[yearIndex];
   const sem = year.semesters[Math.min(semIndex, year.semesters.length - 1)];
@@ -126,7 +124,7 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
           </div>
 
           {/* Semester tabs + subject table. */}
-          <div className="rounded-2xl bg-white p-4 shadow-[0_20px_50px_-28px_rgba(10,15,75,0.28)] ring-1 ring-uni-cur-line sm:p-6">
+          <div className="flex flex-col rounded-2xl bg-white p-4 shadow-[0_20px_50px_-28px_rgba(10,15,75,0.28)] ring-1 ring-uni-cur-line sm:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div aria-label={a11y.tabs} role="group" className="flex flex-wrap gap-2">
                 {year.semesters.map((s, i) => {
@@ -144,12 +142,11 @@ export function ProgramCurriculum({ content }: { content: CurriculumContent }) {
                           : "bg-uni-cur-tabIdle text-uni-cur-text hover:bg-uni-hero-mint",
                       )}
                     >
-                      {s.label.replace(/\s0?(\d)$/, " $1")}
+                      {semesterLabel(s.label)}
                     </button>
                   );
                 })}
               </div>
-              {sem.meta && <p className="text-sm text-uni-cur-meta">{sem.meta.replace("self-study", "self‑study")}</p>}
             </div>
             <SubjectList subjects={sem.subjects} />
           </div>

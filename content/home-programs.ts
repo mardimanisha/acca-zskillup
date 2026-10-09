@@ -1,3 +1,4 @@
+import { toBeAnnounced } from "@/content/site";
 import type { Accent } from "@/lib/accent";
 
 type ProgramCardContent = {
@@ -8,7 +9,7 @@ type ProgramCardContent = {
   title: string;
   description: string;
   meta: readonly string[];
-  cta: { label: string; href: string };
+  cta: { label: string; href: string; comingSoon?: boolean };
 };
 
 export const homeProgramsContent = {
@@ -66,7 +67,7 @@ export const homeProgramsContent = {
       description:
         "Prepare for your ACCA journey through structured live online and recorded learning, professional preparation and career-ready support.",
       meta: ["Self-Paced", "Live + Recorded", "100% Online"],
-      cta: { label: "Explore ACCA Only", href: "/programs/acca-only" },
+      cta: { label: toBeAnnounced, href: "/programs/acca", comingSoon: true },
     },
   ] satisfies readonly ProgramCardContent[],
 } as const;

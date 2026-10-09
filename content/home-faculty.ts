@@ -77,10 +77,4 @@ export const homeFacultyContent = {
       accent: "orange",
     },
   ] as FacultyMemberContent[],
-  cta: {
-    heading: { navy: "Learn From People Who", teal: "Have Done It Themselves" },
-    body: "Strong academic credentials are only part of the story. Learn from faculty who bring professional expertise, industry experience and practical perspectives into your learning journey.",
-    label: "Meet Our Faculty",
-    href: "/faculty",
-  },
 };

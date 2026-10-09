@@ -37,7 +37,7 @@ export function WhyZSkillupPanel() {
       </div>
 
       <div className="relative z-10">
-        <div className="max-w-3xl text-left">
+        <div className="mx-auto max-w-3xl text-center">
           <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy md:text-4xl compact:text-3xl short:text-[1.75rem]">
             {heading.navy}{" "}
             <span className="text-brand-teal">{heading.teal}</span>
@@ -45,7 +45,7 @@ export function WhyZSkillupPanel() {
           <p className="mt-2 text-lg font-medium text-brand-body xl:mt-1 xl:text-xl compact:mt-1 compact:text-lg short:text-base">
             {subheading}
           </p>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm short:leading-snug">
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-brand-body xl:mt-1.5 xl:text-base compact:mt-1.5 compact:text-sm short:leading-snug">
             {paragraph}
           </p>
         </div>

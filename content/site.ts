@@ -1,6 +1,11 @@
+/** Label for programs that are not yet open (ACCA Only). */
+export const toBeAnnounced = "To Be Announced";
+
 export type NavLink = {
   label: string;
   href: string;
+  /** Not yet open: shown with a "To Be Announced" badge and not clickable. */
+  comingSoon?: boolean;
 };
 
 export type NavItem = NavLink & {
@@ -22,7 +27,7 @@ export const siteContent = {
       children: [
         { label: "B.Com + ACCA", href: "/programs/bcom-acca" },
         { label: "BBA + ACCA", href: "/programs/bba-acca" },
-        { label: "ACCA Only", href: "/programs/acca" },
+        { label: "ACCA Only", href: "/programs/acca", comingSoon: true },
       ],
     },
     { label: "Universities", href: "/universities" },

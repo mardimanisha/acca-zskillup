@@ -90,7 +90,7 @@ export const feesCopy = {
 export const programInterestByFeeId = {
   bcom: "B.Com + ACCA",
   bba: "BBA + ACCA",
-  acca: "ACCA Only",
+  acca: "ACCA Only (To Be Announced)",
 } as const satisfies Record<ProgramFeeId, string>;
 
 /** Window event the enquiry form listens to, to pre-select "Interested In". */

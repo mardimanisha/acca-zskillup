@@ -60,6 +60,7 @@ type ProgramCardProps = {
   meta: readonly string[];
   ctaLabel: string;
   href: string;
+  comingSoon?: boolean;
 };
 
 export function ProgramCard({
@@ -72,6 +73,7 @@ export function ProgramCard({
   meta,
   ctaLabel,
   href,
+  comingSoon = false,
 }: ProgramCardProps) {
   const colors = accentClasses[accent];
   const gradientId = `program-arc-${accent}`;
@@ -165,12 +167,18 @@ export function ProgramCard({
           ))}
         </ul>
         <div className="mt-auto pt-6 short:pt-4">
-          <Button asChild variant="brandOutlineRect">
-            <Link href={href}>
+          {comingSoon ? (
+            <Button variant="brandOutlineRect" disabled>
               {ctaLabel}
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </Button>
+            </Button>
+          ) : (
+            <Button asChild variant="brandOutlineRect">
+              <Link href={href}>
+                {ctaLabel}
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </Card>

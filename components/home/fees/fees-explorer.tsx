@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BarChart3, FileText, GraduationCap, type LucideIcon } from "lucide-react";
 
 import { FeePlanCard } from "@/components/home/fees/fee-plan-card";
+import { TbaBadge } from "@/components/shared/tba-badge";
 import type { FeePlan, FeeProgram } from "@/content/home-fees";
 import { cn } from "@/lib/utils";
 
@@ -63,7 +64,10 @@ export function FeesExplorer({ programs, plans, effectiveFeeLabel }: FeesExplore
                     <Icon className="size-7" strokeWidth={1.6} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-lg font-bold leading-tight">{p.title}</span>
+                    <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg font-bold leading-tight">
+                      {p.title}
+                      {p.comingSoon && <TbaBadge />}
+                    </span>
                     <span className={cn("mt-1 block text-[15px] leading-snug", active ? "text-white/85" : "text-uni-cur-meta")}>
                       {p.description}
                     </span>

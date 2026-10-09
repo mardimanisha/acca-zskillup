@@ -14,12 +14,15 @@ const faqJsonLd = {
     .map((faq) => ({
       "@type": "Question",
       name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: [faq.answer, ...(faq.bullets ?? [])].join(" "),
+      },
     })),
 };
 
 export function FaqsSection() {
-  const { eyebrow, heading, subtext, cta, categories } = homeFaqsContent;
+  const { eyebrow, heading, subtext, help, categories } = homeFaqsContent;
 
   return (
     <section aria-labelledby="faqs-heading" className="bg-[#F5FBFA] py-12 md:py-14">
@@ -46,10 +49,12 @@ export function FaqsSection() {
         <div className="mx-auto max-w-6xl">
           <FaqsAccordion categories={categories} />
 
-          <div className="mt-8 flex justify-center">
-            <Button asChild variant="brandOutlineSm" className="w-full md:w-auto">
-              <Link href={cta.href}>
-                {cta.label}
+          <div className="mx-auto mt-10 max-w-xl rounded-3xl bg-brand-navy px-6 py-8 text-center sm:px-10">
+            <h3 className="text-xl font-bold text-white">{help.title}</h3>
+            <p className="mt-2 text-sm text-white/70">{help.body}</p>
+            <Button asChild variant="brand" className="mt-5 w-full sm:w-auto">
+              <Link href={help.cta.href}>
+                {help.cta.label}
                 <ArrowRight aria-hidden="true" />
               </Link>
             </Button>

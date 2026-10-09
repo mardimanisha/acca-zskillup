@@ -33,7 +33,7 @@ export function HeroTrustStrip() {
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_-8px_rgba(11,26,61,0.25)]">
               <Icon className="size-6 text-brand-teal" strokeWidth={2} aria-hidden="true" />
             </span>
-            <span className="text-[13px] font-medium leading-snug text-brand-navy">
+            <span className="text-[13px] font-medium leading-snug text-brand-navy whitespace-pre-line">
               {item.label}
             </span>
           </li>

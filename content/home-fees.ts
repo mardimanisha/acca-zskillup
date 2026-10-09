@@ -4,6 +4,8 @@ export type FeeProgram = {
   description: string;
   /** null = not announced. Set to the final amount (e.g. "1,20,000") only when approved. */
   fee: string | null;
+  /** Program not yet open ("To Be Announced"). */
+  comingSoon?: boolean;
   cta: { label: string; href: string };
 };
 
@@ -65,6 +67,7 @@ export const homeFeesContent = {
       title: "ACCA Only",
       description: "Professional Learning Pathway",
       fee: null,
+      comingSoon: true,
       cta: { label: "Get Fee Details", href: "/fees" },
     },
   ],

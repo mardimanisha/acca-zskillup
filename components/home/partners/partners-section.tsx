@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { homePartnersContent } from "@/content/home-partners";
 import type { PartnerLogo } from "@/content/partners";
-import { demoHiringNetwork, demoUniversityPartners } from "@/content/partners.demo";
+import { demoHiringMarquee, demoHiringNetwork, demoUniversityPartners } from "@/content/partners.demo";
 
 import { PartnersTabs, type PartnersTabData } from "./partners-tabs";
 
@@ -24,6 +24,10 @@ function logosFor(id: keyof typeof demoLogos, logos: readonly PartnerLogo[]): re
   return demoLogos[id];
 }
 
+function marqueeRows() {
+  return demoHiringMarquee.map((row) => row.filter((company) => !company.file || hasLocalFile({ file: company.file } as PartnerLogo)));
+}
+
 export function PartnersSection() {
   const tabs: PartnersTabData[] = homePartnersContent.tabs
     .map((tab) => ({
@@ -35,9 +39,11 @@ export function PartnersSection() {
       titleHighlight: tab.titleHighlight,
       subtext: tab.subtext,
       cta: tab.cta,
+      // TEMPORARY: with no confirmed hiring partners, the demo marquee rows stand in.
+      marquee: tab.id === "hiring" && tab.logos.length === 0 ? marqueeRows() : undefined,
       logos: logosFor(tab.id, tab.logos).filter(hasLocalFile).map(({ name, file }) => ({ name, file })),
     }))
-    .filter((tab) => tab.logos.length > 0);
+    .filter((tab) => tab.logos.length > 0 || tab.marquee);
 
   if (tabs.length === 0) return null;
 

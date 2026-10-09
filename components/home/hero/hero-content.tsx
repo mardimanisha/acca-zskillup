@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { heroContent } from "@/content/home-hero";
+import { exemptionsLine, heroContent } from "@/content/home-hero";
 import { typography } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +34,13 @@ export function HeroContent() {
         {subtext}
       </p>
 
-      <div className="mt-7 flex flex-col gap-4 sm:flex-row short:mt-5 tight:mt-4">
+      <p className="mt-5 short:mt-3 tight:mt-2">
+        <span className="text-base font-bold text-brand-tealDark [text-shadow:0_0_6px_rgba(14,124,112,0.55),0_0_16px_rgba(14,124,112,0.35)] short:text-[15px]">
+          {exemptionsLine}
+        </span>
+      </p>
+
+      <div className="mt-4 flex flex-col gap-4 sm:flex-row short:mt-3 tight:mt-2.5">
         <Button asChild variant="brand" className="w-full sm:w-auto">
           <Link href={ctas.advisor.href}>{ctas.advisor.label}</Link>
         </Button>

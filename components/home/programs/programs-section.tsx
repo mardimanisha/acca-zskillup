@@ -59,6 +59,7 @@ export function ProgramsSection() {
                 meta={card.meta}
                 ctaLabel={card.cta.label}
                 href={card.cta.href}
+                comingSoon={"comingSoon" in card.cta && card.cta.comingSoon}
               />
             </li>
           ))}

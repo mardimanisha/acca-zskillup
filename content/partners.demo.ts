@@ -48,3 +48,71 @@ export const demoHiringNetwork: PartnerLogo[] = [
   hiring("hdfc-bank", "svg", "HDFC Bank", "https://www.hdfcbank.com", "https://www.hdfc.bank.in/content/dam/hdfcbankpws/home-page/hdfc-bank-logo.svg"),
   hiring("icici-bank", "svg", "ICICI Bank", "https://www.icicibank.com", "https://www.icicibank.com/content/dam/icicibank-revamp/images/footer-images/icici-footer-logo.svg"),
 ];
+
+// Hiring marquee (home partners section, two scrolling rows). `file` is a logo where one was
+// available (the files above, or simple-icons marks in public/logos/demo/hiring-more/); companies
+// without one render as a text wordmark. Same DEMO status as above: not confirmed partners.
+export type MarqueeCompany = { name: string; file?: string; showName?: boolean };
+
+// Logos that are only a symbol (no company name in the artwork) get the name printed underneath.
+const SYMBOL_ONLY = new Set(["Barclays", "Deutsche Bank", "Bank of America", "American Express", "Unilever", "Shell", "Razorpay", "PhonePe", "Zerodha", "Mastercard"]);
+const m = (name: string, file?: string): MarqueeCompany => ({ name, file, showName: file ? SYMBOL_ONLY.has(name) : undefined });
+const PNG = new Set(["rsm", "ubs", "alvarez-marsal", "groww"]);
+const more = (slug: string) => `/logos/demo/hiring-more/${slug}.${PNG.has(slug) ? "png" : "svg"}`;
+
+export const demoHiringMarquee: MarqueeCompany[][] = [
+  [
+    m("Deloitte", "/logos/demo/hiring/deloitte-dark.svg"),
+    m("PwC", more("pwc")),
+    m("EY", "/logos/demo/hiring/ey-light.png"),
+    m("KPMG", "/logos/demo/hiring/kpmg.svg"),
+    m("JPMorgan Chase", "/logos/demo/hiring/jp-morgan.svg"),
+    m("Goldman Sachs", "/logos/demo/hiring/goldman-sachs.png"),
+    m("HSBC", "/logos/demo/hiring/hsbc.svg"),
+    m("Citi", "/logos/demo/hiring/citi.svg"),
+    m("Barclays", more("barclays")),
+    m("Deutsche Bank", more("deutschebank")),
+    m("Standard Chartered", more("standard-chartered")),
+    m("Morgan Stanley", more("morgan-stanley")),
+    m("Wells Fargo", more("wellsfargo")),
+    m("American Express", more("americanexpress")),
+    m("UBS", more("ubs")),
+    m("Northern Trust"),
+    m("State Street", more("state-street")),
+    m("Bank of America", more("bankofamerica")),
+    m("BNY", more("bny")),
+    m("NatWest Group", more("natwest")),
+    m("Accenture", "/logos/demo/hiring/accenture.png"),
+    m("Unilever", more("unilever")),
+    m("Shell", more("shell")),
+    m("Siemens", more("siemens")),
+    m("Procter & Gamble", more("pg")),
+    m("IBM", more("ibm")),
+  ],
+  [
+    m("Microsoft", more("microsoft")),
+    m("Amazon", more("amazon")),
+    m("PepsiCo", more("pepsico")),
+    m("Nestlé", more("nestle")),
+    m("Grant Thornton", more("grant-thornton")),
+    m("BDO", more("bdo")),
+    m("RSM", more("rsm")),
+    m("Mazars", more("mazars")),
+    m("Baker Tilly", more("baker-tilly")),
+    m("Protiviti", more("protiviti")),
+    m("Alvarez & Marsal", more("alvarez-marsal")),
+    m("FTI Consulting", more("fti")),
+    m("Razorpay", more("razorpay")),
+    m("PhonePe", more("phonepe")),
+    m("Paytm", more("paytm")),
+    m("CRED"),
+    m("Groww", more("groww")),
+    m("Zerodha", more("zerodha")),
+    m("BlackRock", more("blackrock")),
+    m("Fidelity International", more("fidelity")),
+    m("S&P Global", more("sp-global")),
+    m("Moody’s", more("moodys")),
+    m("Mastercard", more("mastercard")),
+    m("Visa", more("visa")),
+  ],
+];

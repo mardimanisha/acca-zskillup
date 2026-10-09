@@ -11,6 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { TbaBadge } from "@/components/shared/tba-badge";
 import { siteContent } from "@/content/site";
 import { isNavActive } from "@/lib/nav";
 import { cn } from "@/lib/utils";
@@ -43,9 +44,18 @@ export function DesktopNav() {
                   {item.label}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="!rounded-2xl !border-slate-200 !p-2 !shadow-[0_20px_60px_-15px_rgba(11,26,61,0.2)]">
-                  <ul className="grid w-56 gap-1">
+                  <ul className="grid w-64 gap-1">
                     {item.children.map((child) => (
                       <li key={child.href}>
+                        {child.comingSoon ? (
+                          <span
+                            aria-disabled="true"
+                            className="flex cursor-default items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-navy/60"
+                          >
+                            {child.label}
+                            <TbaBadge />
+                          </span>
+                        ) : (
                         <NavigationMenuLink asChild>
                           <Link
                             href={child.href}
@@ -54,6 +64,7 @@ export function DesktopNav() {
                             {child.label}
                           </Link>
                         </NavigationMenuLink>
+                        )}
                       </li>
                     ))}
                   </ul>

@@ -1,6 +1,5 @@
-import { ArrowRight, Trophy } from "lucide-react";
+import { Trophy } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { SectionHeader } from "@/components/shared/section-header";
 import { homeFacultyContent } from "@/content/home-faculty";
@@ -31,7 +30,7 @@ function initials(name: string) {
 }
 
 export function FacultySection() {
-  const { eyebrow, heading, subtext, members, cta } = homeFacultyContent;
+  const { eyebrow, heading, subtext, members } = homeFacultyContent;
 
   return (
     <section aria-labelledby="faculty-heading" className="relative overflow-hidden bg-white py-10 md:py-14">
@@ -103,22 +102,6 @@ export function FacultySection() {
             })}
           </ul>
         )}
-
-        <div className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-[#E1EEEA] bg-gradient-to-r from-[#EEF7F4] to-[#F6FAF9] px-6 py-5 md:flex-row md:items-center md:px-8">
-          <div className="max-w-3xl">
-            <h3 className="text-xl font-extrabold text-brand-navy md:text-2xl">
-              {cta.heading.navy} <span className="text-brand-teal">{cta.heading.teal}</span>
-            </h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-brand-body">{cta.body}</p>
-          </div>
-          <Link
-            href={cta.href}
-            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-brand-teal px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-teal/90"
-          >
-            {cta.label}
-            <ArrowRight aria-hidden="true" className="size-4" />
-          </Link>
-        </div>
       </div>
     </section>
   );

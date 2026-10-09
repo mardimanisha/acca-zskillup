@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
 import { serif } from "@/components/universities/university-ui";
+import { exemptionsLine } from "@/content/home-hero";
 import { universitiesLandingCopy as copy } from "@/content/universities-landing";
 import type { UniversityListing } from "@/data/universities";
 import { cn } from "@/lib/utils";
@@ -164,7 +165,10 @@ export function UniversitiesHero() {
           <p className="mt-5 max-w-[460px] text-base leading-[1.6] text-ul-body xl:max-w-[500px] xl:text-[17px]">
             {hero.body}
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <p className="mt-6 text-base font-bold text-uni-hero-deep [text-shadow:0_0_6px_rgba(1,87,67,0.55),0_0_16px_rgba(1,87,67,0.35)] xl:text-[17px]">
+            {exemptionsLine}
+          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <a
               href={hero.explore.href}
               className={cn(buttonBase, "w-full bg-ul-green text-white hover:bg-ul-greenHover sm:w-auto")}

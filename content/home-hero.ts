@@ -11,9 +11,12 @@ export const currentEducationOptions = [
 export const programInterestOptions = [
   "B.Com + ACCA",
   "BBA + ACCA",
-  "ACCA Only",
+  "ACCA Only (To Be Announced)",
   "Not Sure Yet",
 ] as const;
+
+/** Bold line above the hero CTAs on the homepage, program pages and university pages. */
+export const exemptionsLine = "Designed to seek up to 8 ACCA exam exemptions*";
 
 export const heroContent = {
   eyebrow: {
@@ -47,10 +50,10 @@ export const heroContent = {
     },
   },
   trust: [
-    { icon: "route", label: "3 Program Pathways" },
-    { icon: "laptop", label: "100% Online" },
-    { icon: "graduationCap", label: "ACCA-Aligned Learning" },
-    { icon: "brainCircuit", label: "AI + Employability" },
+    { icon: "route", label: "3 Program\nPathways" },
+    { icon: "laptop", label: "100%\nOnline" },
+    { icon: "graduationCap", label: "ACCA-Aligned\nLearning" },
+    { icon: "brainCircuit", label: "AI +\nEmployability" },
   ],
   form: {
     title: "Get Program Details",

@@ -9,11 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { PartnersTab, PartnersTabIcon } from "@/content/home-partners";
 import type { PartnerLogo } from "@/content/partners";
+import type { MarqueeCompany } from "@/content/partners.demo";
 
 import { LogoCard } from "./logo-card";
+import { LogoMarquee } from "./logo-marquee";
 
 export type PartnersTabData = Omit<PartnersTab, "logos"> & {
   logos: Pick<PartnerLogo, "name" | "file">[];
+  /** When set, shown as scrolling rows instead of the logo grid. */
+  marquee?: MarqueeCompany[][];
 };
 
 const tabIcons: Record<PartnersTabIcon, LucideIcon> = {
@@ -46,7 +50,8 @@ function TabIntro({ tab }: { tab: PartnersTabData }) {
   );
 }
 
-function LogoGrid({ logos }: { logos: PartnersTabData["logos"] }) {
+function LogoGrid({ logos, marquee }: Pick<PartnersTabData, "logos" | "marquee">) {
+  if (marquee) return <LogoMarquee rows={marquee} />;
   return (
     <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {logos.map((logo) => (
@@ -74,7 +79,7 @@ export function PartnersTabs({ tabs }: { tabs: PartnersTabData[] }) {
           <TabIntro tab={activeTab} />
         </div>
         <div className="lg:col-span-8">
-          <LogoGrid logos={activeTab.logos} />
+          <LogoGrid logos={activeTab.logos} marquee={activeTab.marquee} />
         </div>
       </div>
     );
@@ -105,7 +110,7 @@ export function PartnersTabs({ tabs }: { tabs: PartnersTabData[] }) {
 
         {tabs.map((tab) => (
           <TabsContent key={tab.id} value={tab.id}>
-            <LogoGrid logos={tab.logos} />
+            <LogoGrid logos={tab.logos} marquee={tab.marquee} />
           </TabsContent>
         ))}
       </div>

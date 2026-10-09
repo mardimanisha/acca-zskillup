@@ -7,7 +7,7 @@ import {
   IconCircle,
   container,
 } from "@/components/programs/program-ui";
-import type { programInterestOptions } from "@/content/home-hero";
+import { exemptionsLine, type programInterestOptions } from "@/content/home-hero";
 import type { HeroContent } from "@/content/program-types";
 import { cn } from "@/lib/utils";
 
@@ -135,7 +135,12 @@ export function ProgramHero({
           <p className="mt-4 max-w-xl text-base leading-relaxed text-zs-body md:text-[17px] xl:text-lg short:mt-3 short:text-base tight:mt-2 tight:text-[15px]">
             {body}
           </p>
-          <div className="mt-7 flex flex-col gap-4 sm:flex-row short:mt-5 tight:mt-4">
+          <p className="mt-5 short:mt-3 tight:mt-2">
+            <span className="text-base font-bold text-zs-green [text-shadow:0_0_6px_rgba(3,113,76,0.55),0_0_16px_rgba(3,113,76,0.35)] short:text-[15px]">
+              {exemptionsLine}
+            </span>
+          </p>
+          <div className="mt-4 flex flex-col gap-4 sm:flex-row short:mt-3 tight:mt-2.5">
             <AdvisorButton arrow className={cn(buttonSize, "w-full sm:w-auto")} />
             <BrochureButton
               href={brochureHref}

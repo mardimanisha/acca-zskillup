@@ -86,3 +86,13 @@
     @apply bg-background font-sans text-foreground antialiased;
   }
 }
+
+/* Logo marquee: the track holds its items twice, so -50% lands exactly on the start of the copy. */
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

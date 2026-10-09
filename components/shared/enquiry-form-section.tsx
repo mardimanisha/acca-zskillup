@@ -34,15 +34,15 @@ const fieldClass =
 
 const labelClass = "mb-1.5 text-sm font-semibold text-zs-navy";
 
-/** Site-wide enquiry form. Every "Talk to an Advisor" CTA links to `#enquiry-form`. */
-export function EnquiryFormSection({
-  defaultProgram,
-  hideProgramAndCity = false,
-}: {
+type EnquiryFormProps = {
   defaultProgram?: ProgramInterest;
   /** Program pages: the program is fixed by the page, so the program and city fields are not shown. */
   hideProgramAndCity?: boolean;
-}) {
+  className?: string;
+};
+
+/** The enquiry fields, submit button and consent line (no heading), reusable inside a modal. */
+export function EnquiryForm({ defaultProgram, hideProgramAndCity = false, className }: EnquiryFormProps) {
   const form = useForm<HeroFormValues>({
     resolver: zodResolver(hideProgramAndCity ? programFormSchema : heroFormSchema) as Resolver<HeroFormValues>,
     defaultValues: {
@@ -116,26 +116,9 @@ export function EnquiryFormSection({
   );
 
   return (
-    <section
-      id={copy.id}
-      aria-labelledby="enquiry-form-title"
-      className="scroll-mt-[76px] bg-zs-mint"
-    >
-      {/* Alias for the header's "Talk to an Advisor" link. */}
-      <span id="talk-to-advisor" aria-hidden="true" className="block scroll-mt-[76px]" />
-      <div className={cn(container, "py-16 lg:py-24")}>
-        <div className={cn(cardClass, "mx-auto max-w-4xl p-6 sm:p-10")}>
-          <h2
-            id="enquiry-form-title"
-            className="text-3xl font-extrabold leading-[1.15] tracking-[-0.02em] text-zs-navy md:text-[40px]"
-          >
-            {copy.title}
-          </h2>
-          <p className="mt-3 text-base leading-[1.75] text-zs-body">{copy.subtitle}</p>
-
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="mt-8">
-              <div className="grid gap-5 sm:grid-cols-2">
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} noValidate className={className}>
+        <div className="grid gap-5 sm:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="fullName"
@@ -209,8 +192,37 @@ export function EnquiryFormSection({
               </button>
 
               <p className="mt-4 text-[13px] leading-relaxed text-zs-body">{copy.consent}</p>
-            </form>
-          </Form>
+            
+      </form>
+    </Form>
+  );
+}
+
+/** Site-wide enquiry form. Every "Talk to an Advisor" CTA links to `#enquiry-form`. */
+export function EnquiryFormSection({ defaultProgram, hideProgramAndCity = false }: EnquiryFormProps) {
+  return (
+    <section
+      id={copy.id}
+      aria-labelledby="enquiry-form-title"
+      className="scroll-mt-[76px] bg-zs-mint"
+    >
+      {/* Alias for the header's "Talk to an Advisor" link. */}
+      <span id="talk-to-advisor" aria-hidden="true" className="block scroll-mt-[76px]" />
+      <div className={cn(container, "py-16 lg:py-24")}>
+        <div className={cn(cardClass, "mx-auto max-w-4xl p-6 sm:p-10")}>
+          <h2
+            id="enquiry-form-title"
+            className="text-3xl font-extrabold leading-[1.15] tracking-[-0.02em] text-zs-navy md:text-[40px]"
+          >
+            {copy.title}
+          </h2>
+          <p className="mt-3 text-base leading-[1.75] text-zs-body">{copy.subtitle}</p>
+
+          <EnquiryForm
+            defaultProgram={defaultProgram}
+            hideProgramAndCity={hideProgramAndCity}
+            className="mt-8"
+          />
         </div>
       </div>
     </section>

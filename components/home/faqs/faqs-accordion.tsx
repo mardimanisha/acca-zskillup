@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowDown, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 
 import {
   Accordion,
@@ -9,7 +8,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Faq, FaqCategory } from "@/content/home-faqs";
 import { typography } from "@/lib/typography";
@@ -51,16 +49,11 @@ export function FaqsAccordion({ categories }: FaqsAccordionProps) {
   );
 }
 
-const PAGE_SIZE = 5;
-
 function FaqList({ faqs, total }: { faqs: readonly Faq[]; total: number }) {
-  const [visible, setVisible] = useState(PAGE_SIZE);
-  const shown = Math.min(visible, faqs.length);
-
   return (
     <>
       <Accordion type="single" collapsible className="space-y-3">
-        {faqs.slice(0, shown).map((faq, index) => (
+        {faqs.map((faq, index) => (
           <AccordionItem
             key={faq.question}
             value={`faq-${index}`}
@@ -84,25 +77,22 @@ function FaqList({ faqs, total }: { faqs: readonly Faq[]; total: number }) {
               <span className={cn(typography.faqQuestion, "flex-1")}>{faq.question}</span>
             </AccordionTrigger>
             <AccordionContent className={cn(typography.body, "pb-5 pl-0 leading-relaxed md:pl-10")}>
-              {faq.answer}
+              <p>{faq.answer}</p>
+              {faq.bullets && (
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  {faq.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              )}
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
 
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-        {shown < faqs.length && (
-          <Button
-            type="button"
-            variant="brandOutlineSm"
-            onClick={() => setVisible((count) => count + PAGE_SIZE)}
-          >
-            Load More Questions
-            <ArrowDown aria-hidden="true" />
-          </Button>
-        )}
         <p className="text-sm text-brand-body">
-          Showing {shown} of {faqs.length} questions
+          Showing {faqs.length} of {faqs.length} questions
           <span aria-hidden="true" className="mx-2 text-[#C9D6D3]">
             •
           </span>

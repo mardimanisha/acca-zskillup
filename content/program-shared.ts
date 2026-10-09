@@ -109,7 +109,7 @@ export const footerContent = {
       links: [
         { label: "B.Com + ACCA", href: "/programs/bcom-acca" },
         { label: "BBA + ACCA", href: "/programs/bba-acca" },
-        { label: "ACCA Only", href: "/programs/acca" },
+        { label: "ACCA Only", href: "/programs/acca", comingSoon: true },
       ],
     },
     {

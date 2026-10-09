@@ -3,6 +3,7 @@ import { ArrowRight, Award, BadgeCheck, Download, ShieldCheck, TrendingUp, type 
 
 import { container } from "@/components/programs/program-ui";
 import { serif, trustLogos as logos } from "@/components/universities/university-ui";
+import { exemptionsLine } from "@/content/home-hero";
 import { universityPageCopy } from "@/content/university-page";
 import type { UniversityPage } from "@/data/universities/types";
 import { cn } from "@/lib/utils";
@@ -166,7 +167,12 @@ export function UniversityHero({ university: u }: { university: UniversityPage }
                 {copy.body(u)}
               </p>
             )}
-            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:gap-5">
+            <p className="mt-5">
+              <span className="text-base font-bold text-uni-hero-deep [text-shadow:0_0_6px_rgba(1,87,67,0.55),0_0_16px_rgba(1,87,67,0.35)] xl:text-[17px]">
+                {exemptionsLine}
+              </span>
+            </p>
+            <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:gap-5">
               <a
                 href={universityPageCopy.enquiryHref}
                 className={cn(

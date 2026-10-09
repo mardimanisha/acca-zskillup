@@ -14,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { TbaBadge } from "@/components/shared/tba-badge";
 import { siteContent } from "@/content/site";
 import { isNavActive } from "@/lib/nav";
 import { cn } from "@/lib/utils";
@@ -84,6 +85,15 @@ export function MobileMenu() {
                     >
                       {item.children.map((child) => (
                         <li key={child.href}>
+                          {child.comingSoon ? (
+                            <span
+                              aria-disabled="true"
+                              className={cn(linkClass, "cursor-default py-2.5 text-[15px] text-brand-navy/60 hover:bg-transparent hover:text-brand-navy/60")}
+                            >
+                              {child.label}
+                              <TbaBadge />
+                            </span>
+                          ) : (
                           <SheetClose asChild>
                             <Link
                               href={child.href}
@@ -92,6 +102,7 @@ export function MobileMenu() {
                               {child.label}
                             </Link>
                           </SheetClose>
+                          )}
                         </li>
                       ))}
                     </ul>

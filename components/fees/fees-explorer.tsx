@@ -19,7 +19,9 @@ import {
 } from "lucide-react";
 
 import { feesSerif } from "@/components/fees/fees-ui";
+import { TbaBadge } from "@/components/shared/tba-badge";
 import { container } from "@/components/programs/program-ui";
+import { toBeAnnounced } from "@/content/site";
 import { feesCopy as copy, programInterestByFeeId, selectProgramEvent } from "@/content/fees";
 import {
   programFees,
@@ -182,6 +184,7 @@ function ProgramPanel({ program }: { program: ProgramFee }) {
           </p>
           <h2 className={cn(feesSerif, "mt-4 text-[34px] leading-[1.1] text-fp-navy sm:text-[42px] xl:text-[48px]")}>
             {program.name}
+            {program.id === "acca" && <TbaBadge className="ml-3 align-middle text-xs" />}
           </h2>
           <p className="mt-3 text-base text-[#2A3066]">{program.meta}</p>
           {program.description && (
@@ -213,14 +216,24 @@ function ProgramPanel({ program }: { program: ProgramFee }) {
               })}
             </ul>
           )}
-          <a
-            href={copy.help.cta.href}
-            onClick={() => preselectProgram(program.id)}
-            className={cn(buttonBase, buttonPrimary, "mt-8 w-full sm:w-auto")}
-          >
-            {program.ctaLabel}
-            <ArrowRight aria-hidden="true" />
-          </a>
+          {program.id === "acca" ? (
+            <button
+              type="button"
+              disabled
+              className={cn(buttonBase, buttonPrimary, "mt-8 w-full opacity-60 sm:w-auto")}
+            >
+              {toBeAnnounced}
+            </button>
+          ) : (
+            <a
+              href={copy.help.cta.href}
+              onClick={() => preselectProgram(program.id)}
+              className={cn(buttonBase, buttonPrimary, "mt-8 w-full sm:w-auto")}
+            >
+              {program.ctaLabel}
+              <ArrowRight aria-hidden="true" />
+            </a>
+          )}
         </div>
       </div>
 
@@ -414,7 +427,10 @@ export function FeesExplorer({ initialId }: { initialId: ProgramFeeId }) {
                     <Icon strokeWidth={1.75} />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[15px] font-bold leading-tight text-fp-navy">{program.name}</span>
+                    <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] font-bold leading-tight text-fp-navy">
+                      {program.name}
+                      {program.id === "acca" && <TbaBadge />}
+                    </span>
                     <span className="mt-1 block text-xs leading-snug text-fp-body">{program.meta}</span>
                   </span>
                   <span

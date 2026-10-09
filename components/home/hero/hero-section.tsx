@@ -48,12 +48,14 @@ export function HeroSection() {
           <HeroForm />
         </div>
 
-        <div className="order-3 flex max-w-[640px] flex-col gap-6 md:order-2 short:gap-4 tight:gap-3 xl:col-start-1 xl:row-start-2 xl:self-start">
-          <HeroVideoCard
-            videoUrl={video.url}
-            thumbnailSrc={video.thumbnail}
-            thumbnailAlt={video.thumbnailAlt}
-          />
+        <div className="order-3 flex max-w-[800px] flex-col gap-6 md:order-2 short:gap-4 tight:gap-3 xl:col-start-1 xl:row-start-2 xl:self-start">
+          <div className="max-w-[640px]">
+            <HeroVideoCard
+              videoUrl={video.url}
+              thumbnailSrc={video.thumbnail}
+              thumbnailAlt={video.thumbnailAlt}
+            />
+          </div>
           <HeroTrustStrip />
         </div>
       </div>

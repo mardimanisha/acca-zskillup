@@ -4,6 +4,7 @@ import { Mail, Phone } from "lucide-react";
 
 import { AdvisorButton, BrochureButton, container } from "@/components/programs/program-ui";
 import { footerContent } from "@/content/program-shared";
+import { TbaBadge } from "@/components/shared/tba-badge";
 import { siteContent } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -40,9 +41,16 @@ export function SiteFooter({
               <ul className="mt-5 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className={linkClass}>
-                      {link.label}
-                    </Link>
+                    {"comingSoon" in link && link.comingSoon ? (
+                      <span className="inline-flex items-center gap-2 text-[15px] text-white/55">
+                        {link.label}
+                        <TbaBadge />
+                      </span>
+                    ) : (
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

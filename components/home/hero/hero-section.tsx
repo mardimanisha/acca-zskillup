@@ -11,15 +11,19 @@ export function HeroSection() {
 
   return (
     <section className="relative isolate overflow-hidden xl:flex xl:h-[calc(100svh-77px)] xl:min-h-[540px] xl:items-center">
-      <Image
-        src={background.src}
-        alt={background.alt}
-        fill
-        preload
-        sizes="100vw"
-        quality={90}
-        className="-z-20 object-cover object-[56%_top]"
-      />
+      {/* On xl the form covers the right ~25% of the hero, so the photo is widened
+          and shifted left to bring the subject out from behind it. */}
+      <div className="absolute inset-y-0 left-0 right-0 -z-20 xl:-left-[26vw]">
+        <Image
+          src={background.src}
+          alt={background.alt}
+          fill
+          preload
+          sizes="(min-width: 1280px) 126vw, 100vw"
+          quality={90}
+          className="object-cover object-[56%_top]"
+        />
+      </div>
       {/* Readability overlays: light left-to-right wash so the photo still shows,
           a soft white glow behind the copy, and a stronger wash when content stacks */}
       <div

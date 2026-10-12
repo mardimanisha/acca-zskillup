@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Fragment } from "react";
 
 import { HeroForm } from "@/components/home/hero/hero-form";
 import {
@@ -127,9 +128,16 @@ export function ProgramHero({
             className="mt-4 whitespace-nowrap text-[44px] font-extrabold leading-[1.12] tracking-[-0.02em] text-zs-navy md:text-5xl xl:text-[3.25rem] short:mt-3 short:text-[2.625rem] tight:mt-2 tight:text-[2.375rem]"
           >
             {title.start}
-            <span className="text-zs-green">{title.highlight}</span>
+            <span className="text-zs-green">
+              {title.highlight.split("\n").map((line, i) => (
+                <Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </Fragment>
+              ))}
+            </span>
           </h1>
-          <p className="mt-3 text-lg font-bold leading-snug text-zs-navy xl:text-xl short:mt-2 short:text-lg tight:text-base">
+          <p className="mt-3 text-lg font-bold leading-snug text-zs-navy lg:whitespace-nowrap xl:text-xl short:mt-2 short:text-lg tight:text-base">
             {subtitle}
           </p>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-zs-body md:text-[17px] xl:text-lg short:mt-3 short:text-base tight:mt-2 tight:text-[15px]">

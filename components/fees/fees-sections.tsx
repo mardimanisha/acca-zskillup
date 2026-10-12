@@ -74,28 +74,26 @@ export function FeesCharges() {
   const { charges } = copy;
   return (
     <section aria-labelledby={charges.id} className="bg-fp-mintSoft">
-      <div className={cn(container, "section-y")}>
-        <h2 id={charges.id} className={cn(feesSerif, "text-[30px] leading-[1.15] text-fp-navy md:text-[40px]")}>
-          {charges.title}
-        </h2>
-        <p className="mt-3 max-w-[640px] text-base leading-[1.7] text-[#4A5280]">{charges.intro}</p>
-        <ul className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className={cn(container, "section-y grid items-center gap-8 md:grid-cols-2 md:gap-10")}>
+        <div>
+          <h2 id={charges.id} className={cn(feesSerif, "text-[30px] leading-[1.15] text-fp-navy md:text-[40px]")}>
+            {charges.title}
+          </h2>
+          <p className="mt-3 max-w-[640px] text-base leading-[1.7] text-[#4A5280]">{charges.intro}</p>
+        </div>
+        <ul className="grid gap-5">
           {charges.cards.map((card) => (
             <li
               key={card.key}
               className="flex items-start gap-5 rounded-xl border border-fp-line/70 bg-white p-6 shadow-[0_10px_30px_-18px_rgba(11,31,77,0.14)] sm:gap-7 sm:p-8"
             >
-              {card.key === "acca" ? (
-                // Stand-in tile; replace with the official ACCA logo file.
-                <span
-                  aria-hidden="true"
-                  className="flex h-[52px] w-[52px] shrink-0 items-center justify-center bg-[#E4002B] text-[13px] font-bold tracking-wide text-white"
-                >
-                  ACCA
-                </span>
-              ) : (
-                <IconCircle name="landmark" />
-              )}
+              {/* Stand-in tile; replace with the official ACCA logo file. */}
+              <span
+                aria-hidden="true"
+                className="flex h-[52px] w-[52px] shrink-0 items-center justify-center bg-[#E4002B] text-[13px] font-bold tracking-wide text-white"
+              >
+                ACCA
+              </span>
               <div>
                 <h3 className={cn(feesSerif, "text-[20px] leading-tight text-fp-navy")}>{card.title}</h3>
                 <ul className="mt-4 space-y-3">

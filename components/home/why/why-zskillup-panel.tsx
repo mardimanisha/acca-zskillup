@@ -1,6 +1,5 @@
 import {
   BrainCircuit,
-  ClipboardCheck,
   GraduationCap,
   Headset,
   Users,
@@ -9,14 +8,12 @@ import {
 
 import { WhyZSkillupCard } from "@/components/home/why/why-zskillup-card";
 import { homeWhyContent, type ZSkillupCardIcon } from "@/content/home-why";
-import { cn } from "@/lib/utils";
 
 const icons: Record<ZSkillupCardIcon, LucideIcon> = {
   graduationCap: GraduationCap,
   brainCircuit: BrainCircuit,
   headset: Headset,
   users: Users,
-  clipboardCheck: ClipboardCheck,
 };
 
 const DOT_GRID_COUNT = 24; // 6 × 4
@@ -50,16 +47,10 @@ export function WhyZSkillupPanel() {
           </p>
         </div>
 
-        {/* Mobile: 1 per row · tablet: 3 + 2 · desktop: all five in one row */}
-        <ul className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-6 lg:max-w-none lg:grid-cols-5 xl:mt-5 compact:mt-4 compact:gap-3">
-          {cards.map((card, index) => (
-            <li
-              key={card.number}
-              className={cn(
-                "md:col-span-2 lg:col-span-1",
-                index === 3 && "md:col-start-2 lg:col-start-auto",
-              )}
-            >
+        {/* Mobile: 1 per row · tablet: 2 × 2 · desktop: all four in one row */}
+        <ul className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 lg:max-w-none lg:grid-cols-4 xl:mt-5 compact:mt-4 compact:gap-3">
+          {cards.map((card) => (
+            <li key={card.number}>
               <WhyZSkillupCard
                 icon={icons[card.icon]}
                 title={card.title}

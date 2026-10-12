@@ -199,26 +199,11 @@ function BlobPhoto({
 }
 
 /** Hero photo: bleeds off the right edge and fades into the white page on its left. */
-/** Hero photo plus the floating card; both are positioned in the photo's own proportions. */
 function HeroArt({ className, sizes }: { className: string; sizes: string }) {
   return (
     <div className={cn("relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_16%)]", className)}>
       <div className="relative aspect-[1386/1224] w-full [container-type:inline-size]">
         <Image src={copy.hero.image} alt={copy.hero.imageAlt} fill preload sizes={sizes} className="object-cover" />
-        <ul className="absolute left-[55%] top-[27%] flex w-[40%] flex-col gap-[2.2cqw] rounded-[clamp(12px,3cqw,24px)] bg-white/90 px-[3cqw] py-[3cqw] shadow-[0_18px_40px_-18px_rgba(11,31,77,0.3)] ring-1 ring-white/70 backdrop-blur-md">
-          {copy.hero.card.map((item) => (
-            <li key={item.label} className="flex items-center gap-[2.2cqw]">
-              <IconCircle
-                icon={item.icon}
-                tone={item.tone}
-                className="size-[clamp(26px,5cqw,44px)] [&_svg]:size-[clamp(13px,2.5cqw,22px)]"
-              />
-              <span className="whitespace-nowrap text-[clamp(10px,1.8cqw,15px)] font-semibold leading-tight text-cr-navy">
-                {item.label}
-              </span>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
@@ -259,6 +244,9 @@ export function CareersHero() {
           />
           <p className="mt-5 max-w-[480px] text-base leading-[1.6] text-cr-body xl:max-w-[520px] xl:text-[17px]">
             {hero.body}
+          </p>
+          <p className="mt-3 max-w-[480px] text-base font-semibold leading-[1.6] text-cr-navy xl:max-w-[520px] xl:text-[17px]">
+            {hero.bodyHighlight}
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <a

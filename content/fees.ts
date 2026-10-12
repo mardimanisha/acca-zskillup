@@ -64,12 +64,6 @@ export const feesCopy = {
         ],
         note: "",
       },
-      {
-        key: "university",
-        title: "University Charges",
-        items: ["Examination fee", "Administration charges", "Any other university-specific charges"],
-        note: "These charges should be clearly disclosed in the final university fee sheet.",
-      },
     ],
   },
   help: {

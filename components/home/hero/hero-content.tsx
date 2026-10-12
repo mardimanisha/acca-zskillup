@@ -16,15 +16,15 @@ export function HeroContent() {
         <span className="font-bold text-brand-teal">{eyebrow.highlight}</span>
       </p>
 
-      {/* Shared h1 scale; the xl/short/tight overrides keep the one-line second row and the hero fitting one screen */}
+      {/* Shared h1 scale; the xl/short/tight overrides keep the hero fitting one screen */}
       <h1
         className={cn(
           typography.h1,
-          "mt-4 xl:text-[3.25rem] xl:leading-[1.12] short:mt-3 short:text-[2.625rem] tight:mt-2 tight:text-[2.375rem]",
+          "mt-4 xl:text-[2.75rem] xl:leading-[1.12] short:mt-3 short:text-[2.375rem] tight:mt-2 tight:text-[2.125rem]",
         )}
       >
         <span className="block">{headline.line1}</span>
-        <span className="block xl:whitespace-nowrap">
+        <span className="block">
           <span className="text-brand-teal">{headline.line2Highlight}</span>{" "}
           {headline.line2Rest}
         </span>

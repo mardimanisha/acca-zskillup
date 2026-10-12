@@ -19,13 +19,13 @@ export const exemptionsLine = "Designed to seek up to 8 ACCA exam exemptions*";
 
 export const heroContent = {
   eyebrow: {
-    muted: "GLOBAL FINANCE &",
-    highlight: "AI PROFESSIONAL PROGRAM",
+    muted: "ZSKILLUP SCHOOL OF",
+    highlight: "ACCOUNTING & MANAGEMENT",
   },
   headline: {
-    line1: "Build Your Path to a",
-    line2Highlight: "Global Finance",
-    line2Rest: "Career",
+    line1: "Build Your Future in",
+    line2Highlight: "Finance, Accounting",
+    line2Rest: "& Business",
   },
   subtext:
     "Choose a degree-integrated B.Com or BBA pathway, or pursue ACCA preparation independently. Build professional finance knowledge, AI capabilities and career-ready skills through one structured online learning experience.",

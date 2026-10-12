@@ -6,17 +6,12 @@ export const careersCopy = {
     titleLine1: "Your Finance Career",
     titleLine2: "Can Take Many Directions",
     body: "From reporting and audit to business finance, analytics and strategic decision-making, build professional capabilities for a finance landscape that extends far beyond traditional accounting.",
+    bodyHighlight: "Start your journey from classroom to boardroom & get employed at GCCs, Big 4, banks.",
     explore: { label: "Explore Career Paths", href: "#career-roles" },
     advisor: { label: "Talk to an Advisor", href: "#enquiry-form" },
     // TODO: replace with the supplied HERO_IMAGE (placeholder cropped from the design mockup).
-    image: "/images/careers/hero-woman-clean2.jpg",
+    image: "/images/careers/hero-woman-clean3.jpg",
     imageAlt: "Smiling woman holding a laptop in front of office towers",
-    card: [
-      { icon: "document", tone: "purple", label: "Audit" },
-      { icon: "chart", tone: "purple", label: "Business Finance" },
-      { icon: "growth", tone: "blue", label: "Analytics" },
-      { icon: "users", tone: "purple", label: "Strategic Decision-Making" },
-    ],
   },
   industries: {
     eyebrow: "WHERE FINANCE CAREERS HAPPEN",

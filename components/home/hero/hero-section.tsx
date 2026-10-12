@@ -10,7 +10,7 @@ export function HeroSection() {
   const { background, video } = heroContent;
 
   return (
-    <section className="relative isolate overflow-hidden xl:flex xl:h-[calc(100svh-77px)] xl:min-h-[540px] xl:items-center">
+    <section className="relative isolate overflow-hidden xl:flex xl:min-h-[max(540px,calc(100svh-77px))] xl:items-center">
       {/* On xl the form covers the right ~25% of the hero, so the photo is widened
           and shifted left to bring the subject out from behind it. */}
       <div className="absolute inset-y-0 left-0 right-0 -z-20 xl:-left-[26vw]">

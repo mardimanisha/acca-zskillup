@@ -76,5 +76,41 @@ export const homeFacultyContent = {
         "8+ years of experience in corporate governance, compliance and strategic advisory.",
       accent: "orange",
     },
+    {
+      name: "Arpit Jain",
+      image: { src: "/images/faculty/arpit-jain.jpeg", alt: "Portrait of Arpit Jain", width: 864, height: 1152 },
+      credentials: ["CA", "CS", "Entrepreneur"],
+      achievement: "Founder, JustSkill.ai",
+      experience:
+        "Former Head of Finance, Ezetap. 15+ years in finance leadership across manufacturing, IT services and fintech.",
+      accent: "purple",
+    },
+    {
+      name: "Khushbu Sinwal",
+      image: { src: "/images/faculty/khushbu-sinwal.jpeg", alt: "Portrait of Khushbu Sinwal", width: 1254, height: 1254 },
+      credentials: ["Chartered Accountant", "DipIFR"],
+      achievement: "Assistant Vice President – Macquarie",
+      experience:
+        "Finance professional with experience in global banking and regulatory reporting. ACCA Diploma in International Financial Reporting (DipIFR).",
+      accent: "orange",
+    },
+    {
+      name: "Lokesh Mathur",
+      image: { src: "/images/faculty/lokesh-mathur.png", alt: "Portrait of Lokesh Mathur", width: 1122, height: 1402 },
+      credentials: ["Engineer", "Executive MBA (IIM Calcutta)"],
+      achievement: "Founder & Director",
+      experience:
+        "19+ years of experience in technology, education and career services. Previously led Career Services at upGrad.",
+      accent: "purple",
+    },
+    {
+      name: "Manish Temani",
+      image: { src: "/images/faculty/manish-temani.png", alt: "Portrait of Manish Temani", width: 1122, height: 1402 },
+      credentials: ["CA", "CS", "US CPA"],
+      achievement: "Director",
+      experience:
+        "20+ years of experience across audit, financial reporting and investment banking. Guides curriculum development and finance programmes.",
+      accent: "orange",
+    },
   ] as FacultyMemberContent[],
 };

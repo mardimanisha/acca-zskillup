@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 import { container } from "@/components/programs/program-ui";
 import { serif } from "@/components/universities/university-ui";
@@ -234,6 +234,12 @@ export function UniversityCard({ university: u }: { university: UniversityListin
           />
         </div>
         <h2 className={cn(serif, "mt-1.5 text-base font-bold leading-snug text-ul-navy xl:text-lg")}>{u.officialName}</h2>
+        {u.location && (
+          <p className="mt-1 flex items-center gap-1.5 text-[13px] font-medium text-ul-body">
+            <MapPin aria-hidden="true" className="size-3.5 shrink-0 text-ul-green" />
+            {u.location}
+          </p>
+        )}
         <p className="mt-1 text-[13px] text-ul-meta">{copy.cards.pathway(u)}</p>
         <ul className="mt-1.5 flex flex-wrap items-center text-[13px] text-ul-meta">
           {copy.cards.meta.map((item, i) => (

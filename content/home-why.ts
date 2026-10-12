@@ -17,7 +17,7 @@ export const homeWhyContent = {
     teal: "Career-Ready Learning.",
   },
   subtext:
-    "Build professional finance capabilities through ACCA-aligned learning, while developing the digital, AI and workplace skills modern finance careers increasingly demand.",
+    "Build professional finance capabilities through ACCA-aligned learning, while developing the digital, AI and workplace skills.",
   acca: {
     heading: { navy: "Why", teal: "ACCA?" },
     subheading: "A Globally Respected Professional Qualification",
@@ -92,14 +92,6 @@ export const homeWhyContent = {
         title: "Best-in-Class Industry Faculty",
         description:
           "Learn from academic toppers and experienced industry professionals across CA, CS, FRM, CPA and ACCA, bringing practical insights into every learning session.",
-      },
-      {
-        number: "05",
-        accent: "purple",
-        icon: "clipboardCheck",
-        title: "Professional Preparation",
-        description:
-          "Strengthen your professional and exam readiness through structured revision, mock exams, practice sessions, concept reinforcement and focused preparation throughout your learning journey.",
       },
     ] satisfies readonly WhyCardContent[],
   },

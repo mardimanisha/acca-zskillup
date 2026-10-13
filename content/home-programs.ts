@@ -33,7 +33,7 @@ export const homeProgramsContent = {
       label: "DEGREE + PROFESSIONAL PATHWAY",
       title: "B.Com + ACCA",
       description:
-        "Build your commerce degree while developing ACCA-aligned professional finance knowledge, AI capabilities and structured career readiness.",
+        "Build your commerce degree while developing ACCA professional Qualification knowledge, AI capabilities and structured career readiness.",
       meta: ["3 Years", "6 Semesters", "100% Online"],
       cta: { label: "Explore B.Com + ACCA", href: "/programs/bcom-acca" },
     },
@@ -49,7 +49,7 @@ export const homeProgramsContent = {
       label: "DEGREE + PROFESSIONAL PATHWAY",
       title: "BBA + ACCA",
       description:
-        "Combine business and management education with ACCA-aligned finance learning, AI capabilities and professional career preparation.",
+        "Combine business and management education with ACCA professional Qualification, AI capabilities and professional career preparation.",
       meta: ["3 Years", "6 Semesters", "100% Online"],
       cta: { label: "Explore BBA + ACCA", href: "/programs/bba-acca" },
     },

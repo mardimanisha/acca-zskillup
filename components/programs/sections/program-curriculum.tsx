@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Award, ChartColumnIncreasing, GraduationCap, type LucideIcon } from "lucide-react";
 
 import { Eyebrow, SectionTitle, container } from "@/components/programs/program-ui";
@@ -171,6 +171,18 @@ const scenes: readonly (() => ReactNode)[] = [
 /** Dark-green banner (dotted left, hairlines right) that fills the card's spare space, with a themed graphic on top. */
 function SemesterVisual({ index }: { index: number }) {
   const Scene = scenes[index % scenes.length];
+  const sceneRef = useRef<SVGGElement>(null);
+  const [offset, setOffset] = useState<string | undefined>(undefined);
+
+  // Scenes are drawn at different positions on the canvas; centre each one's bounding box.
+  useLayoutEffect(() => {
+    const box = sceneRef.current?.getBBox();
+    if (!box) return;
+    const dx = 220 - (box.x + box.width / 2);
+    const dy = 85 - (box.y + box.height / 2);
+    setOffset(`translate(${dx.toFixed(1)} ${dy.toFixed(1)})`);
+  }, [index]);
+
   return (
     <div
       aria-hidden="true"
@@ -195,7 +207,7 @@ function SemesterVisual({ index }: { index: number }) {
         }}
       />
       {/* Positioned from the banner's top/bottom so the graphic can never change its height. */}
-      <div className="absolute inset-y-3 left-1/2 aspect-[440/170] max-w-[90%] -translate-x-1/2 overflow-hidden rounded-xl bg-gradient-to-b from-[#E6F6F0] to-white ring-1 ring-white/40">
+      <div className="absolute inset-y-3 left-1/2 aspect-[440/170] max-w-[90%] -translate-x-1/2 overflow-hidden">
         <svg viewBox="0 0 440 170" fill="none" className="size-full">
           <defs>
             <linearGradient id="cg1" x1="0" y1="0" x2="0" y2="1">
@@ -207,9 +219,9 @@ function SemesterVisual({ index }: { index: number }) {
               <stop offset="1" stopColor="#8FD4C3" />
             </linearGradient>
           </defs>
-          <path d="M0 170V126C70 98 130 112 200 126S340 106 440 122V170Z" fill="#D2EDE3" />
-          <path d="M0 170V148C80 130 170 152 250 142S380 130 440 144V170Z" fill="#E3F5EE" />
-          {Scene()}
+          <g ref={sceneRef} transform={offset}>
+            {Scene()}
+          </g>
         </svg>
       </div>
     </div>

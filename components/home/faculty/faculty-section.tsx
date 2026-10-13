@@ -1,33 +1,9 @@
-import { Trophy } from "lucide-react";
-import Image from "next/image";
-
 import { SectionHeader } from "@/components/shared/section-header";
 import { homeFacultyContent } from "@/content/home-faculty";
-import { cn } from "@/lib/utils";
 
-const accentStyles = {
-  purple: {
-    bar: "bg-[#6B2FA0]",
-    creds: "text-[#6B2FA0]",
-    badge: "bg-[#F3EAFB] text-[#5B2A86]",
-    trophy: "text-[#6B2FA0]",
-  },
-  orange: {
-    bar: "bg-[#F59E0B]",
-    creds: "text-accent-teal-icon",
-    badge: "bg-[#E6F6F1] text-[#0B6B57]",
-    trophy: "text-brand-teal",
-  },
-} as const;
+import { FacultyCard } from "./faculty-card";
 
-function initials(name: string) {
-  return name
-    .replace(/^Prof\.\s*/, "")
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2);
-}
+const REPEATS_PER_HALF = 3;
 
 export function FacultySection() {
   const { eyebrow, heading, subtext, members } = homeFacultyContent;
@@ -45,80 +21,39 @@ export function FacultySection() {
           eyebrow={eyebrow}
           titleStart={heading.navy}
           titleHighlight={heading.teal}
-          subtext={subtext[0]}
+          subtext={subtext}
           className="mx-auto"
           subtextClassName="max-w-4xl text-sm md:text-base"
         />
-        <p className="mx-auto mt-3 mb-10 max-w-4xl text-center text-sm leading-relaxed text-brand-body md:text-base">
-          {subtext[1]}
-        </p>
 
         {members.length > 0 && (
-          // Track holds the members twice so -50% loops seamlessly; the copy is hidden from assistive tech.
-          <div className="group -my-4 overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,#000_4%,#000_96%,transparent)] motion-reduce:overflow-x-auto">
+          // Track holds two identical halves so -50% loops seamlessly; each half repeats the members until it is wider than any viewport, otherwise a gap shows once the first half scrolls past. Copies are hidden from assistive tech.
+          <div className="group mt-6 -mb-4 overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,#000_4%,#000_96%,transparent)] motion-reduce:overflow-x-auto">
             <ul
               className="flex w-max motion-reduce:animate-none group-hover:[animation-play-state:paused]"
+              // Longhands, not the `animation` shorthand: the shorthand would reset animation-play-state and defeat the hover pause.
               style={{
-                animation: `logo-marquee ${members.length * 6}s linear infinite`,
+                animationName: "logo-marquee",
+                animationDuration: `${members.length * REPEATS_PER_HALF * 6}s`,
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
               }}
             >
-              {[false, true].flatMap((hidden) =>
-                members.map((member) => {
-                  const accent = accentStyles[member.accent];
-                  return (
-                    <li
-                      key={`${hidden}-${member.name}`}
-                      aria-hidden={hidden || undefined}
-                      className="w-[240px] shrink-0 pr-4 sm:w-[260px]"
-                    >
-                      <article className="flex h-full flex-col rounded-2xl border border-[#E6EDF2] bg-white p-3 shadow-[0_10px_30px_-18px_rgba(11,26,61,0.22)]">
-                        <div className="relative aspect-[4/4.2] overflow-hidden rounded-xl bg-[#F1F4F8]">
-                          {member.image ? (
-                            <Image
-                              src={member.image.src}
-                              alt={member.image.alt}
-                              width={member.image.width}
-                              height={member.image.height}
-                              sizes="260px"
-                              // The track extends past the viewport; lazy loading would leave off-screen cards blank.
-                              loading="eager"
-                              className="h-full w-full object-cover object-top"
-                            />
-                          ) : (
-                            <div
-                              aria-hidden="true"
-                              className="flex h-full w-full items-center justify-center text-5xl font-extrabold text-brand-navy/25"
-                            >
-                              {initials(member.name)}
-                            </div>
-                          )}
-                          <span className={cn("absolute inset-x-0 bottom-0 h-1", accent.bar)} />
-                        </div>
-
-                        <div className="flex flex-1 flex-col px-1 pt-4">
-                          <h3 className="text-base font-extrabold text-brand-navy">
-                            {member.name}
-                          </h3>
-                          <p className={cn("mt-1 text-sm font-bold", accent.creds)}>
-                            {member.credentials.join("  |  ")}
-                          </p>
-                          <p
-                            className={cn(
-                              "mt-3 inline-flex items-center gap-1.5 self-start rounded-md px-2.5 py-1.5 text-xs font-semibold",
-                              accent.badge,
-                            )}
-                          >
-                            <Trophy aria-hidden="true" className={cn("size-3.5", accent.trophy)} />
-                            {member.achievement}
-                          </p>
-                          <p className="mt-3 text-sm leading-relaxed text-brand-body">
-                            {member.experience}
-                          </p>
-                        </div>
-                      </article>
-                    </li>
-                  );
-                }),
+              {[0, 1].flatMap((half) =>
+                Array.from({ length: REPEATS_PER_HALF }, (_, repeat) =>
+                  members.map((member) => {
+                    const hidden = half > 0 || repeat > 0;
+                    return (
+                      <li
+                        key={`${half}-${repeat}-${member.name}`}
+                        aria-hidden={hidden || undefined}
+                        className="w-[240px] shrink-0 pr-4 sm:w-[260px]"
+                      >
+                        <FacultyCard member={member} hidden={hidden} />
+                      </li>
+                    );
+                  }),
+                ).flat(),
               )}
             </ul>
           </div>

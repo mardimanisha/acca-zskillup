@@ -51,7 +51,7 @@ export const heroContent = {
   trust: [
     { icon: "route", label: "3 Program\nPathways" },
     { icon: "laptop", label: "100%\nOnline" },
-    { icon: "graduationCap", label: "ACCA-Aligned\nLearning" },
+    { icon: "graduationCap", label: "ACCA professional\nQualification" },
     { icon: "brainCircuit", label: "AI +\nEmployability" },
   ],
   form: {

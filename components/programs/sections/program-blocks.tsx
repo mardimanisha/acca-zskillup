@@ -105,7 +105,7 @@ export function ProgramLevels({ id, content, tone }: SectionProps<LevelsContent>
   );
 }
 
-/** "ACCA-aligned learning" on the degree program pages: intro on the left, level cards on the right, exemptions banner below. */
+/** "ACCA professional Qualification" on the degree program pages: intro on the left, level cards on the right, exemptions banner below. */
 export function ProgramAccaLearning({ id, content, tone }: SectionProps<LevelsContent>) {
   const { eyebrow, title, levels, highlight, footnote } = content;
 

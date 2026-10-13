@@ -96,10 +96,10 @@ export const programFees: readonly ProgramFee[] = [
     ctaLabel: "Get BBA Fee Details",
     plans: buildPlans("bba"),
     description:
-      "A three-year online BBA pathway combining business and management education with ACCA-aligned professional finance learning, AI capabilities and structured employability preparation.",
+      "A three-year online BBA pathway combining business and management education with ACCA professional Qualification, AI capabilities and structured employability preparation.",
     features: [
       { icon: "graduationCap", label: "University Degree (BBA)" },
-      { icon: "fileText", label: "ACCA-aligned Learning" },
+      { icon: "fileText", label: "ACCA professional Qualification" },
       { icon: "users", label: "Career Readiness" },
     ],
     badge: "",

@@ -24,12 +24,12 @@ const hero = {
   eyebrow: "GLOBAL FINANCE & AI PROFESSIONAL PROGRAM",
   title: { start: "B.Com - ", highlight: "ACCA Professional\nQualification" },
   subtitle: "Top Class Commerce Degree + Internationally Recognised ACCA Qualification",
-  body: "A three-year online B.Com pathway integrating commerce education with ACCA-aligned professional learning, AI-enabled finance capabilities and structured employability preparation.",
+  body: "A three-year online B.Com pathway integrating commerce education with ACCA professional Qualification, AI-enabled finance capabilities and structured employability preparation.",
   image: bcomHeroImage,
   // Labels reuse the "Why choose this pathway?" titles below.
   features: [
     { icon: "calculator", label: "Commerce Foundation" },
-    { icon: "landmark", label: "ACCA-Aligned Professional Learning" },
+    { icon: "landmark", label: "ACCA professional Qualification" },
     { icon: "brain", label: "AI & Digital Finance" },
     { icon: "users", label: "Career Readiness" },
   ],
@@ -54,7 +54,7 @@ const why = {
     },
     {
       icon: "landmark",
-      title: "ACCA-Aligned Professional Learning",
+      title: "ACCA professional Qualification",
       body: "Acquire ACCA qualification mapped across ACCA Knowledge, Expertise and Strategic Professional levels.",
     },
     {
@@ -168,7 +168,7 @@ const curriculum = {
 
 const accaLearning = {
   ...accaExemptions,
-  eyebrow: "ACCA-ALIGNED LEARNING",
+  eyebrow: "ACCA PROFESSIONAL QUALIFICATION",
   title: "Build Professional Finance Knowledge Alongside Your Degree",
   body: "The proposed curriculum is mapped to ACCA's redesigned qualification structure across Knowledge, Expertise and Strategic Professional learning.",
   levels: [

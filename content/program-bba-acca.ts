@@ -48,9 +48,9 @@ export const programWhyImage = { src: "/images/hero/hero-bg.jpg", alt: "" };
 
 const hero = {
   eyebrow: "GLOBAL FINANCE & AI PROFESSIONAL PROGRAM",
-  title: { start: "BBA", highlight: " + ACCA" },
+  title: { start: "BBA - ", highlight: "ACCA Professional\nQualification" },
   subtitle: "Business Education Meets Professional Finance",
-  body: "A three-year online BBA pathway combining business and management education with ACCA-aligned professional finance learning, AI capabilities and structured employability preparation.",
+  body: "A three-year online BBA pathway combining business and management education with ACCA professional Qualification, AI capabilities and structured employability preparation.",
   image: bbaHeroImage,
   features: [
     { icon: "briefcase", label: "Business & Management" },
@@ -80,7 +80,7 @@ const why = {
     {
       icon: "landmark",
       title: "Professional Finance",
-      body: "Develop ACCA-aligned capabilities across accounting, taxation, reporting, audit, investment and performance.",
+      body: "Develop ACCA professional Qualification capabilities across accounting, taxation, reporting, audit, investment and performance.",
     },
     {
       icon: "brain",
@@ -193,7 +193,7 @@ const curriculum = {
 
 const accaLearning = {
   ...accaExemptions,
-  eyebrow: "ACCA-ALIGNED LEARNING",
+  eyebrow: "ACCA PROFESSIONAL QUALIFICATION",
   title: "Build Professional Finance Knowledge Alongside Your Degree",
   body: "The proposed curriculum is mapped to ACCA's redesigned qualification structure across Knowledge, Expertise and Strategic Professional learning.",
   levels: [
@@ -276,7 +276,7 @@ const whoFor = {
   eyebrow: "WHO IS THIS FOR?",
   icon: "users",
   statement:
-    "Ideal for students who want to combine business and management education, professional finance learning, ACCA-aligned preparation, AI capabilities and career-readiness development.",
+    "Ideal for students who want to combine business and management education, professional finance learning, ACCA professional Qualification, AI capabilities and career-readiness development.",
   note: "Eligibility: As prescribed by the selected university partner.",
 } satisfies WhoForContent;
 

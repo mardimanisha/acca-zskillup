@@ -9,7 +9,7 @@ export const universityPageCopy = {
     eyebrow: "GLOBAL FINANCE & AI PROFESSIONAL PROGRAM",
     titleLine1: (u: UniversityPage) => `${u.degreeShort} + ACCA Pathway from`,
     body: (u: UniversityPage) =>
-      `Earn your online ${u.officialDegreeName} from ${u.universityName} while building ACCA-aligned professional finance knowledge, AI capabilities and structured career readiness.`,
+      `Earn your online ${u.officialDegreeName} from ${u.universityName} while building ACCA professional Qualification knowledge, AI capabilities and structured career readiness.`,
     advisor: "Talk to an Advisor",
     brochure: "Download University Brochure",
   },
@@ -30,7 +30,7 @@ export const universityPageCopy = {
       {
         icon: "landmark",
         title: "Professional Finance",
-        text: "Build ACCA-aligned professional knowledge alongside your academic curriculum.",
+        text: "Build ACCA professional Qualification knowledge alongside your academic curriculum.",
       },
       {
         icon: "brain",

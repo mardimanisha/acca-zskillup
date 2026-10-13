@@ -27,7 +27,7 @@ export const brochureOptions = [
 // fee sheet (data/university-fees.ts, dummy until the final sheet) and are hidden when absent.
 const universityFeatures = [
   "Globally recognised degree",
-  "ACCA-aligned learning",
+  "ACCA professional Qualification",
   "Finance & AI skills",
   "Employability preparation",
 ] as const;

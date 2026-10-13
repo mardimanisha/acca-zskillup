@@ -17,7 +17,7 @@ export const homeWhyContent = {
     teal: "Career-Ready Learning.",
   },
   subtext:
-    "Build professional finance capabilities through ACCA-aligned learning, while developing the digital, AI and workplace skills.",
+    "Build professional finance capabilities through ACCA professional Qualification, while developing the digital, AI and workplace skills.",
   acca: {
     heading: { navy: "Why", teal: "ACCA?" },
     subheading: "A Globally Respected Professional Qualification",
@@ -59,7 +59,7 @@ export const homeWhyContent = {
     heading: { navy: "Why", teal: "ZSkillup?" },
     subheading: "Go Beyond Exam Preparation",
     paragraph:
-      "The Global Finance & AI Professional Program brings together ACCA-aligned professional learning, degree pathways, AI-enabled finance skills and structured employability preparation.",
+      "The Global Finance & AI Professional Program brings together ACCA professional Qualification, degree pathways, AI-enabled finance skills and structured employability preparation.",
     cards: [
       {
         number: "01",

@@ -28,7 +28,7 @@ export const heroContent = {
     line2Rest: "& Business",
   },
   subtext:
-    "Choose a degree-integrated B.Com or BBA pathway, or pursue ACCA preparation independently. Build professional finance knowledge, AI capabilities and career-ready skills through one structured online learning experience.",
+    "Choose a degree-integrated B.Com + ACCA or BBA + ACCA pathway, or pursue ACCA preparation independently. Build professional finance knowledge, AI capabilities and career-ready skills through one structured online learning experience.",
   ctas: {
     advisor: { label: "Talk to an Advisor", href: "#talk-to-advisor" },
     brochure: { label: "Download Brochure", href: "#download-brochure" },

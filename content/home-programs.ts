@@ -25,7 +25,7 @@ export const homeProgramsContent = {
       accent: "teal",
       icon: "graduationCap",
       image: {
-        src: "/images/programs/bcom-student.png",
+        src: "/images/programs/bcom-student.webp",
         alt: "Young man with curly hair smiling, wearing a green shirt and a backpack",
         width: 672,
         height: 483,
@@ -41,7 +41,7 @@ export const homeProgramsContent = {
       accent: "purple",
       icon: "landmark",
       image: {
-        src: "/images/programs/bba-student.png",
+        src: "/images/programs/bba-student.webp",
         alt: "Young woman with long hair smiling, wearing a backpack and holding books",
         width: 651,
         height: 483,
@@ -57,7 +57,7 @@ export const homeProgramsContent = {
       accent: "orange",
       icon: "barChart",
       image: {
-        src: "/images/programs/acca-student.png",
+        src: "/images/programs/acca-student.webp",
         alt: "Young man in glasses and an olive T-shirt smiling and looking to the side",
         width: 684,
         height: 483,

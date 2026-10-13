@@ -145,7 +145,7 @@ export const careersCopy = {
     eyebrow: "CAREER READINESS",
     titleLine1: "Your Career Preparation Starts",
     titleLine2: "Before Graduation",
-    image: "/images/careers/readiness-team-hd.png",
+    image: "/images/careers/readiness-team-hd.webp",
     imageAlt: "Three colleagues working together at a laptop",
     items: [
       {

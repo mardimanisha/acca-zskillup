@@ -2,7 +2,6 @@
 
 import { Trophy } from "lucide-react";
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
 
 import {
   Dialog,
@@ -40,20 +39,6 @@ function initials(name: string) {
 
 export function FacultyCard({ member, hidden }: { member: FacultyMemberContent; hidden?: boolean }) {
   const accent = accentStyles[member.accent];
-  const measureRef = useRef<HTMLParagraphElement>(null);
-  const [truncated, setTruncated] = useState(false);
-
-  // A bio longer than 4 lines shows 3 lines plus a "View more" line; measured on an invisible 4-line clone.
-  useLayoutEffect(() => {
-    const el = measureRef.current;
-    if (!el) return;
-    const check = () => setTruncated(el.scrollHeight > el.clientHeight + 1);
-    check();
-    const observer = new ResizeObserver(check);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [member.experience]);
-
   const portrait = member.image ? (
     <Image
       src={member.image.src}
@@ -101,35 +86,23 @@ export function FacultyCard({ member, hidden }: { member: FacultyMemberContent; 
               </button>
             </DialogTrigger>
           </h3>
-          <p className={cn("mt-1 text-sm font-bold", accent.creds)}>
+          <p className={cn("mt-1 min-h-10 text-sm font-bold", accent.creds)}>
             {member.credentials.join("  |  ")}
           </p>
           <p
             className={cn(
-              "mt-3 inline-flex items-center gap-1.5 self-start rounded-md px-2.5 py-1.5 text-xs font-semibold",
+              "mt-3 inline-flex min-h-11 items-center gap-1.5 self-start rounded-md px-2.5 py-1.5 text-xs font-semibold",
               accent.badge,
             )}
           >
             <Trophy aria-hidden="true" className={cn("size-3.5", accent.trophy)} />
             {member.achievement}
           </p>
-          <div className="relative mt-3">
-            <p
-              ref={measureRef}
-              aria-hidden="true"
-              className="pointer-events-none invisible absolute inset-x-0 top-0 line-clamp-4 text-sm leading-relaxed"
-            >
+          <div className="mt-3">
+            <p className="line-clamp-3 text-sm leading-relaxed text-brand-body">
               {member.experience}
             </p>
-            <p
-              className={cn(
-                "text-sm leading-relaxed text-brand-body",
-                truncated ? "line-clamp-3" : "line-clamp-4",
-              )}
-            >
-              {member.experience}
-            </p>
-            {truncated && (
+            {(
               <DialogTrigger asChild>
                 <button
                   type="button"

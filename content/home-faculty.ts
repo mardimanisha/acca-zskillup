@@ -41,7 +41,7 @@ export const homeFacultyContent = {
     },
     {
       name: "Lokesh Mathur",
-      image: { src: "/images/faculty/lokesh-mathur.png", alt: "Portrait of Lokesh Mathur", width: 1122, height: 1402 },
+      image: { src: "/images/faculty/lokesh-mathur.webp", alt: "Portrait of Lokesh Mathur", width: 1122, height: 1402 },
       credentials: ["Engineer", "Executive MBA (IIM Calcutta)"],
       achievement: "Founder & Director",
       experience:
@@ -50,7 +50,7 @@ export const homeFacultyContent = {
     },
     {
       name: "Manish Temani",
-      image: { src: "/images/faculty/manish-temani.png", alt: "Portrait of Manish Temani", width: 1122, height: 1402 },
+      image: { src: "/images/faculty/manish-temani.webp", alt: "Portrait of Manish Temani", width: 1122, height: 1402 },
       credentials: ["CA (AIR 26)", "CS (AIR 1)", "US CPA"],
       achievement: "CS All India Rank 1",
       experience:

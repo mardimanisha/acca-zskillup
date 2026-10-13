@@ -16,7 +16,7 @@ export const homeLearningContent = {
   subtext:
     "A structured digital learning environment designed to keep your academics, professional preparation and career development connected throughout your journey.",
   visual: {
-    src: "/images/learning/lms-visual.png",
+    src: "/images/learning/lms-visual.webp",
     alt: "ZSkillup learning platform dashboard",
     width: 770,
     height: 760,

@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // AVIF first (smallest), WebP fallback.
+    formats: ["image/avif", "image/webp"],
     // Cache optimized images for 30 days so repeat visits don't re-optimize/re-fetch.
     minimumCacheTTL: 60 * 60 * 24 * 30,
     // 75 is the default; 90 is used for the hero background.

@@ -23,7 +23,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${plusJakartaSans.variable}`}>
       <body className="min-h-screen">
         <EnquiryModalProvider>
           <SiteHeader />

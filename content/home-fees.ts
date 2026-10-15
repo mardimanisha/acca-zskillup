@@ -39,18 +39,26 @@ type HomeFeesContent = {
 };
 
 // DUMMY amounts (placeholder from the design mockup) — replace with approved fees before launch.
-const bcomPlans = [
+// Placeholder plans for pages without a program selector (university pages); not the B.Com fees.
+const universityDefaultPlans = [
   { title: "One-Time Payment", price: "1,01,200", originalPrice: "1,15,000", note: "Self Pay Benefits", effectiveFee: "1,01,200", tone: "green" },
   { title: "Annual Fee", price: "36,420", originalPrice: "38,334", note: "Self Pay Benefits", effectiveFee: "1,09,260", tone: "pink" },
   { title: "Per Semester Fee", price: "19,200", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "1,15,000", tone: "yellow" },
   { title: "24 Months No-Cost EMI", price: "4,552/month", originalPrice: "4,792", note: "0% Interest", effectiveFee: "1,09,260", tone: "navy" },
 ] as const satisfies readonly FeePlan[];
 
+const bcomPlans = [
+  { title: "One-Time Payment", price: "2,19,000", originalPrice: "2,59,000", note: "Self Pay Benefits", effectiveFee: "", tone: "green" },
+  { title: "Annual Fee", price: "83,000", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "", tone: "pink" },
+  { title: "Per Semester Fee", price: "43,167", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "", tone: "yellow" },
+  { title: "24 Months No-Cost EMI", price: "10,375/month", originalPrice: "", note: "0% Interest", effectiveFee: "", tone: "navy" },
+] as const satisfies readonly FeePlan[];
+
 const bbaPlans = [
-  { title: "One-Time Payment", price: "96,500", originalPrice: "1,10,000", note: "Self Pay Benefits", effectiveFee: "96,500", tone: "green" },
-  { title: "Annual Fee", price: "34,800", originalPrice: "36,630", note: "Self Pay Benefits", effectiveFee: "1,04,400", tone: "pink" },
-  { title: "Per Semester Fee", price: "18,400", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "1,10,400", tone: "yellow" },
-  { title: "24 Months No-Cost EMI", price: "4,350/month", originalPrice: "4,579", note: "0% Interest", effectiveFee: "1,04,400", tone: "navy" },
+  { title: "One-Time Payment", price: "2,59,000", originalPrice: "2,99,000", note: "Self Pay Benefits", effectiveFee: "", tone: "green" },
+  { title: "Annual Fee", price: "96,333", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "", tone: "pink" },
+  { title: "Per Semester Fee", price: "49,833", originalPrice: "", note: "Self Pay Benefits", effectiveFee: "", tone: "yellow" },
+  { title: "24 Months No-Cost EMI", price: "12,042/month", originalPrice: "", note: "0% Interest", effectiveFee: "", tone: "navy" },
 ] as const satisfies readonly FeePlan[];
 
 const accaOnlyPlans = [
@@ -99,7 +107,7 @@ export const homeFeesContent = {
   ],
   effectiveFeeLabel: "Effective fee of Rs.",
   /** Default plans for pages without a program selector (university pages). */
-  plans: bcomPlans,
+  plans: universityDefaultPlans,
   includes: {
     title: "More Value for Your Investment",
     intro: "Depending on the selected pathway, your learning experience can include",

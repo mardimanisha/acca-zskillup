@@ -30,8 +30,8 @@ export type ProgramFee = {
 // DUMMY AMOUNTS for layout only (not approved fees). Replace with the final fee sheet before launch;
 // empty strings hide the price line.
 const dummyAmounts: Record<ProgramFeeId, [string, string, string, string]> = {
-  bcom: ["6,00,000", "1,20,000", "1,05,000", "8,750/month"],
-  bba: ["5,40,000", "1,08,000", "90,000", "7,500/month"],
+  bcom: ["2,19,000", "83,000", "43,167", "10,375/month"], // approved B.Com amounts
+  bba: ["2,59,000", "96,333", "49,833", "12,042/month"], // approved BBA amounts
   acca: ["1,50,000", "50,000", "25,000", "4,200/month"],
 };
 
@@ -74,7 +74,7 @@ export const programFees: readonly ProgramFee[] = [
     id: "bcom",
     name: "B.Com + ACCA",
     meta: "3 Years | 6 Semesters | Online",
-    fee: "",
+    fee: "2,59,000",
     paymentStructure: "",
     ctaLabel: "Get B.Com Fee Details",
     plans: buildPlans("bcom"),
@@ -91,7 +91,7 @@ export const programFees: readonly ProgramFee[] = [
     id: "bba",
     name: "BBA + ACCA",
     meta: "3 Years | 6 Semesters | Online",
-    fee: "",
+    fee: "2,99,000",
     paymentStructure: "",
     ctaLabel: "Get BBA Fee Details",
     plans: buildPlans("bba"),

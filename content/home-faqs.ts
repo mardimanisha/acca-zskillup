@@ -35,17 +35,17 @@ export const homeFaqsContent = {
         {
           question: "What programs are available through ZSkillup School of Accounting & Management?",
           answer:
-            "The current program pathways include the B.Com + Global Finance & AI Professional Program and the BBA + Global Finance & AI Professional Program. These pathways are designed to combine academic learning with ACCA-aligned preparation, practical finance skills, digital and AI exposure, and employability development.",
+            "The current program pathways include the B.Com + Global Finance & AI Professional Program and the BBA + Global Finance & AI Professional Program. These pathways are designed to combine academic learning with ACCA professional Qualification, practical finance skills, digital and AI exposure, and employability development.",
         },
         {
           question: "What is the B.Com + Global Finance & AI Professional Program?",
           answer:
-            "It is a pathway designed for students who want to pursue a B.Com while also building professional finance capabilities. The program combines academic learning with ACCA-aligned preparation, practical finance learning, digital and AI skills, and career-readiness support.",
+            "It is a pathway designed for students who want to pursue a B.Com while also building professional finance capabilities. The program combines academic learning with ACCA professional Qualification, practical finance learning, digital and AI skills, and career-readiness support.",
         },
         {
           question: "What is the BBA + Global Finance & AI Professional Program?",
           answer:
-            "It is a pathway designed for students who want to pursue a BBA while developing professional finance and business capabilities. The program combines academic learning with ACCA-aligned preparation, practical finance learning, digital and AI skills, and employability support.",
+            "It is a pathway designed for students who want to pursue a BBA while developing professional finance and business capabilities. The program combines academic learning with ACCA professional Qualification, practical finance learning, digital and AI skills, and employability support.",
         },
         {
           question: "How does ACCA preparation fit into these programs?",

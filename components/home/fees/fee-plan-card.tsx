@@ -38,10 +38,12 @@ export function FeePlanCard({
         )}
       </p>
       <p className="mt-1 text-sm text-brand-navy/80">{note}</p>
-      <p className={cn("mt-4 flex items-center gap-2 text-sm font-medium", brand ? "text-zs-green" : "text-green-600")}>
-        <BadgeCheck aria-hidden="true" className="size-5 shrink-0" />
-        {effectiveFeeLabel} {effectiveFee}
-      </p>
+      {effectiveFee && (
+        <p className={cn("mt-4 flex items-center gap-2 text-sm font-medium", brand ? "text-zs-green" : "text-green-600")}>
+          <BadgeCheck aria-hidden="true" className="size-5 shrink-0" />
+          {effectiveFeeLabel} {effectiveFee}
+        </p>
+      )}
     </div>
   );
 }

@@ -9,6 +9,12 @@ export type FacultyMemberContent = {
   accent: "purple" | "orange";
   // TODO: portraits are AI-generated placeholders; replace with real faculty photos. Falls back to initials if omitted.
   image?: { src: string; alt: string; width: number; height: number };
+  /** Vertical crop (CSS object-position y) for the card portrait, tuned so every head sits at the same height. */
+  imageY?: string;
+  /** Pushes the card portrait down by this much (CSS length) for photos with no headroom; the gap is filled by `imageFill`. */
+  imageShift?: string;
+  /** Background (CSS) matching the photo's top edge, shown in the gap left by `imageShift`. */
+  imageFill?: string;
 };
 
 // TODO: placeholder faculty copy from the design mockup; replace with real faculty before launch.
@@ -24,6 +30,8 @@ export const homeFacultyContent = {
     {
       name: "Arpit Jain",
       image: { src: "/images/faculty/arpit-jain.jpeg", alt: "Portrait of Arpit Jain", width: 864, height: 1152 },
+      imageShift: "4px",
+      imageFill: "linear-gradient(to right, rgb(204,202,190), rgb(211,208,201) 25%, rgb(218,218,210) 50%, rgb(222,222,214) 75%, rgb(219,219,211))",
       credentials: ["CA", "CS", "Entrepreneur"],
       achievement: "Founder, JustSkill.ai",
       experience:
@@ -42,6 +50,7 @@ export const homeFacultyContent = {
     {
       name: "Lokesh Mathur",
       image: { src: "/images/faculty/lokesh-mathur.webp", alt: "Portrait of Lokesh Mathur", width: 1122, height: 1402 },
+      imageY: "14%",
       credentials: ["Engineer", "Executive MBA (IIM Calcutta)"],
       achievement: "Founder & Director",
       experience:
@@ -51,6 +60,7 @@ export const homeFacultyContent = {
     {
       name: "Manish Temani",
       image: { src: "/images/faculty/manish-temani.webp", alt: "Portrait of Manish Temani", width: 1122, height: 1402 },
+      imageY: "30%",
       credentials: ["CA (AIR 26)", "CS (AIR 1)", "US CPA"],
       achievement: "CS All India Rank 1",
       experience:

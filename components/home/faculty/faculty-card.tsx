@@ -48,7 +48,11 @@ export function FacultyCard({ member, hidden }: { member: FacultyMemberContent; 
       sizes="260px"
       // The track extends past the viewport; lazy loading would leave off-screen cards blank.
       loading="eager"
-      className="h-full w-full object-cover object-top"
+      className="h-full w-full object-cover"
+      style={{
+        objectPosition: `50% ${member.imageY ?? "0%"}`,
+        transform: member.imageShift ? `translateY(${member.imageShift})` : undefined,
+      }}
     />
   ) : (
     <div
@@ -68,6 +72,7 @@ export function FacultyCard({ member, hidden }: { member: FacultyMemberContent; 
             tabIndex={hidden ? -1 : undefined}
             aria-label={`View profile of ${member.name}`}
             className="relative block aspect-[4/4.2] w-full cursor-pointer overflow-hidden rounded-xl bg-[#F1F4F8] focus-visible:ring-2 focus-visible:ring-brand-teal focus:outline-hidden"
+            style={member.imageFill ? { background: member.imageFill } : undefined}
           >
             {portrait}
             <span className={cn("absolute inset-x-0 bottom-0 h-1", accent.bar)} />

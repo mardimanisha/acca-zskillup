@@ -168,7 +168,7 @@ const scenes: readonly (() => ReactNode)[] = [
   ),
 ];
 
-/** Dark-green banner (dotted left, hairlines right) that fills the card's spare space, with a themed graphic on top. */
+/** Soft light-mint hills spanning the card's spare space, with a themed graphic standing on them. */
 function SemesterVisual({ index }: { index: number }) {
   const Scene = scenes[index % scenes.length];
   const sceneRef = useRef<SVGGElement>(null);
@@ -184,30 +184,23 @@ function SemesterVisual({ index }: { index: number }) {
   }, [index]);
 
   return (
-    <div
-      aria-hidden="true"
-      className="relative isolate mt-5 min-h-[120px] flex-1 overflow-hidden rounded-xl"
-      style={{ backgroundImage: "linear-gradient(135deg, #0B6B57 0%, #06503F 55%, #053D31 100%)" }}
-    >
-      <span
-        className="pointer-events-none absolute inset-y-0 left-0 w-1/4"
-        style={{
-          backgroundImage: "radial-gradient(rgba(255,255,255,0.28) 1px, transparent 1.6px)",
-          backgroundSize: "14px 14px",
-          maskImage: "linear-gradient(to right, black, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, black, transparent)",
-        }}
-      />
-      <span
-        className="pointer-events-none absolute inset-y-0 right-0 w-1/4"
-        style={{
-          backgroundImage: "repeating-linear-gradient(135deg, rgba(255,255,255,0.14) 0 1px, transparent 1px 11px)",
-          maskImage: "linear-gradient(to left, black, transparent)",
-          WebkitMaskImage: "linear-gradient(to left, black, transparent)",
-        }}
-      />
+    <div aria-hidden="true" className="relative isolate mt-5 min-h-[160px] flex-1 overflow-hidden rounded-xl">
+      <svg viewBox="0 0 800 200" preserveAspectRatio="none" fill="none" className="absolute inset-0 size-full">
+        <defs>
+          <linearGradient id="cgHill1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#DDF1E8" />
+            <stop offset="1" stopColor="#F4FAF7" stopOpacity="0.4" />
+          </linearGradient>
+          <linearGradient id="cgHill2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#CBE9DC" stopOpacity="0.9" />
+            <stop offset="1" stopColor="#EAF6F0" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+        <path d="M0 200V110C120 60 230 70 340 100S590 150 800 80V200Z" fill="url(#cgHill1)" />
+        <path d="M0 200V150C140 110 280 130 420 150S660 160 800 120V200Z" fill="url(#cgHill2)" />
+      </svg>
       {/* Positioned from the banner's top/bottom so the graphic can never change its height. */}
-      <div className="absolute inset-y-3 left-1/2 aspect-[440/170] max-w-[90%] -translate-x-1/2 overflow-hidden">
+      <div className="absolute inset-y-3 left-1/2 aspect-[440/170] max-w-[90%] -translate-x-1/2">
         <svg viewBox="0 0 440 170" fill="none" className="size-full">
           <defs>
             <linearGradient id="cg1" x1="0" y1="0" x2="0" y2="1">

@@ -123,7 +123,7 @@ export function ProgramUniversities({ content }: { content: UniversitiesContent 
                       className="h-auto max-h-12 w-auto max-w-[85%] object-contain object-left"
                     />
                   </div>
-                  <h3 className="mt-2 text-lg font-bold leading-snug">{uni.name}</h3>
+                  <h3 className="mt-2 min-h-[2.75em] text-lg font-bold leading-snug">{uni.name}</h3>
                   <p className="mt-1 flex items-center gap-1.5 text-sm text-[#6B7186]">
                     <MapPin aria-hidden="true" className="size-4 shrink-0 text-zs-green" />
                     {uni.location}

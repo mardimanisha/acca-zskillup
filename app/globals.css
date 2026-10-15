@@ -5,24 +5,26 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Desktop viewports shorter than ~1060px (incl. 1080p screens once browser UI is
-   subtracted). Registered before short/tight so those still take precedence. */
+/* The compact/short/tight variants used to depend on viewport height, which differs
+   between browsers (Safari's toolbars vs Chrome's) and made the layout, text sizes
+   and wrapping render differently per browser. They are now width-only so every
+   browser renders the same "compact desktop" layout (the Chrome look). */
 @custom-variant compact {
-  @media (min-width: 80rem) and (max-height: 1059px) {
+  @media (min-width: 80rem) {
     @slot;
   }
 }
 
-/* Desktop viewports with limited height (e.g. laptops at 125% scaling) */
 @custom-variant short {
-  @media (min-width: 80rem) and (max-height: 820px) {
+  @media (min-width: 80rem) {
     @slot;
   }
 }
 
-/* Very short desktop viewports (e.g. 1366x768 laptops) */
+/* Intentionally never matches: the very-short-viewport overrides are disabled so
+   layout no longer changes with browser window height. */
 @custom-variant tight {
-  @media (min-width: 80rem) and (max-height: 700px) {
+  @media not all {
     @slot;
   }
 }
@@ -89,6 +91,9 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Stop Safari/iOS from auto-inflating text sizes */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),

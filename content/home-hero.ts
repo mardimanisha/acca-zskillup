@@ -24,8 +24,8 @@ export const heroContent = {
   },
   headline: {
     line1: "Build Your Future in",
-    line2Highlight: "Finance, Accounting",
-    line2Rest: "& Business",
+    line2Highlight: "ACCOUNTING",
+    line2Rest: "& MANAGEMENT",
   },
   subtext:
     "Choose a degree-integrated B.Com + ACCA or BBA + ACCA pathway, or pursue ACCA preparation independently. Build professional finance knowledge, AI capabilities and career-ready skills through one structured online learning experience.",

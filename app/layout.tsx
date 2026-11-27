@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
+import { GoogleTag } from "@/components/analytics/GoogleTag";
 import { EnquiryModalProvider } from "@/components/faqs/enquiry-modal";
 import { FloatingActions } from "@/components/layout/floating-actions";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -24,6 +25,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${plusJakartaSans.variable}`}>
+      <head>
+        <GoogleTag />
+      </head>
       <body className="min-h-screen">
         <EnquiryModalProvider>
           <SiteHeader />

@@ -122,7 +122,7 @@ export const footerContent = {
   contact: {
     title: "Get in Touch",
     email: "acca@zskillup.com",
-    phone: "+91 9153005252",
+    phone: "+91 70300 76969",
   },
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
